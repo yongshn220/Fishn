@@ -11,9 +11,6 @@ public enum FishState
 }
 public class FishController : MonoBehaviour
 {
-    public Vector3 currentVelocity;
-    public float smoothDamp;
-
     private State<FishController>[] states;
     private State<FishController> currentState;
     private StateMachine<FishController> stateMachine;

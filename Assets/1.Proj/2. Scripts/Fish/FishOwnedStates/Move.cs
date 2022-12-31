@@ -9,32 +9,52 @@ namespace FishOwnedStates
         private FishController currentEntity;
         private List<MovePointController> cohesionMovePoints = new List<MovePointController>();
         private List<MovePointController> avoidanceMovePoints = new List<MovePointController>();
-        private Vector3 centerMovePoint;
+
         private Vector3 currentCohesionPoint;
 
+        private Vector3 centerMovePoint;
+
+        private float currentSmoothDampTime;
+        private int smoothDampDir = 1; // -1 or 1
+
+        private Vector3 currentVelocity;
+        private float currentSpeed;
+        private int speedDir = 1; // -1 or 1
+
+#region Main
         public override void Enter(FishController entity)
         {
-            Debug.Log("Move Enter");
             currentEntity = entity;
-            Debug.Log("Move Enter1");
+            Initialize();
             CalculateCenterMovePoint();
-            Debug.Log("Move Enter2");
             FindCohesionMovePoints();
-            Debug.Log("Move Enter3");
             FindAvoidanceMovePoints();
-            Debug.Log("Move Enter4");
         }
 
         public override void Execute(FishController entity)
         {
             MoveFish();   
+            CheckTransitionToIdle();
         }
 
         public override void Exit(FishController entity)
         {
             Debug.Log("Move Exit");
         }
+#endregion
 
+
+#region Initalize
+        private void Initialize()
+        {
+            currentSmoothDampTime = UnityEngine.Random.Range(currentEntity.fishManager.minSmoothDampTime, currentEntity.fishManager.maxSmoothDampTime);
+
+            currentSpeed = UnityEngine.Random.Range(currentEntity.fishManager.minSpeed, currentEntity.fishManager.maxSpeed);
+        }
+#endregion
+
+
+#region Finding
         private void FindCohesionMovePoints()
         {
             cohesionMovePoints.Clear();
@@ -52,35 +72,38 @@ namespace FishOwnedStates
                 avoidanceMovePoints.Add(point);
             }
         }
-        
+#endregion
+
+
+#region Calculation
         void MoveFish()
         {
+            CalculateSmoothDampTime();
+            CalculateCurrentSpeed();
+
             Vector3 cohesionVector = CalculateCohesionVector();
             Vector3 avoidanceVector = CalculateAvoidanceVector();
 
             Vector3 moveVector = cohesionVector;
 
-            moveVector = Vector3.SmoothDamp(currentEntity.transform.forward, moveVector, ref currentEntity.currentVelocity, 0.5f);
+            Debug.Log(currentSpeed);
+
+            moveVector = Vector3.SmoothDamp(currentEntity.transform.forward, moveVector, ref currentVelocity, currentSmoothDampTime);
             currentEntity.transform.forward = moveVector;
-            currentEntity.transform.position += moveVector * Time.deltaTime;
+            currentEntity.transform.position += moveVector * currentSpeed * Time.deltaTime;
         }
 
         // Calculated only one time (Enter)
         private void CalculateCenterMovePoint()
         {
-            Debug.Log("1");
             Vector3 centerPoint = Vector3.zero; 
-            Debug.Log("2");
-            foreach (var point in currentEntity.fishManager.movePoints)
+            foreach (MovePointController point in currentEntity.fishManager.movePoints)
             {
-            Debug.Log("3");
                 centerPoint += point.transform.position;
             }
-            Debug.Log("4");
 
             centerPoint /= currentEntity.fishManager.movePoints.Length;
             this.centerMovePoint = centerPoint;
-            Debug.Log("5");
         }
 
         private Vector3 CalculateCohesionVector()
@@ -121,6 +144,27 @@ namespace FishOwnedStates
             return avoidanceVector;
         }
 
+        private void CalculateSmoothDampTime()
+        {
+            float smoothDampDifference = currentEntity.fishManager.maxSmoothDampTime - currentEntity.fishManager.minSmoothDampTime;
+            currentSmoothDampTime += smoothDampDir * (smoothDampDifference / currentEntity.fishManager.smoothDampLoopTime) * Time.deltaTime;
+
+            if (currentSmoothDampTime >= currentEntity.fishManager.maxSmoothDampTime) smoothDampDir = -1;
+            if (currentSmoothDampTime <= currentEntity.fishManager.minSmoothDampTime) smoothDampDir = 1;
+        }
+
+        private void CalculateCurrentSpeed()
+        {
+            float speedDifference = currentEntity.fishManager.maxSpeed - currentEntity.fishManager.minSpeed;
+            currentSpeed += speedDir * (speedDifference / currentEntity.fishManager.speedLoopTime) * Time.deltaTime;
+
+            if (currentSpeed >= currentEntity.fishManager.maxSpeed) speedDir = -1;
+            if (currentSpeed <= currentEntity.fishManager.minSpeed) speedDir = 1;
+        }
+#endregion
+
+
+#region Check
         private void CheckTransitionToIdle()
         {
             if (IsEntityInDistanceFromTarget()) ChangeState(FishState.Idle);
@@ -138,4 +182,5 @@ namespace FishOwnedStates
             currentEntity.ChangeState(newState);
         }
     }
+#endregion
 }

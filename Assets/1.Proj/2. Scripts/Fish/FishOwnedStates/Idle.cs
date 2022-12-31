@@ -9,34 +9,43 @@ namespace FishOwnedStates
     {
         FishController currentEntity;
 
+        bool isTransitToMoveReady = false;
+
         public override void Enter(FishController entity)
         {
+            Debug.Log("idle enter");
+            ResetState();
             currentEntity = entity;
             DoIdleAction();
         }
 
         public override void Execute(FishController entity)
         {
-        }
+            if (isTransitToMoveReady)
+            {
+                entity.ChangeState(FishState.Move);
+            }
+        }  
 
         public override void Exit(FishController entity)
         {
-            Debug.Log("Idle Exit");
+            Debug.Log("idle exit");
+            ResetState();
         }
 
         private void DoIdleAction()
         {   
-
             int randomTime = UnityEngine.Random.Range(1, 4) * 1000;
             Debug.Log(randomTime);
             Task.Delay(randomTime).ContinueWith((task) => {
-                ChangeState(FishState.Move);
+                isTransitToMoveReady = true;
             });
         }
 
-        private void ChangeState(FishState newState)
+        private void ResetState()
         {
-            currentEntity.ChangeState(newState);
+            isTransitToMoveReady = false;
+            currentEntity = null;
         }
     }
 }

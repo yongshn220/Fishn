@@ -10,14 +10,30 @@ public class FishManager : MonoBehaviour
     [SerializeField] private int fishSize;
     [SerializeField] private Vector3 spawnBounds;
 
-    [Header("Speed Setup")]
-    [Range(0, 10)]
-    [SerializeField] private float _minSpeed;
-    public float minSpeed { get { return _minSpeed; } }
+    [Range(0.1f, 5)]
+    [SerializeField] private float _minSmoothDampTime;
+    public float minSmoothDampTime { get { return _minSmoothDampTime; }}
+
+    [Range(0.1f, 5)]
+    [SerializeField] private float _maxSmoothDampTime;
+    public float maxSmoothDampTime { get { return _maxSmoothDampTime; }}
 
     [Range(0, 10)]
+    [SerializeField] private float _smoothDampLoopTime;
+    public float smoothDampLoopTime { get {return _smoothDampLoopTime; }}
+
+    [Header("Speed Setup")]
+    [Range(0, 2)]
+    [SerializeField] private float _minSpeed;
+    public float minSpeed { get { return _minSpeed; }}
+
+    [Range(0, 2)] 
     [SerializeField] private float _maxSpeed; 
-    public float maxSpeed { get { return _maxSpeed; } }
+    public float maxSpeed { get { return _maxSpeed; }}
+
+    [Range(5, 10)]
+    [SerializeField] private float _speedLoopTime;
+    public float speedLoopTime { get { return speedLoopTime; }}
 
     [Header("Move Point Setup")]
     [Range(0, 10)]
@@ -52,17 +68,19 @@ public class FishManager : MonoBehaviour
     [SerializeField] private int _maxLoopTime;
     public int maxLoopTime { get { return _maxLoopTime; }}
 
-    public MovePointController[] movePoints;
-
-    public FishController[] allFish {get; set;}
 
     [Header("Transition Setup")]
     [Range(0, 10)]
     [SerializeField] private float _minTargetDistance;
+
     public float minTargetdistance { get {return _minTargetDistance; }}
 
     [Header("Test Objects")]
     public GameObject testObject;
+
+    public MovePointController[] movePoints;
+
+    public FishController[] allFish {get; set;}
 
     void Start()
     {
