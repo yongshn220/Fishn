@@ -43,8 +43,6 @@ public class MovePointController : MonoBehaviour
     {
         currentCohesionWeight = currentCohesionWeight + cohesionWeightDir * (cohesionWeightAbs / loopTime) * Time.deltaTime;
         currentAvoidanceWeight = currentAvoidanceWeight + avoidanceWeightDir * (avoidanceWeightAbs / loopTime) * Time.deltaTime;
-
-        print(currentAvoidanceWeight);
     }
 
     // Change direction of Update value (increase / decrease).
@@ -78,11 +76,8 @@ public class MovePointController : MonoBehaviour
     private void InitializeAllValues()
     {
         SetNewCohesionWeight();
-        print("cohW : " + cohesionWeightAbs);
         SetNewAvoidanceWeight();
-        print("avodW : " + avoidanceWeightAbs);
         SetNewAvoidanceDistance();
-        print("avodD : " + avoidanceDistanceAbs);
         SetNewLoopTime();
         currentCohesionWeight = UnityEngine.Random.Range(0, cohesionWeightAbs);
         currentAvoidanceWeight = UnityEngine.Random.Range(0, avoidanceWeightAbs);

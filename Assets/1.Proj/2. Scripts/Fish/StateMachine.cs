@@ -14,10 +14,9 @@ public class StateMachine<T> where T : class
 
     public void Execute()
     {
-        if (currentState != null)
-        {
-            currentState.Execute(ownerEntity);
-        }
+        if (currentState == null) return; 
+        
+        currentState.Execute(ownerEntity);
     }
 
     public void ChangeState(State<T> newState)
@@ -28,7 +27,7 @@ public class StateMachine<T> where T : class
         {
             currentState.Exit(ownerEntity);
         }
-
+        Debug.Log("[SM] Change State " + newState);
         currentState = newState;
         currentState.Enter(ownerEntity);
     }

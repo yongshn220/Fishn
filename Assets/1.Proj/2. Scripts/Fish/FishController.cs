@@ -19,8 +19,8 @@ public class FishController : MonoBehaviour
     private StateMachine<FishController> stateMachine;
 
     private float speed;
-
     public FishManager fishManager;
+    public Vector3 testVector1;
 
     void Start()
     {
@@ -38,10 +38,10 @@ public class FishController : MonoBehaviour
         states[(int) FishState.Idle] = new FishOwnedStates.Idle();
         states[(int) FishState.Move] = new FishOwnedStates.Move();
         states[(int) FishState.Eat] = new FishOwnedStates.Eat();
-        
 
         stateMachine = new StateMachine<FishController>();
-        stateMachine.Setup(this, states[(int) FishState.Idle]);
+        stateMachine.Setup(this, states[(int) FishState.Idle]); // Set Default state (can be any state).
+        ChangeState(FishState.Idle); // Set Default again to call Enter() function.
     }
 
     public void ChangeState(FishState newState)

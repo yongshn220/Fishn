@@ -56,6 +56,12 @@ public class FishManager : MonoBehaviour
 
     public FishController[] allFish {get; set;}
 
+    [Header("Transition Setup")]
+    [Range(0, 10)]
+    [SerializeField] private float _minTargetDistance;
+    public float minTargetdistance { get {return _minTargetDistance; }}
+
+    [Header("Test Objects")]
     public GameObject testObject;
 
     void Start()
