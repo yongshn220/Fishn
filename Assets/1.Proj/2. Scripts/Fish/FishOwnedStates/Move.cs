@@ -86,8 +86,6 @@ namespace FishOwnedStates
 
             Vector3 moveVector = cohesionVector;
 
-            Debug.Log(currentSpeed);
-
             moveVector = Vector3.SmoothDamp(currentEntity.transform.forward, moveVector, ref currentVelocity, currentSmoothDampTime);
             currentEntity.transform.forward = moveVector;
             currentEntity.transform.position += moveVector * currentSpeed * Time.deltaTime;
@@ -113,7 +111,6 @@ namespace FishOwnedStates
             foreach (var point in cohesionMovePoints)
             {
                 cohesionVector += point.transform.position + ((this.centerMovePoint - point.transform.position) * (point.currentCohesionWeight));
-                // cohesionVector += point.transform.position; //test
             }
 
             cohesionVector /= cohesionMovePoints.Count;
@@ -156,6 +153,7 @@ namespace FishOwnedStates
         private void CalculateCurrentSpeed()
         {
             float speedDifference = currentEntity.fishManager.maxSpeed - currentEntity.fishManager.minSpeed;
+
             currentSpeed += speedDir * (speedDifference / currentEntity.fishManager.speedLoopTime) * Time.deltaTime;
 
             if (currentSpeed >= currentEntity.fishManager.maxSpeed) speedDir = -1;

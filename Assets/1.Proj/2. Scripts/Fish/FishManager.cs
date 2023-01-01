@@ -33,7 +33,7 @@ public class FishManager : MonoBehaviour
 
     [Range(5, 10)]
     [SerializeField] private float _speedLoopTime;
-    public float speedLoopTime { get { return speedLoopTime; }}
+    public float speedLoopTime { get { return _speedLoopTime; }}
 
     [Header("Move Point Setup")]
     [Range(0, 10)]

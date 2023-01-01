@@ -676,13 +676,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishPrefab: {fileID: 8117995104954358255, guid: bf969f0b193334cafad403c1e8400c32, type: 3}
-  fishSize: 3
+  fishSize: 5
   spawnBounds: {x: 0, y: 1.1, z: 0}
   _minSmoothDampTime: 0.2
   _maxSmoothDampTime: 2
   _smoothDampLoopTime: 3
   _minSpeed: 0.1
-  _maxSpeed: 2
+  _maxSpeed: 1.5
   _speedLoopTime: 5.6
   _minCohesionWeight: 0
   _maxCohesionWeight: 6.02
