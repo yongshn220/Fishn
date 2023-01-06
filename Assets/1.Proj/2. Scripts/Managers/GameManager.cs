@@ -2,14 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance {get; private set;}
 
-    string loaddata;
+    JObject loaddata;
     bool isDataReady;
 
-    // Start is called before the first frame update
+    void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(this);
+            return;
+        }
+        instance = this;
+        // xxManager = getComponentInChildren<xxManager>();
+    }
+
     void Start()
     {
         LoadGameData().Forget();
