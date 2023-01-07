@@ -1,25 +1,19 @@
 
+using System;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using Newtonsoft.Json.Linq;
-
 public static class DatabaseHelper
 {
     static Database database = new Database();
 
-    public static async UniTask<JObject> LoadGameData()
+    public static async UniTaskVoid LoadUserData(Action<JObject> callback)
     {
         string uid = SystemInfo.deviceUniqueIdentifier;
         
-        string res = await database.AsyncLoadGameData(uid);
-        
-        JObject json = StringToJson(res);
-        return json;
-    }
+        string res = await database.AsyncLoadUserData(uid);
 
-    private static JObject StringToJson(string str)
-    {
-        JObject json = JObject.Parse(str);
-        return json;
+        JObject json = JObject.Parse(res);
+        callback(json);
     }
 }

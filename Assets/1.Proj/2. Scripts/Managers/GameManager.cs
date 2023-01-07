@@ -8,8 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance {get; private set;}
 
-    JObject loaddata;
-    bool isDataReady;
+    public DataManager dataManager;
 
     void Awake()
     {
@@ -19,26 +18,14 @@ public class GameManager : MonoBehaviour
             return;
         }
         instance = this;
-        // xxManager = getComponentInChildren<xxManager>();
+        
+        DontDestroyOnLoad(this);
+
+        dataManager = GetComponentInChildren<DataManager>();
     }
 
     void Start()
     {
-        LoadGameData().Forget();
-    }
-
-    private async UniTaskVoid LoadGameData()
-    {
-        loaddata = await DatabaseHelper.LoadGameData();
-        isDataReady = true;
-    }
-
-    void Update()
-    {
-        if (isDataReady)
-        {
-            Debug.Log(loaddata);
-            isDataReady = false;
-        }
+        dataManager.LoadUserData();
     }
 }
