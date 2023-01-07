@@ -483,7 +483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1449226944291465d9ef347ef32c6476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishPrefab: {fileID: 8117995104954358255, guid: bf969f0b193334cafad403c1e8400c32, type: 3}
+  fishPrefab: {fileID: 5637264573077940111, guid: bf969f0b193334cafad403c1e8400c32, type: 3}
   fishSize: 5
   spawnBounds: {x: 0, y: 1, z: 0}
   _minSmoothDampTime: 0.2

@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace FishOwnedStates
 {
-    public class Move : State<FishController>
+    public class Move : State<FishMovement>
     {
-        private FishController currentEntity;
+        private FishMovement currentEntity;
         private List<MovePointController> cohesionMovePoints = new List<MovePointController>();
         private List<MovePointController> avoidanceMovePoints = new List<MovePointController>();
 
@@ -22,7 +22,7 @@ namespace FishOwnedStates
         private int speedDir = 1; // -1 or 1
 
 #region Main
-        public override void Enter(FishController entity)
+        public override void Enter(FishMovement entity)
         {
             currentEntity = entity;
             Initialize();
@@ -31,13 +31,13 @@ namespace FishOwnedStates
             FindAvoidanceMovePoints();
         }
 
-        public override void Execute(FishController entity)
+        public override void Execute(FishMovement entity)
         {
             MoveFish();   
             CheckTransitionToIdle();
         }
 
-        public override void Exit(FishController entity)
+        public override void Exit(FishMovement entity)
         {
             Debug.Log("Move Exit");
         }

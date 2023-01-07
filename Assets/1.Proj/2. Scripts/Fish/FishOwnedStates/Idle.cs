@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace FishOwnedStates
 {
-    public class Idle : State<FishController>
+    public class Idle : State<FishMovement>
     {
-        FishController currentEntity;
+        FishMovement currentEntity;
 
         bool isTransitToMoveReady = false;
 
-        public override void Enter(FishController entity)
+        public override void Enter(FishMovement entity)
         {
             Debug.Log("idle enter");
             ResetState();
@@ -19,7 +19,7 @@ namespace FishOwnedStates
             DoIdleAction();
         }
 
-        public override void Execute(FishController entity)
+        public override void Execute(FishMovement entity)
         {
             if (isTransitToMoveReady)
             {
@@ -27,7 +27,7 @@ namespace FishOwnedStates
             }
         }  
 
-        public override void Exit(FishController entity)
+        public override void Exit(FishMovement entity)
         {
             Debug.Log("idle exit");
             ResetState();

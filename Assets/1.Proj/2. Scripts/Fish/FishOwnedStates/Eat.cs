@@ -4,19 +4,19 @@ using UnityEngine;
 
 namespace FishOwnedStates
 {
-    public class Eat : State<FishController>
+    public class Eat : State<FishMovement>
     {
-        public override void Enter(FishController entity)
+        public override void Enter(FishMovement entity)
         {
             Debug.Log("Eat Enter");
         }
 
-        public override void Execute(FishController entity)
+        public override void Execute(FishMovement entity)
         {
             Debug.Log("Eat Execute");
         }
 
-        public override void Exit(FishController entity)
+        public override void Exit(FishMovement entity)
         {
             Debug.Log("Eat Exit");
         }

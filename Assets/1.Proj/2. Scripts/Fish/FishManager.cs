@@ -5,8 +5,9 @@ using System.Linq;
 
 public class FishManager : MonoBehaviour
 {
+#region SETUP
     [Header("Spawn Setup")]
-    [SerializeField] private FishController fishPrefab;
+    [SerializeField] private FishMovement fishPrefab;
     [SerializeField] private int fishSize;
     [SerializeField] private Vector3 spawnBounds;
 
@@ -77,10 +78,11 @@ public class FishManager : MonoBehaviour
 
     [Header("Test Objects")]
     public GameObject testObject;
+#endregion
 
     public MovePointController[] movePoints;
 
-    public FishController[] allFish {get; set;}
+    public FishMovement[] FishList {get; set;}
 
     void Start()
     {
@@ -88,6 +90,7 @@ public class FishManager : MonoBehaviour
         GenerateUnits();
     }
 
+    // Get Move Points from its children.
     void GenerateMovePoints()
     {
         movePoints = transform.GetComponentsInChildren<MovePointController>();
@@ -97,18 +100,31 @@ public class FishManager : MonoBehaviour
         }
     }
 
+    // Load Fish Data from DataManager.
+    List<FishData> LoadFishDataList()
+    {
+        if (GameManager.instance.dataManager.fishDataList != null)
+        {
+            return GameManager.instance.dataManager.fishDataList;
+        }
+        return new List<FishData>(); // TO DO : need to handle the error situation.
+    }
+
+    // Instantiate All fish into the Fish-tank.
     void GenerateUnits()
     {
-        allFish = new FishController[fishSize];
+        List<FishData> fishDataList = LoadFishDataList();
+
+        FishList = new FishMovement[fishSize];
         for (int i = 0; i < fishSize; i++)
         {
             var randomVector = UnityEngine.Random.insideUnitSphere;
             randomVector = new Vector3(randomVector.x * spawnBounds.x, randomVector.y * spawnBounds.y, randomVector.z * spawnBounds.z);
             var spawnPosition = transform.position + randomVector;
             var rotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0);
-            allFish[i] = Instantiate(fishPrefab, spawnPosition, rotation);
-            allFish[i].AssignManager(this);
-            allFish[i].InitializeSpeed(UnityEngine.Random.Range(minSpeed, maxSpeed));
+            FishList[i] = Instantiate(fishPrefab, spawnPosition, rotation);
+            FishList[i].AssignManager(this);
+            FishList[i].InitializeSpeed(UnityEngine.Random.Range(minSpeed, maxSpeed));
         }
     }
 }

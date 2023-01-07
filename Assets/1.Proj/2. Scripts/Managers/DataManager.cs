@@ -10,8 +10,12 @@ public class DataManager : MonoBehaviour
     public bool isDataReady = false;
 
     JObject jsonData;
+
+
     public GameData gameData = null;
-    public List<FishData> fishDataList = new List<FishData>();
+
+    private List<FishData> _fishDataList = new List<FishData>();
+    public List<FishData> fishDataList { get {return _fishDataList; } set {_fishDataList = value; }}
 
     public void LoadUserData()
     {
