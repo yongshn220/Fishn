@@ -13,7 +13,7 @@ public class ViewSceneManager : MonoBehaviour
     void Start()
     {
         List<FishData> fishDataList = LoadFishDataList();
-        fishManager.Generate(fishDataList);
+        fishManager.Setup(fishDataList);
     }
 
     // Load Fish Data from DataManager.
@@ -26,5 +26,5 @@ public class ViewSceneManager : MonoBehaviour
         return new List<FishData>(); // TO DO : need to handle the error situation.
     }
 
-    
+
 }

@@ -35,73 +35,40 @@ public class FishManager : MonoBehaviour
     public float speedLoopTime { get { return _speedLoopTime; }}
 
     [Header("Move Point Setup")]
-    [Range(0, 10)]
-    [SerializeField] private float _minCohesionWeight;
-    public float minCohesionWeight { get { return _minCohesionWeight; }}
-
-    [Range(0, 10)]
-    [SerializeField] private float _maxCohesionWeight;
-    public float maxCohesionWeight { get { return _maxCohesionWeight; }}
-
-    [Range(0, 10)]
-    [SerializeField] private float _minAvoidanceWeight;
-    public float minAvoidanceWeight { get { return _minAvoidanceWeight; }}
-
-    [Range(0, 10)]
-    [SerializeField] private float _maxAvoidanceWeight;
-    public float maxAvoidanceWeight { get { return _maxAvoidanceWeight; }}
-
-    [Range(0, 10)]
-    [SerializeField] private float _minAvoidanceDistance;
-    public float minAvoidanceDistance { get { return _minAvoidanceDistance; }}
-
-    [Range(0, 20)]
-    [SerializeField] private float _maxAvoidanceDistance;
-    public float maxAvoidanceDistance { get { return _maxAvoidanceDistance; }}
-
     [Range(1, 10)]
-    [SerializeField] private int _minLoopTime;
-    public int minLoopTime { get { return _minLoopTime; }}
+    [SerializeField] private int _minMovePointTime;
+    public int minMovePointTime { get { return _minMovePointTime; }}
 
     [Range(0, 10)]
-    [SerializeField] private int _maxLoopTime;
-    public int maxLoopTime { get { return _maxLoopTime; }}
+    [SerializeField] private int _maxMovePointTime;
+    public int maxMovePointTime { get { return _maxMovePointTime; }}
 
+    [Range(0, 10)] public int selectedMovePointNum;
+    [Range(0, 10)] public int minMovePointTargetTime;
+    [Range(0, 10)] public int maxMovePointTargetTime;
 
-    [Header("Transition Setup")]
-    [Range(0, 10)]
-    [SerializeField] private float _minTargetDistance;
-
-    public float minTargetdistance { get {return _minTargetDistance; }}
-
-    [Header("Test Objects")]
-    public GameObject testObject;
 #endregion
 
-    public MovePointController[] movePoints;
+    public List<Transform> movePoints;
 
-    public List<GameObject> fishList = new List<GameObject>();
+    public List<GameObject> entityList = new List<GameObject>();
 
 #region Setup
 
     // Start here. Generate fish depends on the data.
-    public void Generate(List<FishData> fishDataList)
+    public void Setup(List<FishData> fishDataList)
     {
-        GenerateMovePoints();
-        GenerateUnits(fishDataList);
+        SetupMovePoint();
+        // GenerateUnits(fishDataList);
     }
 #endregion
 
 #region GenerateMovePoint
 
     // Get Move Points from its children.
-    void GenerateMovePoints()
+    void SetupMovePoint()
     {
-        movePoints = transform.GetComponentsInChildren<MovePointController>();
-        foreach (var point in movePoints)
-        {
-            point.Setup(this);
-        }
+        movePoints = transform.GetComponentsInChildren<Transform>()?.Where(t => t.tag == "MovePoint").ToList();
     }
 #endregion
 
@@ -114,7 +81,7 @@ public class FishManager : MonoBehaviour
             GameObject EntityObject = InstantiateFish(fishDataList[i]);
             SetupFishController(EntityObject, fishDataList[i]);
             SetupFishMovement(EntityObject);
-            fishList.Add(EntityObject);
+            entityList.Add(EntityObject);
         }
     }
 
@@ -126,7 +93,7 @@ public class FishManager : MonoBehaviour
         Vector3 spawnPosition = transform.position + randomVector;
         Quaternion rotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0);
 
-        
+
         GameObject entityPrefab = GameManager.instance.scriptableObjectManager.getEntityPrefabById(fishData.type_id);
         return Instantiate(entityPrefab, spawnPosition, rotation);
     }

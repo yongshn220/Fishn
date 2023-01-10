@@ -16,6 +16,6 @@ public class StoreSceneManager : MonoBehaviour
     void Start()
     {
         storeItem.Setup();
-        fishManager.Generate(storeItem.entityDataList);
+        fishManager.Setup(storeItem.entityDataList);
     }
 }
