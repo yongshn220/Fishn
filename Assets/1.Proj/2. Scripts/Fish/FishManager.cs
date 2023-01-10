@@ -47,6 +47,8 @@ public class FishManager : MonoBehaviour
     [Range(0, 10)] public int minMovePointTargetTime;
     [Range(0, 10)] public int maxMovePointTargetTime;
 
+    public GameObject testObject;
+
 #endregion
 
     public List<Transform> movePoints;
@@ -59,6 +61,7 @@ public class FishManager : MonoBehaviour
     public void Setup(List<FishData> fishDataList)
     {
         SetupMovePoint();
+        GenerateUnits(fishDataList);
         // GenerateUnits(fishDataList);
     }
 #endregion

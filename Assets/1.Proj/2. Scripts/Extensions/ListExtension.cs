@@ -34,7 +34,7 @@ public static class ListExtension
         return new Vector3(x,y,z);
     }
 
-    private static Vector3 GetCenter(List<Transform> list)
+    public static Vector3 GetCenter(this List<Transform> list)
     {
         Vector3 center = Vector3.zero;
         foreach(var entity in list)

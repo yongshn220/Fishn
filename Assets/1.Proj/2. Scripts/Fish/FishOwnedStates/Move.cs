@@ -39,16 +39,16 @@ namespace FishOwnedStates
         public override void Enter(FishMovement fishMovement)
         {
             currentFishMovement = fishMovement;
+            fishManager = fishMovement.fishManager;
+            testObject = Transform.Instantiate(fishManager.testObject);
             Setup();
         }
 
         public override void Execute(FishMovement fishMovement)
         {
-            #if UNITY_EDITOR
-                Gizmos.DrawIcon(testObject.transform.position, GizmoType.Selected.ToString());
-            #endif
             UpdateDeltaDynamics();
             MoveFish();
+            testObject.transform.position = target;
         }
 
         public override void Exit(FishMovement fishMovement)
@@ -82,17 +82,13 @@ namespace FishOwnedStates
         {
             int num = fishManager.selectedMovePointNum;
             selectedMovePointList = fishManager.movePoints.Shuffle().Take(num).ToList();
+
         }
 
         // Calculated once per movepoint time.
         private void SetMovePointCenter()
         {
-            Vector3 center = Vector3.zero;
-            foreach (var point in selectedMovePointList)
-            {
-                center += point.position;
-            }
-            this.movePointCenter = center;
+            this.movePointCenter = selectedMovePointList.GetCenter();
         }
 
         private void SetMovePointArea()
@@ -110,6 +106,12 @@ namespace FishOwnedStates
         private void MoveFish()
         {
             UpdateTargetPosition();
+
+            Vector3 moveVecter = target - currentFishMovement.transform.position;
+            moveVecter = Vector3.SmoothDamp(currentFishMovement.transform.forward, moveVecter, ref currentVelocity, currentSmoothDampTime);
+            currentFishMovement.transform.forward = moveVecter;
+            currentFishMovement.transform.position += moveVecter * currentSpeed * Time.deltaTime;
+
         }
 
         private void UpdateTargetPosition()
