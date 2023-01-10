@@ -11,7 +11,7 @@ public class FishController : MonoBehaviour
     public DateTime born_datetime;
     public DateTime feed_datetime;
 
-    void Setup(int id, int type_id, DateTime born_datetime, DateTime feed_datetime)
+    public void Setup(int id, int type_id, DateTime born_datetime, DateTime feed_datetime)
     {
         this.id = id;
         this.type_id = type_id;

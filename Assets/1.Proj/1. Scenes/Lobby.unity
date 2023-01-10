@@ -262,6 +262,7 @@ GameObject:
   - component: {fileID: 1237233611}
   - component: {fileID: 1237233610}
   - component: {fileID: 1237233612}
+  - component: {fileID: 1237233613}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -282,6 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataManager: {fileID: 0}
+  prefabManager: {fileID: 0}
 --- !u!4 &1237233611
 Transform:
   m_ObjectHideFlags: 0
@@ -310,6 +312,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDataReady: 0
+--- !u!114 &1237233613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237233609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fadf0756de77464e8ec0876181a730a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clownFish: {fileID: 1410057596894154783, guid: c609e87d0efe44439bbe22f55d457f7d, type: 3}
+  crab: {fileID: 1639561603390754502, guid: cf859413596314da9ae6724a1ccf338b, type: 3}
+  dolphin: {fileID: 6741151867020512394, guid: fd14ed9af9f484faab861a56cf88f6c6, type: 3}
+  lobster: {fileID: 9065794955866269469, guid: 7246ebeb7499c4e5790582b9bd30e4b0, type: 3}
+  orca: {fileID: 5585684591844927164, guid: cad7d299a193e41f8804416f0947cd65, type: 3}
+  pelican: {fileID: 4032879285224719525, guid: 07b9346c0e2ff4b9caddff18fc226330, type: 3}
+  seahorse: {fileID: 2932746134928647397, guid: 74bdd60bc25594e119c823d8683b8a8d, type: 3}
+  seaOtter: {fileID: 866946083317211932, guid: 1536e2be6a3494ed7b86dc075b97f769, type: 3}
+  squid: {fileID: 1618309659037643057, guid: 85271e14c35e641d7be790d0dc5734e7, type: 3}
 --- !u!1 &1249343056
 GameObject:
   m_ObjectHideFlags: 0

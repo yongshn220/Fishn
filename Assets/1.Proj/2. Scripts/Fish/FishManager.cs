@@ -7,8 +7,6 @@ public class FishManager : MonoBehaviour
 {
 #region SETUP
     [Header("Spawn Setup")]
-    [SerializeField] private FishController fishPrefab;
-    [SerializeField] private int fishSize;
     [SerializeField] private Vector3 spawnBounds;
 
     [Range(0.1f, 5)]
@@ -82,23 +80,13 @@ public class FishManager : MonoBehaviour
 
     public MovePointController[] movePoints;
 
-    public FishController[] fishList {get; set;}
+    public List<GameObject> fishList = new List<GameObject>();
 
-    void Start()
+    // Start here. Generate fish depends on the data.
+    public void Generate(List<FishData> fishDataList)
     {
         GenerateMovePoints();
-        GenerateUnits();
-    }
-
-
-    // Load Fish Data from DataManager.
-    List<FishData> LoadFishDataList()
-    {
-        if (GameManager.instance.dataManager.fishDataList != null)
-        {
-            return GameManager.instance.dataManager.fishDataList;
-        }
-        return new List<FishData>(); // TO DO : need to handle the error situation.
+        GenerateUnits(fishDataList);
     }
 
 
@@ -114,41 +102,43 @@ public class FishManager : MonoBehaviour
 
 #region GenerateFish
     // Instantiate All fish into the Fish-tank.
-    void GenerateUnits()
+    void GenerateUnits(List<FishData> fishDataList)
     {
-        List<FishData> fishDataList = LoadFishDataList();
-
-        fishList = new FishController[fishDataList.Count];
-
         for (int i = 0; i < fishDataList.Count; i++)
         {
-            fishList[i] = InstantiateFish();
-            SetupFishController(fishList[i], fishDataList[i]);
-            SetupFishMovement(fishList[i]);
+            GameObject EntityObject = InstantiateFish(fishDataList[i]);
+            SetupFishController(EntityObject, fishDataList[i]);
+            SetupFishMovement(EntityObject);
+            fishList.Add(EntityObject);
         }
     }
 
-    FishController InstantiateFish()
+
+    GameObject InstantiateFish(FishData fishData)
     {
-        var randomVector = UnityEngine.Random.insideUnitSphere;
+        Vector3 randomVector = UnityEngine.Random.insideUnitSphere;
         randomVector = new Vector3(randomVector.x * spawnBounds.x, randomVector.y * spawnBounds.y, randomVector.z * spawnBounds.z);
-        var spawnPosition = transform.position + randomVector;
-        var rotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0);
-        return Instantiate(fishPrefab, spawnPosition, rotation);
+        Vector3 spawnPosition = transform.position + randomVector;
+        Quaternion rotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0);
+
+        GameObject entityPrefab = GameManager.instance.prefabManager.getEntityPrefabById(fishData.type_id);
+        return Instantiate(entityPrefab, spawnPosition, rotation);
     }
 
-    void SetupFishController(FishController fishController, FishData fishData)
+    void SetupFishController(GameObject entity, FishData fishData)
     {
         if (fishData != null)
         {
-            fishController.Setup(fishData.id, fishData.type_id, fishData.born_datetime, fishData.feed_datetime);
+            FishController entityCtrl = entity.AddComponent<FishController>();
+            entityCtrl.Setup(fishData.id, fishData.type_id, fishData.born_datetime, fishData.feed_datetime);
         }
     }
 
-    void SetupFishMovement(FishController fishController)
+    void SetupFishMovement(GameObject entity)
     {
-        fishController.GetComponent<FishMovement>()?.AssignManager(this);
-        fishController.GetComponent<FishMovement>()?.InitializeSpeed(UnityEngine.Random.Range(minSpeed, maxSpeed));
+        entity.AddComponent<FishMovement>();
+        entity.GetComponent<FishMovement>()?.AssignManager(this);
+        entity.GetComponent<FishMovement>()?.InitializeSpeed(UnityEngine.Random.Range(minSpeed, maxSpeed));
     }
 #endregion
 }

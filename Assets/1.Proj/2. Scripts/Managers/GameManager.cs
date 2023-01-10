@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance {get; private set;}
 
     public DataManager dataManager;
+    public PrefabManager prefabManager;
 
     void Awake()
     {
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
 
         dataManager = GetComponentInChildren<DataManager>();
+        prefabManager = GetComponentInChildren<PrefabManager>();
     }
 
     void Start()

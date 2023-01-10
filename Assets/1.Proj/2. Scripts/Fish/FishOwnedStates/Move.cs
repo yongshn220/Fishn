@@ -114,8 +114,9 @@ namespace FishOwnedStates
             }
 
             cohesionVector /= cohesionMovePoints.Count;
+
+            currentEntity.fishManager.testObject.transform.position = cohesionVector;
             
-            currentEntity.fishManager.testObject.transform.position = cohesionVector; //test 
             this.currentCohesionPoint = cohesionVector;
 
             cohesionVector -= currentEntity.transform.position;
