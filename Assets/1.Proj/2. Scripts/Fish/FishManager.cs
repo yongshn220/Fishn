@@ -126,6 +126,7 @@ public class FishManager : MonoBehaviour
         Vector3 spawnPosition = transform.position + randomVector;
         Quaternion rotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0);
 
+        
         GameObject entityPrefab = GameManager.instance.scriptableObjectManager.getEntityPrefabById(fishData.type_id);
         return Instantiate(entityPrefab, spawnPosition, rotation);
     }

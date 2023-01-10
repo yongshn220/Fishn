@@ -31,7 +31,6 @@ public class DataManager : MonoBehaviour
     {
         jsonData = json;
         SetGameDataFromJson(jsonData["gamedata"]);
-        print(jsonData["fishList"]);
         SetFishDataFromJson(jsonData["fishList"]);
 
         print(gameData.ToString());

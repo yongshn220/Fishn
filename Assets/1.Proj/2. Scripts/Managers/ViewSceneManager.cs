@@ -25,4 +25,6 @@ public class ViewSceneManager : MonoBehaviour
         }
         return new List<FishData>(); // TO DO : need to handle the error situation.
     }
+
+    
 }
