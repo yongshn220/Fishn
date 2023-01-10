@@ -31,6 +31,7 @@ public class DataManager : MonoBehaviour
     {
         jsonData = json;
         SetGameDataFromJson(jsonData["gamedata"]);
+        print(jsonData["fishList"]);
         SetFishDataFromJson(jsonData["fishList"]);
 
         print(gameData.ToString());
@@ -60,6 +61,7 @@ public class DataManager : MonoBehaviour
             DateTime feed_datetime = DateTime.Parse((string) fish["feed_datetime"]); // TO DO : handling parse fail.
             fishDataList.Add(new FishData(id, type_id, born_datetime, feed_datetime));
         }
+        Debug.Log(fishDataList.Count);
     }
 }
 

@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class StoreSceneManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private StoreItem storeItem;
+    private FishManager fishManager;
+
+    void Awake()
     {
-        
+        storeItem = transform.GetComponent<StoreItem>();
+        fishManager = transform.GetComponent<FishManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        
+        storeItem.Setup();
+        fishManager.Generate(storeItem.entityDataList);
     }
 }

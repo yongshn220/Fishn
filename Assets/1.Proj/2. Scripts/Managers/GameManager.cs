@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance {get; private set;}
 
     public DataManager dataManager;
-    public PrefabManager prefabManager;
+    public ScriptableObjectManager scriptableObjectManager;
 
     void Awake()
     {
@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
 
         dataManager = GetComponentInChildren<DataManager>();
-        prefabManager = GetComponentInChildren<PrefabManager>();
+        scriptableObjectManager = GetComponentInChildren<ScriptableObjectManager>();
     }
 
     void Start()

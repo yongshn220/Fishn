@@ -82,13 +82,17 @@ public class FishManager : MonoBehaviour
 
     public List<GameObject> fishList = new List<GameObject>();
 
+#region Setup
+
     // Start here. Generate fish depends on the data.
     public void Generate(List<FishData> fishDataList)
     {
         GenerateMovePoints();
         GenerateUnits(fishDataList);
     }
+#endregion
 
+#region GenerateMovePoint
 
     // Get Move Points from its children.
     void GenerateMovePoints()
@@ -99,6 +103,7 @@ public class FishManager : MonoBehaviour
             point.Setup(this);
         }
     }
+#endregion
 
 #region GenerateFish
     // Instantiate All fish into the Fish-tank.
@@ -121,7 +126,7 @@ public class FishManager : MonoBehaviour
         Vector3 spawnPosition = transform.position + randomVector;
         Quaternion rotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0);
 
-        GameObject entityPrefab = GameManager.instance.prefabManager.getEntityPrefabById(fishData.type_id);
+        GameObject entityPrefab = GameManager.instance.scriptableObjectManager.getEntityPrefabById(fishData.type_id);
         return Instantiate(entityPrefab, spawnPosition, rotation);
     }
 
