@@ -10,8 +10,13 @@ public class ViewSceneManager : MonoBehaviour
         fishManager = GetComponentInChildren<FishManager>();
     }
     // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
+        while(!GameManager.instance.dataManager.isDataReady)
+        {
+            yield return new WaitForSeconds(1);
+            //Wait and Try again
+        }
         List<FishData> fishDataList = LoadFishDataList();
         fishManager.Setup(fishDataList);
     }
@@ -25,6 +30,4 @@ public class ViewSceneManager : MonoBehaviour
         }
         return new List<FishData>(); // TO DO : need to handle the error situation.
     }
-
-
 }
