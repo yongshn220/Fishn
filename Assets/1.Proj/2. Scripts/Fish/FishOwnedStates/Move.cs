@@ -12,6 +12,7 @@ namespace FishOwnedStates
         private FishManager fishManager;
 
         private List<Transform> selectedMovePointList = new List<Transform>();
+        private List<Transform> unSelectedMovePointList = new List<Transform>();
         private Vector3 movePointCenter;
         private Vector3 targetArea; // minimum area from the center to the selected movepoints. (values are Relative)
         private Vector3 target;
@@ -81,8 +82,34 @@ namespace FishOwnedStates
         private void SetupMovePoint()
         {
             int num = fishManager.selectedMovePointNum;
-            selectedMovePointList = fishManager.movePoints.Shuffle().Take(num).ToList();
+            unSelectedMovePointList = fishManager.movePoints.shallowCopy();
 
+            Transform randomSelectedPoint = SelectOneRandomInList(unSelectedMovePointList); // Random Select one.
+            TestSetIcon(randomSelectedPoint.gameObject);
+            selectedMovePointList.Add(randomSelectedPoint);                                 // Add 1 random position
+            unSelectedMovePointList.Remove(randomSelectedPoint);                            // Remove from unSelectedList.
+
+            unSelectedMovePointList.SortByDistance(randomSelectedPoint.position);           // Sort the unselectedList depends on the distance from the above selected position.
+
+            for (int i = 0; i < num - 1; i++)               // Take rest from the nearest.
+            {
+                selectedMovePointList.Add(unSelectedMovePointList[i]);
+                TestSetIcon(unSelectedMovePointList[i].gameObject);
+                unSelectedMovePointList.RemoveAt(i);
+            }
+        }
+        
+        private void TestSetIcon(GameObject gameObject)
+        {
+            var iconContent = EditorGUIUtility.IconContent("sv_icon_dot11_pix16_gizmo");
+            EditorGUIUtility.SetIconForObject(gameObject, (Texture2D) iconContent.image);
+        }
+
+        private Transform SelectOneRandomInList(List<Transform> list)
+        {
+            int randomInd = UnityEngine.Random.Range(0, list.Count);
+            Transform randomSelected = list[randomInd];
+            return randomSelected;
         }
 
         // Calculated once per movepoint time.
@@ -116,18 +143,23 @@ namespace FishOwnedStates
 
         private void UpdateTargetPosition()
         {
-            target = new Vector3(movePointCenter.x + currentTargetAreaX, movePointCenter.y + currentTargetAreaY, movePointCenter.z);
+            target = new Vector3(movePointCenter.x + currentTargetAreaX, movePointCenter.y, movePointCenter.z);
         }
 
         // Called once per every movePointTime.
         private void SelectNewMovePoint()
         {
-            selectedMovePointList.RemoveAt(0);
-            int randomIndex = UnityEngine.Random.Range(0, fishManager.movePoints.Count);
-            selectedMovePointList.Add(fishManager.movePoints[randomIndex]);
+            if (unSelectedMovePointList.Count <= 0)
+            {
+                SetupMovePoint();
+            }
 
-            SetMovePointCenter();
-            SetMovePointArea();
+            unSelectedMovePointList.SortByDistance(movePointCenter);
+            selectedMovePointList.RemoveAt(0);
+            selectedMovePointList.Add(unSelectedMovePointList[0]);
+
+            TestSetIcon(unSelectedMovePointList[0].gameObject);
+            unSelectedMovePointList.RemoveAt(0);
         }
 #endregion
 
@@ -186,6 +218,8 @@ namespace FishOwnedStates
                 currentMovePointTime = 0;
                 movePointTime = UnityEngine.Random.Range(fishManager.minMovePointTime, fishManager.maxMovePointTime);
                 SelectNewMovePoint();
+                SetMovePointCenter();
+                SetMovePointArea();
             }
         }
 

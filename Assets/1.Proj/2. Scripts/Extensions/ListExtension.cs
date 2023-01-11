@@ -43,4 +43,20 @@ public static class ListExtension
         }
         return center / list.Count;
     }
+
+    public static void SortByDistance(this List<Transform> list, Vector3 origin)
+    {
+        list.Sort((t1, t2) => Vector3.Distance(origin, t1.position).CompareTo(Vector3.Distance(origin, t2.position)));
+    }
+
+    public static List<Transform> shallowCopy(this List<Transform> list)
+    {
+        List<Transform> newList = new List<Transform>();
+
+        foreach (var t in list)
+        {
+            newList.Add(t);
+        }
+        return newList;
+    }
 }
