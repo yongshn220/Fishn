@@ -110,9 +110,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1639561603391050470}
   - component: {fileID: 1639561603398024448}
+  - component: {fileID: 1569109499383371483}
   m_Layer: 0
   m_Name: Crab
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,6 +155,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!136 &1569109499383371483
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639561603390754502}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.0336376
+  m_Height: 2.825043
+  m_Direction: 0
+  m_Center: {x: -0.010673106, y: 0.40556505, z: 0.021345913}
 --- !u!1 &1639561603390754504
 GameObject:
   m_ObjectHideFlags: 0

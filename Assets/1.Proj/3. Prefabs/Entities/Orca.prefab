@@ -265,9 +265,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5585684591845161628}
   - component: {fileID: 5585684591854441846}
+  - component: {fileID: -2900324838173925819}
   m_Layer: 0
   m_Name: Orca
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -309,6 +310,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!136 &-2900324838173925819
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5585684591844927164}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.6450952
+  m_Height: 6.265301
+  m_Direction: 2
+  m_Center: {x: 0, y: 1.1450957, z: -0.39596647}
 --- !u!1 &5585684591844927166
 GameObject:
   m_ObjectHideFlags: 0

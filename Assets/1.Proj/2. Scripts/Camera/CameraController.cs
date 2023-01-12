@@ -7,12 +7,14 @@ public class CameraController : MonoBehaviour
     public float speed = 10.0f;
     public float sensitivity = 1.0f;
     public float smoothSpeed = 0.1f;
+    public float selectOffset = 1.0f;
 
     private Vector3 lastMouse;
     private Vector3 currentEuler;
     private Vector3 desiredEuler;
     private Vector3 totalEuler;
-    private bool mouseClicked = false;
+    private bool canRotate = false;
+    GameObject targetEntity = null;
 
     void Start()
     {
@@ -21,6 +23,22 @@ public class CameraController : MonoBehaviour
     }
 
     void Update()
+    {
+        TryResetTarget();
+        MoveCamera();
+        HandleMouseClick();
+        FollowTargetEntity();
+        RotateCamera();
+    }
+    private void TryResetTarget()
+    {
+        if (IsMoving())
+        {
+            targetEntity = null;
+        }
+    }
+
+    private void MoveCamera()
     {
         // Move the camera forwards/backwards
         if (Input.GetKey("w"))
@@ -33,20 +51,47 @@ public class CameraController : MonoBehaviour
             transform.position -= transform.right * speed * Time.deltaTime;
         if (Input.GetKey("d"))
             transform.position += transform.right * speed * Time.deltaTime;
+    }
 
+    private void HandleMouseClick()
+    {
         if(Input.GetMouseButtonDown(0))
         {
-            mouseClicked = true;
-            lastMouse = Input.mousePosition;
+            if (!IsMoving())
+            {
+                targetEntity = TrySelectEntity();
+            }
+
+            if (targetEntity != null)
+            {
+                
+            }
+            else
+            {
+                canRotate = true;
+                lastMouse = Input.mousePosition;
+            }
         }
 
         if(Input.GetMouseButtonUp(0))
         {
-            mouseClicked = false;
+            canRotate = false;
         }
+    }
 
-        // Rotate the camera using the mouse
-        if(mouseClicked)
+    private void FollowTargetEntity()
+    {
+        if (targetEntity)
+        {
+            transform.position = targetEntity.transform.position + Vector3.forward * selectOffset;
+            transform.LookAt(targetEntity.transform);
+            totalEuler = transform.eulerAngles;
+        }
+    }
+
+    private void RotateCamera()
+    {
+        if (canRotate)
         {
             Vector3 delta = Input.mousePosition - lastMouse;
             desiredEuler = new Vector3(-delta.y * sensitivity, delta.x * sensitivity, 0);
@@ -60,5 +105,25 @@ public class CameraController : MonoBehaviour
             transform.eulerAngles = totalEuler;
             lastMouse = Input.mousePosition;
         }
+    }
+
+    private GameObject TrySelectEntity()
+    {
+        print("Try Select");
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit)) {
+            GameObject selectedObject = hit.transform.gameObject;
+            if (selectedObject.CompareTag("Entity"))
+            {
+                return selectedObject;
+            }
+        }
+        return null;
+    }
+
+    private bool IsMoving()
+    {
+        return Input.GetKeyDown("w") || Input.GetKeyDown("a") || Input.GetKeyDown("s") || Input.GetKeyDown("d");
     }
 }

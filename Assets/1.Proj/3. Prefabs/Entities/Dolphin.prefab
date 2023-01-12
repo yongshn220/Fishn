@@ -232,9 +232,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6741151867021004970}
   - component: {fileID: 6741151867011170120}
+  - component: {fileID: 278010148725462589}
   m_Layer: 0
   m_Name: Dolphin
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -276,6 +277,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!136 &278010148725462589
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6741151867020512394}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.1504705
+  m_Height: 4.9184976
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.93260217, z: -0.32131657}
 --- !u!1 &6741151867020512396
 GameObject:
   m_ObjectHideFlags: 0

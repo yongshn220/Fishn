@@ -424,9 +424,10 @@ GameObject:
   m_Component:
   - component: {fileID: 866946083317514044}
   - component: {fileID: 866946083309785288}
+  - component: {fileID: -6229600191735515503}
   m_Layer: 0
   m_Name: SeaOtter
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -468,6 +469,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!136 &-6229600191735515503
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866946083317211932}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.92852116
+  m_Height: 3.9930604
+  m_Direction: 2
+  m_Center: {x: 0, y: 1.0350443, z: -0.1252599}
 --- !u!1 &866946083317211934
 GameObject:
   m_ObjectHideFlags: 0
