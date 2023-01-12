@@ -18,7 +18,7 @@ MonoBehaviour:
     prefab: {fileID: 0}
   - id: 1
     name: Clownfish
-    prefab: {fileID: 1410057596894154783, guid: c609e87d0efe44439bbe22f55d457f7d, type: 3}
+    prefab: {fileID: 7729076498333777764, guid: 90904ca5691a44b94a9bfc433033fc8d, type: 3}
   - id: 2
     name: Crab
     prefab: {fileID: 1639561603390754502, guid: cf859413596314da9ae6724a1ccf338b, type: 3}
