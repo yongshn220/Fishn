@@ -97,8 +97,12 @@ public class FishManager : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0);
 
 
-        GameObject entityPrefab = GameManager.instance.scriptableObjectManager.getEntityPrefabById(fishData.type_id);
-        return Instantiate(entityPrefab, spawnPosition, rotation);
+        GameObject entityPrefab = GameManager.instance.scriptableObjectManager.TryGetEntityPrefabById(fishData.type_id);
+        if (entityPrefab)
+        {
+            return Instantiate(entityPrefab, spawnPosition, rotation);
+        }
+        return null;
     }
 
     void SetupFishController(GameObject entity, FishData fishData)

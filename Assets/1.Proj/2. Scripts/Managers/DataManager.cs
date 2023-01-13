@@ -11,11 +11,10 @@ public class DataManager : MonoBehaviour
 
     JObject jsonData;
 
-
     public GameData gameData = null;
-
-    private List<FishData> _fishDataList = new List<FishData>();
-    public List<FishData> fishDataList { get {return _fishDataList; } set {_fishDataList = value; }}
+    public List<SeaPlantData> seaPlantDataList = new List<SeaPlantData>();
+    public List<RockData> rockDataList = new List<RockData>();
+    public List<FishData> fishDataList = new List<FishData>();
 
     public void LoadUserData()
     {
@@ -31,11 +30,26 @@ public class DataManager : MonoBehaviour
     {
         jsonData = json;
         SetGameDataFromJson(jsonData["gamedata"]);
+        SetSeaPlantDataFromJson(jsonData["seaplantList"]);
+        SetRockDataFromJson(jsonData["rockList"]);
         SetFishDataFromJson(jsonData["fishList"]);
 
+        PrintUserData();
+    }
+
+    private void PrintUserData()
+    {
         print(gameData.ToString());
         
         foreach(var f in fishDataList)
+        {
+            print(f.ToString());
+        }
+        foreach(var f in seaPlantDataList)
+        {
+            print(f.ToString());
+        }
+        foreach(var f in rockDataList)
         {
             print(f.ToString());
         }
@@ -45,7 +59,44 @@ public class DataManager : MonoBehaviour
     {
         int id = (int) gameDataJson["id"];
         int tank_id = (int) gameDataJson["tank_id"];
-        gameData = new GameData(id, tank_id);
+        int coral = (int) gameDataJson["coral"];
+        gameData = new GameData(id, tank_id, coral);
+    }
+
+    private void SetSeaPlantDataFromJson(JToken seaPlantDataJson)
+    {
+        seaPlantDataList.Clear();
+
+        foreach (var plant in seaPlantDataJson)
+        {
+            int id = (int) plant["id"];
+            int type_id = (int) plant["type_id"];
+            float posx = (float) plant["posx"];
+            float posy = (float) plant["posy"];
+            float posz = (float) plant["posz"];
+            Vector3 position = new Vector3(posx, posy, posz);
+
+            seaPlantDataList.Add(new SeaPlantData(id, type_id, position));
+        }
+
+
+    }
+
+    private void SetRockDataFromJson(JToken rockDataJson)
+    {
+        rockDataList.Clear();
+
+        foreach (var rock in rockDataJson)
+        {
+            int id = (int) rock["id"];
+            int type_id = (int) rock["type_id"];
+            float posx = (float) rock["posx"];
+            float posy = (float) rock["posy"];
+            float posz = (float) rock["posz"];
+            Vector3 position = new Vector3(posx, posy, posz);
+            
+            rockDataList.Add(new RockData(id, type_id, position));
+        }
     }
 
     private void SetFishDataFromJson(JToken fishDataJson)
@@ -69,17 +120,57 @@ public class GameData
 {
     public int id;
     public int tank_id;
+    public int coral;
 
-    public GameData(int id, int tank_id)
+    public GameData(int id, int tank_id, int coral)
     {
         this.id = id;
         this.tank_id = tank_id;
+        this.coral = coral;
     }
 
 
     public override string ToString()
     {
-        return $"id = {id}, tank_id = {tank_id}";
+        return $"id = {id}, tank_id = {tank_id}, coral = {coral}";
+    }
+}
+
+public class SeaPlantData
+{
+    public int id;
+    public int type_id;
+    public Vector3 position;
+
+    public SeaPlantData(int id, int type_id, Vector3 position)
+    {
+        this.id = id;
+        this.type_id = type_id;
+        this.position = position;
+    }
+
+    public override string ToString()
+    {
+        return $"id = {id}, position = {position}";
+    }
+}
+
+public class RockData
+{
+    public int id;
+    public int type_id;
+    public Vector3 position;
+
+    public RockData(int id, int type_id, Vector3 position)
+    {
+        this.id = id;
+        this.type_id = type_id;
+        this.position = position;
+    }
+
+    public override string ToString()
+    {
+        return $"id = {id}, position = {position}";
     }
 }
 
