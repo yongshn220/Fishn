@@ -6,6 +6,7 @@ using TMPro;
 
 public class StoreItemController : MonoBehaviour
 {
+    public int id;
     public Image itemImage;
     public TMP_Text coralValue;
     public Button buyButton;

@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class StorePopupController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    StoreContent storeContent;
+
+    void Awake()
     {
-        gameObject.SetActive(false);
+        storeContent = transform.GetComponentInChildren<StoreContent>();
     }
 
-    void Setup()
+
+    public void Setup()
     {
     }
 }
