@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class StorePopupController : MonoBehaviour
 {
-    StoreSceneManager storeSceneManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +12,5 @@ public class StorePopupController : MonoBehaviour
 
     void Setup()
     {
-        storeSceneManager = transform.GetComponentInParent<StoreSceneManager>();
     }
 }

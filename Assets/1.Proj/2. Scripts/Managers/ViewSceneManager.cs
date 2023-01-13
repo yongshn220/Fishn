@@ -5,9 +5,12 @@ using UnityEngine;
 public class ViewSceneManager : MonoBehaviour
 {
     FishManager fishManager;
+    PopupManager popupManager;
+
     void Awake()
     {
         fishManager = GetComponentInChildren<FishManager>();
+        popupManager = GetComponentInChildren<PopupManager>();
     }
     // Start is called before the first frame update
     IEnumerator Start()
@@ -18,7 +21,9 @@ public class ViewSceneManager : MonoBehaviour
             //Wait and Try again
         }
         List<FishData> fishDataList = LoadFishDataList();
+        
         fishManager.Setup(fishDataList);
+        popupManager.Setup();
     }
 
     // Load Fish Data from DataManager.

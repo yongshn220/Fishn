@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1639561603391050464}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1639561603391050466}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: claw.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1639561603391050468}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: claw.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 1639561603391050470}
   - component: {fileID: 1639561603398024448}
   - component: {fileID: 1569109499383371483}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Crab
   m_TagString: Entity
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ Transform:
   m_GameObject: {fileID: 1639561603390754502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.685, y: 0.126, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1639561603391050484}
@@ -178,7 +178,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1639561603391050472}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leg.L.01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1639561603391050474}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leg.L.02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1639561603391050476}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leg.L.03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,7 +271,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1639561603391050478}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leg.R.01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,7 +302,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1639561603391050480}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leg.R.02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,7 +333,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1639561603391050482}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leg.R.03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -365,7 +365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1639561603391050484}
   - component: {fileID: 1639561603393864640}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -460,7 +460,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1639561603391050486}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -492,7 +492,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1639561603391050488}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -524,7 +524,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1639561603391050490}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wrist
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -101,8 +101,10 @@ namespace FishOwnedStates
         
         private void TestSetIcon(GameObject gameObject)
         {
+#if UNITY_EDITOR
             var iconContent = EditorGUIUtility.IconContent("sv_icon_dot11_pix16_gizmo");
             EditorGUIUtility.SetIconForObject(gameObject, (Texture2D) iconContent.image);
+#endif
         }
 
         private Transform SelectOneRandomInList(List<Transform> list)

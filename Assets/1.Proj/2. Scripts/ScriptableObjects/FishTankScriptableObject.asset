@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aea539387351448b681f15bba9ab5f46, type: 3}
+  m_Name: FishTankScriptableObject
+  m_EditorClassIdentifier: 
+  fishTanks:
+  - id: 0
+    prefab: {fileID: 0}
+  - id: 1
+    prefab: {fileID: 9054101435386547658, guid: d67ff6a9b23c943c0a733b0ca59c67ac, type: 3}
+  - id: 2
+    prefab: {fileID: 6906727746174367023, guid: b7454c12a6fb74aa0a54f08d2d54e038, type: 3}

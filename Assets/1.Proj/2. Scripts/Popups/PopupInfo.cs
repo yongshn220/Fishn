@@ -5,9 +5,9 @@ using UnityEngine;
 
 public enum PopupType
 {
+    MainUI,
     Store,
     Inventory,
-
 }
 public class PopupInfo : MonoBehaviour
 {
