@@ -27,7 +27,6 @@ public class StateMachine<T> where T : class
         {
             currentState.Exit(ownerEntity);
         }
-        Debug.Log("[SM] Change State " + newState);
         currentState = newState;
         currentState.Enter(ownerEntity);
     }

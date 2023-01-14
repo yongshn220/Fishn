@@ -12,7 +12,7 @@ public class FishTankManager : MonoBehaviour
     }
     public void Setup(GameData gameData)
     {
-        LoadFishTank(gameData.id);
+        LoadFishTank(gameData.tank_id);
     }
 
     private void LoadFishTank(int id)

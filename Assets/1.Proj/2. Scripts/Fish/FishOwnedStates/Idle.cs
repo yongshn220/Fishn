@@ -13,7 +13,6 @@ namespace FishOwnedStates
 
         public override void Enter(FishMovement entity)
         {
-            Debug.Log("idle enter");
             ResetState();
             currentEntity = entity;
             DoIdleAction();
@@ -29,14 +28,12 @@ namespace FishOwnedStates
 
         public override void Exit(FishMovement entity)
         {
-            Debug.Log("idle exit");
             ResetState();
         }
 
         private void DoIdleAction()
         {   
             int randomTime = UnityEngine.Random.Range(1, 4) * 1000;
-            Debug.Log(randomTime);
             Task.Delay(randomTime).ContinueWith((task) => {
                 isTransitToMoveReady = true;
             });

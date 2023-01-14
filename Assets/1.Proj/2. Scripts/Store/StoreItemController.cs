@@ -6,6 +6,8 @@ using TMPro;
 
 public class StoreItemController : MonoBehaviour
 {
+    public StorePopupController popupController;
+
     public int id;
     public Image itemImage;
     public TMP_Text coralValue;
@@ -18,13 +20,20 @@ public class StoreItemController : MonoBehaviour
         previewButton.onClick.AddListener(OnPreviewButtonClick);
     }
 
-    void OnBuyButtonClick()
+    public void  Setup(StorePopupController popupController, SeaPlantScriptableObjectStructure seaPlant)
     {
-
+        this.popupController = popupController;
+        this.id = seaPlant.id;
+        this.coralValue.text = seaPlant.coral.ToString();
     }
 
-    void OnPreviewButtonClick()
+    private void OnBuyButtonClick()
     {
+        popupController.OnBuyButtonClick(id);
+    }
 
+    private void OnPreviewButtonClick()
+    {
+        popupController.OnPreviewButtonClick(id);
     }
 }

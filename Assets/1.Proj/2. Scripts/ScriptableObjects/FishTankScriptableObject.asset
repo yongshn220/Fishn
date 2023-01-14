@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FishTankScriptableObject
   m_EditorClassIdentifier: 
   fishTanks:
-  - id: 0
+  - id: -1
     prefab: {fileID: 0}
   - id: 1
     prefab: {fileID: 9054101435386547658, guid: d67ff6a9b23c943c0a733b0ca59c67ac, type: 3}

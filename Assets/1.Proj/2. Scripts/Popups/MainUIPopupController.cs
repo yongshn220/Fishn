@@ -5,17 +5,27 @@ using UnityEngine.UI;
 
 public class MainUIPopupController : MonoBehaviour
 {
+    private PopupManager popupManager;
     public Button storeButton;
     public Button bagButton;
 
 
-
-    public void OnStoreButtonClick()
+    void Start()
     {
-
+        storeButton.onClick.AddListener(OnStoreButtonClick);
+        bagButton.onClick.AddListener(OnBagButtonClick);
+    }
+    public void Setup(PopupManager popupManager)
+    {
+        this.popupManager = popupManager;
+    }
+    
+    private void OnStoreButtonClick()
+    {
+        popupManager.OpenPopup(PopupType.StorePopup);
     }
 
-    public void OnBagButtonClick()
+    private void OnBagButtonClick()
     {
 
     }

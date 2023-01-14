@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 
 public class ScriptableObjectManager : MonoBehaviour
@@ -13,6 +14,7 @@ public class ScriptableObjectManager : MonoBehaviour
 
     public FishTankScriptableObject FishTankList;
 
+#region Get One
     public GameObject TryGetEntityPrefabById(int id)
     {
         foreach (var entity in EntityList.Entity)
@@ -36,5 +38,37 @@ public class ScriptableObjectManager : MonoBehaviour
         }
         return null;
     }
-}
 
+    public GameObject TryGetSeaPlantPrefabById(int id)
+    {
+        return SeaPlantList.seaPlants.ToList().Find(s => s.id == id)?.prefab;
+    }
+
+    public GameObject TryGetRockPrefabById(int id)
+    {
+        return RockList.rocks.ToList().Find(s => s.id == id)?.prefab;
+    }
+#endregion
+
+#region Get All
+    public List<SeaPlantScriptableObjectStructure> GetSeaPlantList()
+    {
+        return SeaPlantList.seaPlants.ToList();
+    }
+
+    public List<RockScriptableObjectStructure> GetRockList()
+    {
+        return RockList.rocks.ToList();
+    }
+
+    public List<GameObject> GetSeaPlantPrefabList()
+    {
+        return SeaPlantList.seaPlants.ToList().ConvertAll(s => s.prefab);
+    }
+
+    public List<GameObject> GetRockPrefabList()
+    {
+        return RockList.rocks.ToList().ConvertAll(s => s.prefab);
+    }
+#endregion
+}
