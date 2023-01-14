@@ -8,7 +8,7 @@ public class MainUIPopupController : MonoBehaviour
     private PopupManager popupManager;
     public Button storeButton;
     public Button bagButton;
-
+    
 
     void Start()
     {
@@ -27,6 +27,6 @@ public class MainUIPopupController : MonoBehaviour
 
     private void OnBagButtonClick()
     {
-
+        popupManager.OpenPopup(PopupType.BagPopup);
     }
 }

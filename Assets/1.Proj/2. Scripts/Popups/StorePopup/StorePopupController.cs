@@ -1,20 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class StorePopupController : MonoBehaviour
 {
-    private PopupManager popupManager;
+
     public StoreItemController itemPrefab;
 
-    StoreContent storeContent;
-    List<SeaPlantScriptableObjectStructure> seaPlantList;
+    private PopupManager popupManager;
+    private PopupType type = PopupType.StorePopup;
+    private Button blockingButton;
+    private StoreContent storeContent;
+
+    private List<SeaPlantScriptableObjectStructure> seaPlantList;
 
     void Awake()
     {
         storeContent = transform.GetComponentInChildren<StoreContent>();
+        blockingButton = transform.GetComponentInChildren<BlockingPanel>()?.GetComponent<Button>();
     }
 
+    void Start()
+    {
+        blockingButton.onClick.AddListener(OnBlockingPanelClick);
+    }
+
+#region Setup
     public void Setup(PopupManager popupManager)
     {
         this.popupManager = popupManager;
@@ -41,6 +54,14 @@ public class StorePopupController : MonoBehaviour
         }
     }
 
+    public void Select()
+    {
+        EventSystem.current.SetSelectedGameObject(this.gameObject);
+    }
+
+#endregion
+
+#region Button Event
     public void OnBuyButtonClick(int id)
     {
         print($"{id} - buy");
@@ -50,4 +71,11 @@ public class StorePopupController : MonoBehaviour
     {
         
     }
+
+    // Outside of the current UI is clicked -> Close the current UI.
+    private void OnBlockingPanelClick()
+    {
+        popupManager.ClosePopup(this.type);
+    }
+#endregion
 }

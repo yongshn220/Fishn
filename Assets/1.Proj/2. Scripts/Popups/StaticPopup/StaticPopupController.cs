@@ -10,12 +10,6 @@ public class StaticPopupController : MonoBehaviour
     public TMP_Text coralText;
     private GameData gameData;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     public void Setup(PopupManager popupManager)
     {
         this.popupManager = popupManager;

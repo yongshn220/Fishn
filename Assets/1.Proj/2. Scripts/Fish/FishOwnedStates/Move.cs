@@ -54,7 +54,6 @@ namespace FishOwnedStates
 
         public override void Exit(FishMovement fishMovement)
         {
-            Debug.Log("Move Exit");
         }
 #endregion
 
