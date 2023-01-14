@@ -19,40 +19,40 @@ MonoBehaviour:
     size: 0
     prefab: {fileID: 0}
   - id: 1
-    name: Large Arch 1
-    coral: 100
-    size: 2
-    prefab: {fileID: 7417044119894489440, guid: 3a8dc3f10ca6b44ebbab2ce94bbac53e, type: 3}
+    name: Small Arch 1
+    coral: 5
+    size: 0
+    prefab: {fileID: 2027381122372448917, guid: 20f7ed203869b4d0f9db3398d84b6ae2, type: 3}
   - id: 2
-    name: Large Rock 1
-    coral: 100
-    size: 2
-    prefab: {fileID: 1203286196592075440, guid: ddcf5f8043d5b427d850b84afb3d0cad, type: 3}
+    name: Small Rock 1
+    coral: 5
+    size: 0
+    prefab: {fileID: 8524343418825754005, guid: b78f42faa7a0143299d89d6e0e34196f, type: 3}
   - id: 3
-    name: Large Rock 2
-    coral: 100
-    size: 2
-    prefab: {fileID: 6570294264513213745, guid: f8a0124d7997f45ab8d1ec67ce984029, type: 3}
+    name: Small Rock 3
+    coral: 7
+    size: 0
+    prefab: {fileID: 4218543444490506128, guid: 9a5344df43bff4f6e92e155dd17bbcc3, type: 3}
   - id: 4
-    name: Large Rock 3
-    coral: 100
-    size: 2
-    prefab: {fileID: 140838124585459297, guid: e4ee543d7969f47bfb48457dbadb3625, type: 3}
+    name: Small Rock 3
+    coral: 5
+    size: 0
+    prefab: {fileID: 8295942421999574079, guid: 13dfc8db5e93244afa991453f1bda93b, type: 3}
   - id: 5
-    name: Large Rock 4
-    coral: 100
-    size: 2
-    prefab: {fileID: 853199836014826317, guid: 86013c4495fb84c50a02580f7092004d, type: 3}
+    name: Small Rock 4
+    coral: 5
+    size: 0
+    prefab: {fileID: 9053880699180890060, guid: 2e31126031eca4a57ba419c219468d5a, type: 3}
   - id: 6
-    name: Large Rock 5
-    coral: 100
-    size: 2
-    prefab: {fileID: 553621803011933957, guid: e3402bf1c6f374896a63a36aca12b4a0, type: 3}
+    name: Small Rock 5
+    coral: 5
+    size: 0
+    prefab: {fileID: 7336801465068920814, guid: 1b212255939d247c9a3d62892ad6cde9, type: 3}
   - id: 7
-    name: Large Rock 6
-    coral: 100
-    size: 2
-    prefab: {fileID: 1866243124956011540, guid: b1911541ff9e4444fbac2f92058bdae1, type: 3}
+    name: Small Rock 6
+    coral: 5
+    size: 0
+    prefab: {fileID: 4540262794067239937, guid: 7335f9f3079b54a37ba1f77b11dbac59, type: 3}
   - id: 8
     name: Medium Arch 1
     coral: 50
@@ -75,7 +75,7 @@ MonoBehaviour:
     prefab: {fileID: 646888122734879557, guid: 02fb04617a844437a9d65e3efd125657, type: 3}
   - id: 12
     name: Medium Rock 4
-    coral: 50
+    coral: 51
     size: 1
     prefab: {fileID: 8566685907241834366, guid: eb315838baae44761a366ae0eb020b6e, type: 3}
   - id: 13
@@ -89,37 +89,37 @@ MonoBehaviour:
     size: 1
     prefab: {fileID: 6927570899203890746, guid: c93f10a358b4d47ce927190e71212df6, type: 3}
   - id: 15
-    name: Small Arch 1
-    coral: 5
-    size: 0
-    prefab: {fileID: 2027381122372448917, guid: 20f7ed203869b4d0f9db3398d84b6ae2, type: 3}
+    name: Large Arch 1
+    coral: 100
+    size: 2
+    prefab: {fileID: 7417044119894489440, guid: 3a8dc3f10ca6b44ebbab2ce94bbac53e, type: 3}
   - id: 16
-    name: Small Rock 1
-    coral: 5
-    size: 0
-    prefab: {fileID: 8524343418825754005, guid: b78f42faa7a0143299d89d6e0e34196f, type: 3}
+    name: Large Rock 1
+    coral: 100
+    size: 2
+    prefab: {fileID: 1203286196592075440, guid: ddcf5f8043d5b427d850b84afb3d0cad, type: 3}
   - id: 17
-    name: Small Rock 3
-    coral: 5
-    size: 0
-    prefab: {fileID: 4218543444490506128, guid: 9a5344df43bff4f6e92e155dd17bbcc3, type: 3}
+    name: Large Rock 2
+    coral: 100
+    size: 2
+    prefab: {fileID: 6570294264513213745, guid: f8a0124d7997f45ab8d1ec67ce984029, type: 3}
   - id: 18
-    name: Small Rock 3
-    coral: 5
-    size: 0
-    prefab: {fileID: 8295942421999574079, guid: 13dfc8db5e93244afa991453f1bda93b, type: 3}
+    name: Large Rock 3
+    coral: 100
+    size: 2
+    prefab: {fileID: 140838124585459297, guid: e4ee543d7969f47bfb48457dbadb3625, type: 3}
   - id: 19
-    name: Small Rock 4
-    coral: 5
-    size: 0
-    prefab: {fileID: 9053880699180890060, guid: 2e31126031eca4a57ba419c219468d5a, type: 3}
+    name: Large Rock 4
+    coral: 100
+    size: 2
+    prefab: {fileID: 853199836014826317, guid: 86013c4495fb84c50a02580f7092004d, type: 3}
   - id: 20
-    name: Small Rock 5
-    coral: 5
-    size: 0
-    prefab: {fileID: 7336801465068920814, guid: 1b212255939d247c9a3d62892ad6cde9, type: 3}
+    name: Large Rock 5
+    coral: 100
+    size: 2
+    prefab: {fileID: 553621803011933957, guid: e3402bf1c6f374896a63a36aca12b4a0, type: 3}
   - id: 21
-    name: Small Rock 6
-    coral: 5
-    size: 0
-    prefab: {fileID: 4540262794067239937, guid: 7335f9f3079b54a37ba1f77b11dbac59, type: 3}
+    name: Large Rock 6
+    coral: 100
+    size: 2
+    prefab: {fileID: 1866243124956011540, guid: b1911541ff9e4444fbac2f92058bdae1, type: 3}

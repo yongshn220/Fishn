@@ -30,7 +30,7 @@ public class FishTankController : MonoBehaviour
     }
 
     private void LoadStructures(List<SeaPlantData> seaPlantList)
-    {  
+    {
         GameObject prefab;
         foreach (var plant in seaPlantList)
         {
