@@ -20,12 +20,8 @@ public class FishTankManager : MonoBehaviour
         GameObject prefab = GameManager.instance.scriptableObjectManager.TryGetFishTankPrefabById(id);
         if (prefab)
         {
+            prefab.GetComponent<FishTankController>().Setup();
             Instantiate(prefab, Vector3.zero, Quaternion.identity, myTransform);
         }
-    }
-
-    private void LoadStructures()
-    {
-
     }
 }
