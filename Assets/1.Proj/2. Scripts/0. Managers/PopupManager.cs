@@ -92,7 +92,7 @@ public class PopupManager : MonoBehaviour
 
     private void EnableUI(PopupType type)
     {
-        GameObject target = (object) popups[(int) type] as GameObject;
+        MonoBehaviour target = popups[(int) type] as MonoBehaviour;
         if (target)
         {
             CanvasGroup targetUI = target.GetComponent<CanvasGroup>();
@@ -112,7 +112,7 @@ public class PopupManager : MonoBehaviour
 
     private void DisableUI(PopupType type)
     {
-        GameObject target = (object) popups[(int) type] as GameObject;
+        MonoBehaviour target = popups[(int) type] as MonoBehaviour; 
         if (target)
         {
             CanvasGroup targetUI = target.GetComponent<CanvasGroup>();
