@@ -28,4 +28,9 @@ public class FishTankManager : MonoBehaviour
             fishtankController.Setup();
         }
     }
+
+    public void ChangeCameraView(CameraType type)
+    {
+        fishtankController.ChangeCameraView(type);
+    }
 }

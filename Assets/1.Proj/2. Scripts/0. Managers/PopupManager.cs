@@ -49,45 +49,22 @@ public class PopupManager : MonoBehaviour
     
     public void OpenPopup(PopupType type)
     {
-        // DisableUI(PopupType.MainUIPopup);
-        // EnableUI(type);
-        
-        if (type == PopupType.MainUIPopup)
-        {
-        }
-
-        if (type == PopupType.StorePopup)
-        {
-            DisableUI(PopupType.MainUIPopup);
-            EnableUI(PopupType.StorePopup);
-        }
-
-        if (type == PopupType.BagPopup)
-        {
-            DisableUI(PopupType.MainUIPopup);
-            EnableUI(PopupType.BagPopup);
-        }
-
         if (type == PopupType.EditPopup)
         {
-            DisableUI(PopupType.MainUIPopup);
-            EnableUI(PopupType.EditPopup);
+            sceneManager.ChangeCameraView(CameraType.EditFrontCamera);
         }
+        DisableUI(PopupType.MainUIPopup);
+        EnableUI(type);
     }
 
     public void ClosePopup(PopupType type)
     {
-        if (type == PopupType.StorePopup)
+        if (type == PopupType.EditPopup)
         {
-            EnableUI(PopupType.MainUIPopup);
-            DisableUI(PopupType.StorePopup);
+            sceneManager.ChangeCameraView(CameraType.MainCamera);
         }
-
-        if (type == PopupType.BagPopup)
-        {
-            EnableUI(PopupType.MainUIPopup);
-            DisableUI(PopupType.BagPopup);
-        }
+        EnableUI(PopupType.MainUIPopup);
+        DisableUI(type);
     }
 
     private void EnableUI(PopupType type)

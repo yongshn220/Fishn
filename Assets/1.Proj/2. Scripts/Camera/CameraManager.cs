@@ -22,8 +22,28 @@ public class CameraManager : MonoBehaviour
         editTopCamera = GetComponentInChildren<EditTopCamera>();
     }
 
-    public void ChangeCamera(CameraType type)
+    public void ChangeCameraView(CameraType type)
     {
-        
+        SetAllCameraDeactivate();
+        switch (type)
+        {
+            case CameraType.MainCamera:
+                mainCamera.gameObject.SetActive(true);
+                break;
+            case CameraType.EditFrontCamera:
+                editFrontCamera.gameObject.SetActive(true);
+                break;
+            case CameraType.EditTopCamera:
+                editTopCamera.gameObject.SetActive(true);
+                break;
+            default:
+                return;
+        }  
+    }
+    private void SetAllCameraDeactivate()
+    {
+        mainCamera.gameObject.SetActive(false);
+        editFrontCamera.gameObject.SetActive(false);
+        editTopCamera.gameObject.SetActive(false);
     }
 }

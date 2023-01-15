@@ -31,6 +31,7 @@ public class ViewSceneManager : MonoBehaviour
         Setup();
     }
 
+#region Setup
     private void Setup()
     {
         fishTankManager.Setup(this, gameData); // FishTankManager must be setup first before FishManager
@@ -56,5 +57,12 @@ public class ViewSceneManager : MonoBehaviour
             return GameManager.instance.dataManager.gameData;
         }
         return null;
+    }
+#endregion
+
+
+    public void ChangeCameraView(CameraType type)
+    {
+        fishTankManager.ChangeCameraView(type);
     }
 }
