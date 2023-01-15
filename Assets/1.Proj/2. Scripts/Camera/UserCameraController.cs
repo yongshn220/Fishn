@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class UserCameraController : MonoBehaviour
 {
     public float speed = 10.0f;
     public float sensitivity = 1.0f;
