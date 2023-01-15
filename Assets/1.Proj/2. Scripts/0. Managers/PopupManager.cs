@@ -106,4 +106,9 @@ public class PopupManager : MonoBehaviour
             DisableUI(type);
         }
     }
+
+    public void ChangeCameraView(CameraType type)
+    {
+        sceneManager.ChangeCameraView(type);
+    }
 }
