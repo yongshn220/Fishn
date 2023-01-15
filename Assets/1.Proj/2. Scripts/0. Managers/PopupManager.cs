@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,57 +6,72 @@ using UnityEngine.EventSystems;
 
 public enum PopupType
 {
+    StaticPopup,
     MainUIPopup,
     StorePopup,
     BagPopup,
+    EditPopup,
 }
 
 public class PopupManager : MonoBehaviour
 {
-    private StaticPopupController staticPopupController;
-    private MainUIPopupController mainUIPopupController;
-    private StorePopupController storePopupController;
-    private BagPopupController bagPopupController;
-    
+    private ViewSceneManager sceneManager;
+
+    private IPopup[] popups;
 
     void Awake()
     {
-        staticPopupController = GetComponentInChildren<StaticPopupController>();
-        mainUIPopupController = GetComponentInChildren<MainUIPopupController>();
-        storePopupController = GetComponentInChildren<StorePopupController>();
-        bagPopupController = GetComponentInChildren<BagPopupController>();
+        popups = new IPopup[Enum.GetValues(typeof(PopupType)).Length];
+        popups[(int) PopupType.StaticPopup] = GetComponentInChildren<StaticPopupController>();
+        popups[(int) PopupType.MainUIPopup] = GetComponentInChildren<MainUIPopupController>();
+        popups[(int) PopupType.StorePopup] = GetComponentInChildren<StorePopupController>();
+        popups[(int) PopupType.BagPopup] = GetComponentInChildren<BagPopupController>();
+        popups[(int) PopupType.EditPopup] = GetComponentInChildren<EditPopupController>();
     }
 
-    public void Setup()
+    public void Setup(ViewSceneManager sceneManager)
     {
-        EnableUI(staticPopupController.transform);
-        EnableUI(mainUIPopupController.transform);
-        DisableUI(storePopupController.transform);
-        DisableUI(bagPopupController.transform);
+        this.sceneManager = sceneManager;
 
-        staticPopupController.Setup(this);
-        mainUIPopupController.Setup(this);
-        storePopupController.Setup(this);
-        bagPopupController.Setup(this);
+        SetInitialVisibleStatus();
+
+        foreach (IPopup popup in popups)
+        {
+            popup.Setup(this);
+        }
+    }
+
+    private void SetInitialVisibleStatus()
+    {
+        EnableUIs(new PopupType[] {PopupType.StaticPopup, PopupType.MainUIPopup});
+        DisableUIs(new PopupType[] {PopupType.StorePopup, PopupType.BagPopup, PopupType.EditPopup});
     }
     
     public void OpenPopup(PopupType type)
     {
+        // DisableUI(PopupType.MainUIPopup);
+        // EnableUI(type);
+        
         if (type == PopupType.MainUIPopup)
         {
         }
 
         if (type == PopupType.StorePopup)
         {
-            DisableUI(mainUIPopupController.transform);
-            EnableUI(storePopupController.transform);
-            storePopupController.Select();
+            DisableUI(PopupType.MainUIPopup);
+            EnableUI(PopupType.StorePopup);
         }
 
         if (type == PopupType.BagPopup)
         {
-            DisableUI(mainUIPopupController.transform);
-            EnableUI(bagPopupController.transform);
+            DisableUI(PopupType.MainUIPopup);
+            EnableUI(PopupType.BagPopup);
+        }
+
+        if (type == PopupType.EditPopup)
+        {
+            DisableUI(PopupType.MainUIPopup);
+            EnableUI(PopupType.EditPopup);
         }
     }
 
@@ -63,30 +79,54 @@ public class PopupManager : MonoBehaviour
     {
         if (type == PopupType.StorePopup)
         {
-            EnableUI(mainUIPopupController.transform);
-            DisableUI(storePopupController.transform);
+            EnableUI(PopupType.MainUIPopup);
+            DisableUI(PopupType.StorePopup);
         }
 
         if (type == PopupType.BagPopup)
         {
-            EnableUI(mainUIPopupController.transform);
-            DisableUI(bagPopupController.transform);
+            EnableUI(PopupType.MainUIPopup);
+            DisableUI(PopupType.BagPopup);
         }
     }
 
-    private void EnableUI(Transform target)
+    private void EnableUI(PopupType type)
     {
-        CanvasGroup targetUI = target.GetComponent<CanvasGroup>();
-        targetUI.alpha = 1f;
-        targetUI.interactable = true;
-        targetUI.blocksRaycasts = true;
+        GameObject target = (object) popups[(int) type] as GameObject;
+        if (target)
+        {
+            CanvasGroup targetUI = target.GetComponent<CanvasGroup>();
+            targetUI.alpha = 1f;
+            targetUI.interactable = true;
+            targetUI.blocksRaycasts = true;
+        }
     }
 
-    private void DisableUI(Transform target)
+    private void EnableUIs(PopupType[] types)
     {
-        CanvasGroup targetUI = target.GetComponent<CanvasGroup>();
-        targetUI.alpha = 0f;
-        targetUI.interactable = false;
-        targetUI.blocksRaycasts = false;
+        foreach (var type in types)
+        {
+            EnableUI(type);
+        }
+    }
+
+    private void DisableUI(PopupType type)
+    {
+        GameObject target = (object) popups[(int) type] as GameObject;
+        if (target)
+        {
+            CanvasGroup targetUI = target.GetComponent<CanvasGroup>();
+            targetUI.alpha = 0f;
+            targetUI.interactable = false;
+            targetUI.blocksRaycasts = false;
+        }
+    }
+
+    private void DisableUIs(PopupType[] types)
+    {
+        foreach (var type in types)
+        {
+            DisableUI(type);
+        }
     }
 }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ViewSceneManager : MonoBehaviour
 {
-    FishManager fishManager;
     FishTankManager fishTankManager;
+    FishManager fishManager;
     PopupManager popupManager;
 
     List<FishData> fishDataList;
@@ -13,8 +13,8 @@ public class ViewSceneManager : MonoBehaviour
 
     void Awake()
     {
-        fishManager = GetComponentInChildren<FishManager>();
         fishTankManager = GetComponentInChildren<FishTankManager>();
+        fishManager = GetComponentInChildren<FishManager>();
         popupManager = GetComponentInChildren<PopupManager>();
     }
     // Start is called before the first frame update
@@ -33,9 +33,9 @@ public class ViewSceneManager : MonoBehaviour
 
     private void Setup()
     {
-        fishTankManager.Setup(gameData);
-        fishManager.Setup(fishDataList);
-        popupManager.Setup();
+        fishTankManager.Setup(this, gameData); // FishTankManager must be setup first before FishManager
+        fishManager.Setup(this, fishDataList);
+        popupManager.Setup(this);
     }
 
     // Load Fish Data from DataManager.

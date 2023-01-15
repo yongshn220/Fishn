@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BagPopupController : MonoBehaviour
+public class BagPopupController : MonoBehaviour, IPopup
 {
     private PopupManager popupManager;
     private PopupType type = PopupType.BagPopup;
@@ -15,15 +15,17 @@ public class BagPopupController : MonoBehaviour
         bagContent = GetComponentInChildren<BagContent>();
         blockingButton = GetComponentInChildren<BlockingPanel>()?.GetComponent<Button>();
     }
-    public void Start()
+    void Start()
     {
         blockingButton.onClick.AddListener(OnBlockingPanelClick);
     }
 
+#region IPopup
     public void Setup(PopupManager popupManager)
     {
         this.popupManager = popupManager;
     }
+#endregion
 
 #region Button Event
     public void OnBuyButtonClick(int id)
@@ -36,5 +38,6 @@ public class BagPopupController : MonoBehaviour
     {
         popupManager.ClosePopup(this.type);
     }
-#endregion
+
+    #endregion
 }

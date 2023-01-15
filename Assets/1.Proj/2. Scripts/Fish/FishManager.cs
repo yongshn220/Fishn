@@ -5,7 +5,7 @@ using System.Linq;
 
 public class FishManager : MonoBehaviour
 {
-#region SETUP
+#region SETUP FISH 
     [Header("Spawn Setup")]
     [SerializeField] private Vector3 spawnBounds;
 
@@ -51,20 +51,19 @@ public class FishManager : MonoBehaviour
 
 #endregion
 
-    public List<Transform> movePoints;
+    private ViewSceneManager sceneManager;
 
+    public List<Transform> movePoints;
     public List<GameObject> entityList = new List<GameObject>();
 
-#region Setup
-
     // Start here. Generate fish depends on the data.
-    public void Setup(List<FishData> fishDataList)
+    public void Setup(ViewSceneManager sceneManager, List<FishData> fishDataList)
     {
+        this.sceneManager = sceneManager;
         SetupMovePoint();
         GenerateUnits(fishDataList);
         // GenerateUnits(fishDataList);
     }
-#endregion
 
 #region GenerateMovePoint
 
@@ -87,7 +86,6 @@ public class FishManager : MonoBehaviour
             entityList.Add(EntityObject);
         }
     }
-
 
     GameObject InstantiateFish(FishData fishData)
     {

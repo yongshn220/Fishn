@@ -105,6 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1841025965}
   - component: {fileID: 1841025966}
+  - component: {fileID: 5692468139254818011}
   m_Layer: 0
   m_Name: EditTopCamera
   m_TagString: Untagged
@@ -119,7 +120,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1841025964}
-  m_LocalRotation: {x: 0.70090926, y: 0.00000073721753, z: -0.00000072446164, w: 0.71325046}
+  m_LocalRotation: {x: 0.70090926, y: -0.0000007372164, z: 0.00000072446056, w: 0.71325046}
   m_LocalPosition: {x: -0, y: 122.53601, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -166,6 +167,18 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1315782818}
+--- !u!114 &5692468139254818011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841025964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c56392ffb1d284cd3b00de4321b2924b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &33102173232553765
 GameObject:
   m_ObjectHideFlags: 0
@@ -1579,6 +1592,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4993479328474948828}
   - component: {fileID: 6095622101712454186}
+  - component: {fileID: 1132768590334031573}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: Untagged
@@ -1593,7 +1607,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4359191454315473602}
-  m_LocalRotation: {x: 0.0022796243, y: -0.00037995534, z: 0.0000008661578, w: 0.9999973}
+  m_LocalRotation: {x: 0.0022796046, y: -0.00037992094, z: 0.00000086607173, w: 0.9999973}
   m_LocalPosition: {x: 0.01, y: 5.71, z: -13.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1640,6 +1654,18 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 5761673644239494753}
+--- !u!114 &1132768590334031573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4359191454315473602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56e030c44bbf9469f99b5fbe2ca3a8da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4520619783430442808
 GameObject:
   m_ObjectHideFlags: 0
@@ -2045,6 +2071,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7966121185193316830}
   - component: {fileID: 2222252490000027340}
+  - component: {fileID: 8173208789426164240}
   m_Layer: 0
   m_Name: EditFrontCamera
   m_TagString: Untagged
@@ -2106,6 +2133,18 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 774565107359394537}
+--- !u!114 &8173208789426164240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6113190057598573679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3097d6b2221744b0692ea9017b9398bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6322672001056075279
 GameObject:
   m_ObjectHideFlags: 0
@@ -2792,7 +2831,6 @@ GameObject:
   - component: {fileID: 7896097388177658957}
   - component: {fileID: 676343327423908226}
   - component: {fileID: 614383374196428109}
-  - component: {fileID: 7586962865571993845}
   - component: {fileID: 7176235921132203414}
   m_Layer: 0
   m_Name: CinemachineBrain
@@ -2867,18 +2905,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8847801417526138484}
   m_Enabled: 1
---- !u!114 &7586962865571993845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8847801417526138484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56e030c44bbf9469f99b5fbe2ca3a8da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7176235921132203414
 MonoBehaviour:
   m_ObjectHideFlags: 0

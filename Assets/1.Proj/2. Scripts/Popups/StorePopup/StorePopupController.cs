@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class StorePopupController : MonoBehaviour
+public class StorePopupController : MonoBehaviour, IPopup
 {
 
     public StoreItemController itemPrefab;
@@ -27,14 +27,16 @@ public class StorePopupController : MonoBehaviour
         blockingButton.onClick.AddListener(OnBlockingPanelClick);
     }
 
-#region Setup
+#region IPopup
     public void Setup(PopupManager popupManager)
     {
         this.popupManager = popupManager;
         this.seaPlantList = GameManager.instance.scriptableObjectManager.GetSeaPlantList();
         SetupItems();
     }
+#endregion
 
+#region Setup
     private void SetupItems()
     {
         ClearItemsInContent();
@@ -53,12 +55,6 @@ public class StorePopupController : MonoBehaviour
             Destroy(child.gameObject);
         }
     }
-
-    public void Select()
-    {
-        EventSystem.current.SetSelectedGameObject(this.gameObject);
-    }
-
 #endregion
 
 #region Button Event

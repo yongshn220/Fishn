@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class FishTankManager : MonoBehaviour
 {
-    Transform myTransform;
-    FishTankController fishtankController;
+    private ViewSceneManager sceneManager;
+    private Transform myTransform;
+    private FishTankController fishtankController;
+
     void Awake()
     {
         myTransform = transform;
     }
-    public void Setup(GameData gameData)
+    public void Setup(ViewSceneManager sceneManager, GameData gameData)
     {
+        this.sceneManager = sceneManager;
         LoadFishTank(gameData.tank_id);
     }
 
