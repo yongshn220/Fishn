@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5814234066794051710}
   - component: {fileID: 7380792200411031095}
   - component: {fileID: 6981449699297655785}
+  - component: {fileID: -2589445790890747187}
   m_Layer: 0
   m_Name: '[L] Kelp 1'
   m_TagString: SeaObject
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &-2589445790890747187
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3048263651970065713}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.78471625
+  m_Height: 17.301323
+  m_Direction: 1
+  m_Center: {x: -0.00088176184, y: 7.000659, z: 0.016889218}

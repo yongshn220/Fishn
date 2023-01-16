@@ -34,6 +34,16 @@ public class StorePopupController : MonoBehaviour, IPopup
         this.seaPlantList = GameManager.instance.scriptableObjectManager.GetSeaPlantList();
         SetupItems();
     }
+    
+    public void Enable()
+    {
+
+    }
+
+    public void Disable()
+    {
+        
+    }
 #endregion
 
 #region Setup

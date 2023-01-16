@@ -5,4 +5,8 @@ using UnityEngine;
 public interface IPopup
 {
     void Setup(PopupManager manager);
+
+    void Enable();
+
+    void Disable();
 }

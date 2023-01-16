@@ -3,16 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum EditMode
+{
+    None,
+    Front,
+    Top,
+}
+
 public class EditPopupController : MonoBehaviour, IPopup
 {
     private PopupManager popupManager;
 
+    private bool isSetup = false;
+    private EditMode currentMode = EditMode.None;
     private PopupType type = PopupType.EditPopup;
+
     public new Camera camera;
+
     private Button blockingButton;
     private Button frontViewButton;
     private Button topViewButton;
-    public bool isEditMode;
+
+    private GameObject selectedSeaObject;
 
     void Awake()
     {
@@ -30,9 +42,10 @@ public class EditPopupController : MonoBehaviour, IPopup
 
     void Update()
     { 
-        if (popupManager.currentType == PopupType.EditPopup)
+        if (isSetup && popupManager.currentType == PopupType.EditPopup)
         {
-            TryMoveObject( TrySelectSeaObject() );
+            TrySelectSeaObject();
+            TryMoveObject();
         }
     }
     
@@ -41,17 +54,23 @@ public class EditPopupController : MonoBehaviour, IPopup
     public void Setup(PopupManager popupManager)
     {
         this.popupManager = popupManager;
-        SetCamera();
+        this.camera = GameManager.instance.viewSceneManager?.cameraManager.GetBrainCamera();
+        this.isSetup = true;
     }
 
-    private void SetCamera()
+    public void Enable()
     {
-        this.camera = GameManager.instance.viewSceneManager?.cameraManager.GetBrainCamera();
+        currentMode = EditMode.Front;
+    }
+
+    public void Disable()
+    {
+        currentMode = EditMode.None;
     }
 #endregion
 
 
-    private GameObject TrySelectSeaObject()
+    private void TrySelectSeaObject()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -60,20 +79,32 @@ public class EditPopupController : MonoBehaviour, IPopup
             {
                 if (hit.collider.gameObject.CompareTag("SeaObject"))
                 {
-                    return hit.collider.gameObject;
+                    print(hit.collider.gameObject.name);
+                    selectedSeaObject =  hit.collider.gameObject;
                 }
             }
         }
-        return null;
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            selectedSeaObject = null;
+        }
     }
 
-    private void TryMoveObject(GameObject selectedObject)
+    private void TryMoveObject()
     {
-        if (selectedObject)
+        if (selectedSeaObject)
         {
             float horizontal = Input.GetAxis("Mouse X");
             float vertical = Input.GetAxis("Mouse Y");
-            selectedObject.transform.Translate(new Vector3(horizontal, vertical, 0));
+            if (currentMode == EditMode.Front)
+            {
+                selectedSeaObject.transform.Translate(new Vector3(horizontal, vertical, 0)); return;
+            }
+            if (currentMode == EditMode.Top)
+            {
+                selectedSeaObject.transform.Translate(new Vector3(horizontal, 0, vertical)); return;
+            }
         }
     }
 
@@ -88,11 +119,13 @@ public class EditPopupController : MonoBehaviour, IPopup
 
     private void OnFrontViewButtonClick()
     {
+        currentMode = EditMode.Front;
         popupManager.ChangeCameraView(CameraType.EditFrontCamera);
     }
 
     private void OnTopViewButtonClick()
     {
+        currentMode = EditMode.Top;
         popupManager.ChangeCameraView(CameraType.EditTopCamera);
     }
 #endregion

@@ -67,18 +67,12 @@ public class PopupManager : MonoBehaviour
         MonoBehaviour target = popups[(int) type] as MonoBehaviour;
         if (target)
         {
+            // Make the popup visible and call its own Enable().
             CanvasGroup targetUI = target.GetComponent<CanvasGroup>();
             targetUI.alpha = 1f;
             targetUI.interactable = true;
             targetUI.blocksRaycasts = true;
-        }
-    }
-
-    private void EnableUIs(PopupType[] types)
-    {
-        foreach (var type in types)
-        {
-            EnableUI(type);
+            popups[(int) type].Enable(); 
         }
     }
 
@@ -87,10 +81,21 @@ public class PopupManager : MonoBehaviour
         MonoBehaviour target = popups[(int) type] as MonoBehaviour; 
         if (target)
         {
+            // Make the popup unvisible and call its own Disable();
             CanvasGroup targetUI = target.GetComponent<CanvasGroup>();
             targetUI.alpha = 0f;
             targetUI.interactable = false;
             targetUI.blocksRaycasts = false;
+            popups[(int) type].Disable();
+        }
+    
+    }
+    
+    private void EnableUIs(PopupType[] types)
+    {
+        foreach (var type in types)
+        {
+            EnableUI(type);
         }
     }
 

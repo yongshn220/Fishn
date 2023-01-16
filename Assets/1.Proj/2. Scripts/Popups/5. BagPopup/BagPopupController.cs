@@ -25,6 +25,16 @@ public class BagPopupController : MonoBehaviour, IPopup
     {
         this.popupManager = popupManager;
     }
+
+    public void Enable()
+    {
+
+    }
+
+    public void Disable()
+    {
+        
+    }
 #endregion
 
 #region Button Event
