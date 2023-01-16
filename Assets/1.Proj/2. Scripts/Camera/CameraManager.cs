@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 
@@ -9,17 +10,31 @@ public enum CameraType
     EditFrontCamera,
     EditTopCamera,
 }
+
 public class CameraManager : MonoBehaviour
 {
+    private ViewSceneManager sceneManager;
+
+    private CameraContainer cameraContainer; // Script in the parent Object of all cameras.
+    private Camera brainCamera;
     private MainCamera mainCamera;
     private EditFrontCamera editFrontCamera;
     private EditTopCamera editTopCamera;
 
-    void Awake()
+
+    public void Setup(ViewSceneManager sceneManager)
     {
-        mainCamera = GetComponentInChildren<MainCamera>();
-        editFrontCamera = GetComponentInChildren<EditFrontCamera>();
-        editTopCamera = GetComponentInChildren<EditTopCamera>();
+        this.sceneManager = sceneManager;
+        this.cameraContainer = sceneManager.fishTankManager.GetCameraContainer();
+        SetupCameras();
+    }
+
+    void SetupCameras()
+    {
+        brainCamera = cameraContainer.GetComponentInChildren<CinemachineBrain>()?.GetComponent<Camera>();
+        mainCamera = cameraContainer.GetComponentInChildren<MainCamera>();
+        editFrontCamera = cameraContainer.GetComponentInChildren<EditFrontCamera>();
+        editTopCamera = cameraContainer.GetComponentInChildren<EditTopCamera>();
     }
 
     public void ChangeCameraView(CameraType type)
@@ -38,8 +53,9 @@ public class CameraManager : MonoBehaviour
                 break;
             default:
                 return;
-        }  
+        }
     }
+
     private void SetAllCameraDeactivate()
     {
         mainCamera.gameObject.SetActive(false);

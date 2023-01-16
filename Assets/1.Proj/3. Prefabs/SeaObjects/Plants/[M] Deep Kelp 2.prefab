@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6612859418184668679}
   m_Layer: 0
   m_Name: '[M] Deep Kelp 2'
-  m_TagString: Untagged
+  m_TagString: SeaObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

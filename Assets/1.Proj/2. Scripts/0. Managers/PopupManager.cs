@@ -49,20 +49,12 @@ public class PopupManager : MonoBehaviour
     
     public void OpenPopup(PopupType type)
     {
-        if (type == PopupType.EditPopup)
-        {
-            sceneManager.ChangeCameraView(CameraType.EditFrontCamera);
-        }
         DisableUI(PopupType.MainUIPopup);
         EnableUI(type);
     }
 
     public void ClosePopup(PopupType type)
     {
-        if (type == PopupType.EditPopup)
-        {
-            sceneManager.ChangeCameraView(CameraType.MainCamera);
-        }
         EnableUI(PopupType.MainUIPopup);
         DisableUI(type);
     }
@@ -109,6 +101,6 @@ public class PopupManager : MonoBehaviour
 
     public void ChangeCameraView(CameraType type)
     {
-        sceneManager.ChangeCameraView(type);
+        sceneManager.cameraManager.ChangeCameraView(type);
     }
 }

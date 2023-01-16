@@ -44,6 +44,7 @@ public class MainUIPopupController : MonoBehaviour, IPopup
 
     private void OnEditButtonClick()
     {
+        popupManager.ChangeCameraView(CameraType.EditFrontCamera);
         popupManager.OpenPopup(PopupType.EditPopup);
     }
 }

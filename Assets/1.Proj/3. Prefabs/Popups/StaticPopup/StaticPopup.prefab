@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 7665272889648569936}
   - component: {fileID: 1052274101}
   - component: {fileID: 7665272889648569937}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: StaticPopup
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -8,6 +8,7 @@ public class EditPopupController : MonoBehaviour, IPopup
     private PopupManager popupManager;
 
     private PopupType type = PopupType.EditPopup;
+    public new Camera camera;
     private Button blockingButton;
     private Button frontViewButton;
     private Button topViewButton;
@@ -21,9 +22,29 @@ public class EditPopupController : MonoBehaviour, IPopup
 
     void Start()
     {
-        blockingButton.onClick.AddListener(OnBlockingPanelClick);
-        frontViewButton.onClick.AddListener(OnFrontViewButtonClick);
-        topViewButton.onClick.AddListener(OnTopViewButtonClick);
+        blockingButton?.onClick.AddListener(OnBlockingPanelClick);
+        frontViewButton?.onClick.AddListener(OnFrontViewButtonClick);
+        topViewButton?.onClick.AddListener(OnTopViewButtonClick);
+    }
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                if (hit.collider.gameObject.CompareTag("SeaObject"))
+                {
+                    print(hit.collider.gameObject.name);
+                }
+                else
+                {
+                    print("x : " + hit.collider.gameObject.name);
+                }
+            }
+        }
     }
 #region IPopup
     public void Setup(PopupManager popupManager)
@@ -35,6 +56,7 @@ public class EditPopupController : MonoBehaviour, IPopup
     // Outside of the current UI is clicked -> Close the current UI.
     private void OnBlockingPanelClick()
     {
+        popupManager.ChangeCameraView(CameraType.MainCamera);
         popupManager.ClosePopup(this.type);
     }
 

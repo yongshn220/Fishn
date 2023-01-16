@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MovePoint
   - Entity
+  - SeaObject
   layers:
   - Default
   - TransparentFX

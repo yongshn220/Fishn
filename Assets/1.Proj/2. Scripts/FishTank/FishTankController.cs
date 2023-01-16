@@ -9,13 +9,13 @@ public class FishTankController : MonoBehaviour
     [SerializeField]
     private int id;
 
-    private CameraManager cameraManager;
+    private CameraContainer cameraContainer;
     private Transform previewTransform;
     private Transform structureTransform;
     
     void Awake()
     {
-        cameraManager = GetComponentInChildren<CameraManager>();
+        cameraContainer = GetComponentInChildren<CameraContainer>();
         previewTransform = GetComponentInChildren<FishTankPreview>()?.GetComponent<Transform>();
         structureTransform = GetComponentInChildren<FishTankStructure>()?.GetComponent<Transform>();
     }
@@ -43,8 +43,8 @@ public class FishTankController : MonoBehaviour
         }
     }
 
-    public void ChangeCameraView(CameraType type)
+    public CameraContainer GetCameraContainer()
     {
-        cameraManager.ChangeCameraView(type);
+        return cameraContainer;
     }
 }

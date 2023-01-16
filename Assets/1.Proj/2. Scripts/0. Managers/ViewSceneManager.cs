@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class ViewSceneManager : MonoBehaviour
 {
-    FishTankManager fishTankManager;
-    FishManager fishManager;
-    PopupManager popupManager;
+    public CameraManager cameraManager;
+    public FishTankManager fishTankManager;
+    public FishManager fishManager;
+    public PopupManager popupManager;
 
     List<FishData> fishDataList;
     GameData gameData;
 
     void Awake()
     {
+        cameraManager = GetComponentInChildren<CameraManager>();
         fishTankManager = GetComponentInChildren<FishTankManager>();
         fishManager = GetComponentInChildren<FishManager>();
         popupManager = GetComponentInChildren<PopupManager>();
     }
+
     // Start is called before the first frame update
     IEnumerator Start()
     {
@@ -34,8 +37,9 @@ public class ViewSceneManager : MonoBehaviour
 #region Setup
     private void Setup()
     {
-        fishTankManager.Setup(this, gameData); // FishTankManager must be setup first before FishManager
-        fishManager.Setup(this, fishDataList);
+        fishTankManager.Setup(this, gameData); // Setup Order 1 : FishTankManager must be setup first before FishManager
+        cameraManager.Setup(this);             // Setup Order 2
+        fishManager.Setup(this, fishDataList); // Setup Order 3
         popupManager.Setup(this);
     }
 
@@ -59,10 +63,4 @@ public class ViewSceneManager : MonoBehaviour
         return null;
     }
 #endregion
-
-
-    public void ChangeCameraView(CameraType type)
-    {
-        fishTankManager.ChangeCameraView(type);
-    }
 }

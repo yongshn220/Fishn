@@ -6,12 +6,13 @@ public class FishTankManager : MonoBehaviour
 {
     private ViewSceneManager sceneManager;
     private Transform myTransform;
-    private FishTankController fishtankController;
+    private FishTankController fishTankController;
 
     void Awake()
     {
         myTransform = transform;
     }
+
     public void Setup(ViewSceneManager sceneManager, GameData gameData)
     {
         this.sceneManager = sceneManager;
@@ -24,13 +25,13 @@ public class FishTankManager : MonoBehaviour
         if (prefab)
         {
             GameObject fishTankObject = Instantiate(prefab, Vector3.zero, Quaternion.identity, myTransform); // Tip 1 : Awake() of prefab is called when it instantiated.
-            fishtankController = fishTankObject.GetComponent<FishTankController>();                          // Tip 2 : The script in instantiated Object and in Prefab are difference scripts.
-            fishtankController.Setup();
+            fishTankController = fishTankObject.GetComponent<FishTankController>();                          // Tip 2 : The script in instantiated Object and in Prefab are difference scripts.
+            fishTankController.Setup();
         }
     }
 
-    public void ChangeCameraView(CameraType type)
+    public CameraContainer GetCameraContainer()
     {
-        fishtankController.ChangeCameraView(type);
+        return fishTankController.GetCameraContainer();
     }
 }
