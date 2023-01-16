@@ -407,6 +407,7 @@ GameObject:
   - component: {fileID: 2096184662}
   - component: {fileID: 2096184661}
   - component: {fileID: 2096184664}
+  - component: {fileID: 2096184665}
   m_Layer: 5
   m_Name: PopupCanvas
   m_TagString: Untagged
@@ -513,6 +514,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentType: 1
+--- !u!114 &2096184665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096184659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1001 &4725609643502440887
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1040,6 +1058,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2096184660}
     m_Modifications:
+    - target: {fileID: 2742679432799588337, guid: 6fb8caf3e9dfe4d3f91116ed642f729a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7680259946674958599, guid: 6fb8caf3e9dfe4d3f91116ed642f729a, type: 3}
+      propertyPath: raycaster
+      value: 
+      objectReference: {fileID: 2096184661}
     - target: {fileID: 7680259946674958602, guid: 6fb8caf3e9dfe4d3f91116ed642f729a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

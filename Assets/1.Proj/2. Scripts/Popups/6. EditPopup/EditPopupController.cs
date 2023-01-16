@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public enum EditMode
@@ -26,7 +27,8 @@ public class EditPopupController : MonoBehaviour, IPopup
 
     private GameObject selectedSeaObject;
 
-    void Awake()
+    public GraphicRaycaster raycaster;
+    void Awake()    
     {
         blockingButton = GetComponentInChildren<BlockingPanel>()?.GetComponent<Button>();
         frontViewButton = GetComponentInChildren<FrontViewButton>()?.GetComponent<Button>();
@@ -42,6 +44,35 @@ public class EditPopupController : MonoBehaviour, IPopup
 
     void Update()
     { 
+        // if (currentMode != EditMode.None && Input.GetMouseButtonUp(0)) 
+        // {
+        //     Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        //     if (!Physics.Raycast(ray, out RaycastHit hit))
+        //     {
+        //         print("a");
+        //         // OnBlockingPanelClick();
+        //     }
+        // }
+
+        //TO DO :: ADD below UI raycast with above physics raycast.
+        if (currentMode != EditMode.None  && Input.GetMouseButtonDown(0))
+        {
+            // Vector2 mousePos = Input.mousePosition;
+            // Ray ray = camera.ScreenPointToRay(mousePos);
+            PointerEventData pointerData = new PointerEventData(EventSystem.current);
+            pointerData.position = Input.mousePosition;
+            List<RaycastResult> results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(pointerData, results);
+            if (results.Count == 0)
+            {
+                Debug.Log("no UI object: ");
+            }
+            else
+            {
+                Debug.Log("Hit UI object: " + results[0].gameObject.name);
+            }
+        }
+
         if (isSetup && popupManager.currentType == PopupType.EditPopup)
         {
             TrySelectSeaObject();

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1174874494261909604}
   - component: {fileID: 1174874494261909606}
   - component: {fileID: 1174874494261909605}
+  - component: {fileID: -3148597311419074514}
   m_Layer: 0
   m_Name: '[S] Deep Kelp 2'
   m_TagString: SeaObject
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &-3148597311419074514
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174874494261909603}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.9999778
+  m_Height: 20.768766
+  m_Direction: 1
+  m_Center: {x: -0.000037193495, y: 8.55103, z: -0.000024423423}
