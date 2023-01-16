@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     public DataManager dataManager;
     public ScriptableObjectManager scriptableObjectManager;
+    public ViewSceneManager viewSceneManager;
 
     void Awake()
     {
@@ -29,5 +30,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         dataManager.LoadUserData();
+    }
+
+    public void SetViewSceneManager(ViewSceneManager viewSceneManager)
+    {
+        this.viewSceneManager = viewSceneManager;
     }
 }

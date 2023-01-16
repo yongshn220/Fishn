@@ -33,7 +33,6 @@ public class MainUIPopupController : MonoBehaviour, IPopup
 
     private void OnStoreButtonClick()
     {
-        print("A");
         popupManager.OpenPopup(PopupType.StorePopup);
     }
 

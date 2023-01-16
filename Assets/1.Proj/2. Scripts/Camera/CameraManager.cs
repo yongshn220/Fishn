@@ -62,4 +62,9 @@ public class CameraManager : MonoBehaviour
         editFrontCamera.gameObject.SetActive(false);
         editTopCamera.gameObject.SetActive(false);
     }
+
+    public Camera GetBrainCamera()
+    {
+        return brainCamera;
+    }
 }

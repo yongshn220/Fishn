@@ -37,6 +37,7 @@ public class ViewSceneManager : MonoBehaviour
 #region Setup
     private void Setup()
     {
+        GameManager.instance.SetViewSceneManager(this);
         fishTankManager.Setup(this, gameData); // Setup Order 1 : FishTankManager must be setup first before FishManager
         cameraManager.Setup(this);             // Setup Order 2
         fishManager.Setup(this, fishDataList); // Setup Order 3

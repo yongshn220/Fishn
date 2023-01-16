@@ -12,6 +12,7 @@ public class EditPopupController : MonoBehaviour, IPopup
     private Button blockingButton;
     private Button frontViewButton;
     private Button topViewButton;
+    public bool isEditMode;
 
     void Awake()
     {
@@ -28,31 +29,56 @@ public class EditPopupController : MonoBehaviour, IPopup
     }
 
     void Update()
+    { 
+        if (popupManager.currentType == PopupType.EditPopup)
+        {
+            TryMoveObject( TrySelectSeaObject() );
+        }
+    }
+    
+#region Setup
+    // IPopup function
+    public void Setup(PopupManager popupManager)
+    {
+        this.popupManager = popupManager;
+        SetCamera();
+    }
+
+    private void SetCamera()
+    {
+        this.camera = GameManager.instance.viewSceneManager?.cameraManager.GetBrainCamera();
+    }
+#endregion
+
+
+    private GameObject TrySelectSeaObject()
     {
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 if (hit.collider.gameObject.CompareTag("SeaObject"))
                 {
-                    print(hit.collider.gameObject.name);
-                }
-                else
-                {
-                    print("x : " + hit.collider.gameObject.name);
+                    return hit.collider.gameObject;
                 }
             }
         }
+        return null;
     }
-#region IPopup
-    public void Setup(PopupManager popupManager)
-    {
-        this.popupManager = popupManager;
-    }
-#endregion
 
+    private void TryMoveObject(GameObject selectedObject)
+    {
+        if (selectedObject)
+        {
+            float horizontal = Input.GetAxis("Mouse X");
+            float vertical = Input.GetAxis("Mouse Y");
+            selectedObject.transform.Translate(new Vector3(horizontal, vertical, 0));
+        }
+    }
+
+
+#region Button Event
     // Outside of the current UI is clicked -> Close the current UI.
     private void OnBlockingPanelClick()
     {
@@ -69,4 +95,5 @@ public class EditPopupController : MonoBehaviour, IPopup
     {
         popupManager.ChangeCameraView(CameraType.EditTopCamera);
     }
+#endregion
 }

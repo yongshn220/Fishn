@@ -16,7 +16,8 @@ public enum PopupType
 public class PopupManager : MonoBehaviour
 {
     private ViewSceneManager sceneManager;
-
+    
+    public PopupType currentType = PopupType.MainUIPopup;
     private IPopup[] popups;
 
     void Awake()
@@ -49,12 +50,14 @@ public class PopupManager : MonoBehaviour
     
     public void OpenPopup(PopupType type)
     {
+        currentType = type;
         DisableUI(PopupType.MainUIPopup);
         EnableUI(type);
     }
 
     public void ClosePopup(PopupType type)
     {
+        currentType = PopupType.MainUIPopup;
         EnableUI(PopupType.MainUIPopup);
         DisableUI(type);
     }
