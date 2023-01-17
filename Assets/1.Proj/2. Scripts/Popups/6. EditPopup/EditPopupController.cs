@@ -21,7 +21,6 @@ public class EditPopupController : MonoBehaviour, IPopup
 
     public new Camera camera;
 
-    private Button blockingButton;
     private Button frontViewButton;
     private Button topViewButton;
 
@@ -30,55 +29,26 @@ public class EditPopupController : MonoBehaviour, IPopup
     public GraphicRaycaster raycaster;
     void Awake()    
     {
-        blockingButton = GetComponentInChildren<BlockingPanel>()?.GetComponent<Button>();
         frontViewButton = GetComponentInChildren<FrontViewButton>()?.GetComponent<Button>();
         topViewButton = GetComponentInChildren<TopViewButton>()?.GetComponent<Button>();
     }
 
     void Start()
     {
-        blockingButton?.onClick.AddListener(OnBlockingPanelClick);
         frontViewButton?.onClick.AddListener(OnFrontViewButtonClick);
         topViewButton?.onClick.AddListener(OnTopViewButtonClick);
     }
 
     void Update()
     { 
-        // if (currentMode != EditMode.None && Input.GetMouseButtonUp(0)) 
-        // {
-        //     Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-        //     if (!Physics.Raycast(ray, out RaycastHit hit))
-        //     {
-        //         print("a");
-        //         // OnBlockingPanelClick();
-        //     }
-        // }
-
-        //TO DO :: ADD below UI raycast with above physics raycast.
-        if (currentMode != EditMode.None  && Input.GetMouseButtonDown(0))
-        {
-            // Vector2 mousePos = Input.mousePosition;
-            // Ray ray = camera.ScreenPointToRay(mousePos);
-            PointerEventData pointerData = new PointerEventData(EventSystem.current);
-            pointerData.position = Input.mousePosition;
-            List<RaycastResult> results = new List<RaycastResult>();
-            EventSystem.current.RaycastAll(pointerData, results);
-            if (results.Count == 0)
-            {
-                Debug.Log("no UI object: ");
-            }
-            else
-            {
-                Debug.Log("Hit UI object: " + results[0].gameObject.name);
-            }
-        }
-
         if (isSetup && popupManager.currentType == PopupType.EditPopup)
         {
             TrySelectSeaObject();
             TryMoveObject();
         }
     }
+
+
     
 #region Setup
     // IPopup function
@@ -105,14 +75,17 @@ public class EditPopupController : MonoBehaviour, IPopup
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit))
+            GameObject hitObject = RaycastHelper.RaycastAtMousePosition(camera);
+            List<RaycastResult> results = RaycastHelper.UIRaycastAtMousePoision();
+
+            if (hitObject && hitObject.CompareTag("SeaObject"))
             {
-                if (hit.collider.gameObject.CompareTag("SeaObject"))
-                {
-                    print(hit.collider.gameObject.name);
-                    selectedSeaObject =  hit.collider.gameObject;
-                }
+                selectedSeaObject = hitObject;
+            }
+
+            if (hitObject == null && results.Count == 0)
+            {
+                ClosePopup();
             }
         }
 
@@ -142,7 +115,7 @@ public class EditPopupController : MonoBehaviour, IPopup
 
 #region Button Event
     // Outside of the current UI is clicked -> Close the current UI.
-    private void OnBlockingPanelClick()
+    private void ClosePopup()
     {
         popupManager.ChangeCameraView(CameraType.MainCamera);
         popupManager.ClosePopup(this.type);

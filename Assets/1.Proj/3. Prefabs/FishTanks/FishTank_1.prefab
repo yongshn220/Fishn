@@ -120,7 +120,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1841025964}
-  m_LocalRotation: {x: 0.689077, y: 0.0000002475524, z: -0.00000023538772, w: 0.7246881}
+  m_LocalRotation: {x: 0.689077, y: -0.00000024755158, z: 0.00000023538696, w: 0.7246881}
   m_LocalPosition: {x: -0, y: 85, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1607,7 +1607,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4359191454315473602}
-  m_LocalRotation: {x: 0.0022796046, y: -0.00037992094, z: 0.00000086607173, w: 0.9999973}
+  m_LocalRotation: {x: 0.0022796243, y: -0.00037995534, z: 0.0000008661578, w: 0.9999973}
   m_LocalPosition: {x: 0.01, y: 5.71, z: -13.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2086,7 +2086,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6113190057598573679}
-  m_LocalRotation: {x: 0.10569031, y: 6.0900087e-26, z: -6.472801e-27, w: 0.99439913}
+  m_LocalRotation: {x: 0.10569031, y: 6.0900124e-26, z: -6.472805e-27, w: 0.99439913}
   m_LocalPosition: {x: 0, y: 25, z: -90}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2717,6 +2717,7 @@ GameObject:
   - component: {fileID: 4798833994657175735}
   - component: {fileID: 5685023778853780479}
   - component: {fileID: 1997269974536507412}
+  - component: {fileID: 6024346657364932907}
   m_Layer: 0
   m_Name: TankModel_1
   m_TagString: Untagged
@@ -2789,6 +2790,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6024346657364932907
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8416989599947021852}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5495902117074765545, guid: 64a3eb55c4bf5476081548b7c1c8971d, type: 3}
 --- !u!1 &8750779792044050903
 GameObject:
   m_ObjectHideFlags: 0
@@ -2846,7 +2861,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8847801417526138484}
-  m_LocalRotation: {x: 0.0022796046, y: -0.00037992094, z: 0.00000086607173, w: 0.9999973}
+  m_LocalRotation: {x: 0.0022796243, y: -0.00037995534, z: 0.0000008661578, w: 0.9999973}
   m_LocalPosition: {x: 0.01, y: 5.71, z: -13.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
