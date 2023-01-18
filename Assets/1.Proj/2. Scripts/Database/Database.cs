@@ -5,33 +5,53 @@ using UnityEngine;
 using UnityEngine.Networking;
 using Cysharp.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using System.Text;
 
 public class Database
 {
     const string URL = "https://w6yc5awthi.execute-api.us-east-2.amazonaws.com/default/Fishn-maindb";
     
-    public async UniTask<string> AsyncLoadUserData(string uid)
+     public async UniTask<string> AsyncLoadUserData(string uid)
     {
-        WWWForm form = new WWWForm();
-        form.AddField(DBstr.COMMAND, DBstr.LOGIN);
-        form.AddField(DBstr.UID, uid);
-
-        UnityWebRequest www = UnityWebRequest.Post(URL, form);
-
-        await www.SendWebRequest();
-
-        return www.downloadHandler.text;
+        JObject json = new JObject();
+        json["data"] = uid;
+        return await AsyncPostWebRequest(json, "login");
     }
 
-    private async UniTask<string> AsyncSendPostRequest(WWWForm form)
+    public async UniTask<string> AsyncSaveSeaObjectData(string uid, JArray jArray)
     {
-        UnityWebRequest www = UnityWebRequest.Post(URL, form);
-        await www.SendWebRequest();
-        return www.downloadHandler.text;
+        JObject json = new JObject();
+        json["data"] = jArray;
+        return await AsyncPostWebRequest(json, "save/seaobjects");
     }
 
-    public async UniTaskVoid AsyncSaveSeaObjectData(string uid, JArray jarray)
+    private async UniTask<string> AsyncPostWebRequest(JObject json, string contentType)
     {
+        UnityWebRequest request = new UnityWebRequest(URL, "POST");
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(json));
+        request.uploadHandler = (UploadHandler) new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = (DownloadHandler) new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", contentType);
+
+        await request.SendWebRequest();
+        return request.downloadHandler.text;
     }
+
+    // public async UniTask<string> AsyncLoadUserData(string uid)
+    // {
+    //     WWWForm form = new WWWForm();
+    //     form.AddField(DBstr.COMMAND, DBstr.LOGIN);
+    //     form.AddField(DBstr.UID, uid);
+
+    //     return await AsyncSendPostRequest(form);
+    // }
+
+    // private async UniTask<string> AsyncSendPostRequest(WWWForm form)
+    // {
+    //     UnityWebRequest www = UnityWebRequest.Post(URL, form);
+    //     await www.SendWebRequest();
+    //     return www.downloadHandler.text;
+    // }
 }
 

@@ -30,6 +30,7 @@ public class PopupManager : MonoBehaviour
         popups[(int) PopupType.EditPopup] = GetComponentInChildren<EditPopupController>();
     }
 
+#region Set up
     public void Setup(ViewSceneManager sceneManager)
     {
         this.sceneManager = sceneManager;
@@ -47,7 +48,9 @@ public class PopupManager : MonoBehaviour
         EnableUIs(new PopupType[] {PopupType.StaticPopup, PopupType.MainUIPopup});
         DisableUIs(new PopupType[] {PopupType.StorePopup, PopupType.BagPopup, PopupType.EditPopup});
     }
-    
+#endregion
+
+#region On / Off
     public void OpenPopup(PopupType type)
     {
         currentType = type;
@@ -90,7 +93,7 @@ public class PopupManager : MonoBehaviour
         }
     
     }
-    
+
     private void EnableUIs(PopupType[] types)
     {
         foreach (var type in types)
@@ -111,4 +114,12 @@ public class PopupManager : MonoBehaviour
     {
         sceneManager.cameraManager.ChangeCameraView(type);
     }
+#endregion
+
+#region A
+    public void SaveSeaObjetData()
+    {
+        sceneManager.fishTankManager.SaveSeaObjectData();
+    }
+#endregion
 }

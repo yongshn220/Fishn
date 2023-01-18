@@ -37,6 +37,6 @@ public class FishTankManager : MonoBehaviour
 
     public void SaveSeaObjectData()
     {
-        
+        fishTankController.SaveSeaObjectData();
     }
 }

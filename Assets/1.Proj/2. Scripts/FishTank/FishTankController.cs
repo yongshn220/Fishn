@@ -25,17 +25,7 @@ public class FishTankController : MonoBehaviour
     // Start is called before the first frame update
     public void Setup()
     {
-        List<SeaObjectData> seaObjectDataList = new List<SeaObjectData>();
-
-        SeaObjectData newData = new SeaObjectData();
-        newData.Setup(1,1, new Vector3(0,0,0));
-        seaObjectDataList.Add(newData);
-
-        newData = new SeaObjectData();
-        newData.Setup(2,2, new Vector3(1, 0, 1));
-        seaObjectDataList.Add(newData);
-
-        LoadSeaObjects(seaObjectDataList);
+        LoadSeaObjects(GameManager.instance.dataManager.seaObjectDataList);
     }
 
     private void LoadSeaObjects(List<SeaObjectData> seaObjectDataList)
@@ -47,18 +37,18 @@ public class FishTankController : MonoBehaviour
             if (prefab)
             {
                 GameObject seaObject = Instantiate(prefab, data.position, Quaternion.identity, structureTransform);
-                SeaObjectData seaObjectData = seaObject.AddComponent<SeaObjectData>();
-                seaObjectData.Setup(data);
-                seaObjectData.isInstantiated = true;
-                curSeaObjectDataList.Add(data);
+                SeaObjectData instantiatedSeaObjectData = seaObject.AddComponent<SeaObjectData>();
+                instantiatedSeaObjectData.Setup(data);
+                instantiatedSeaObjectData.instantiated = true;
+                curSeaObjectDataList.Add(instantiatedSeaObjectData);
             }
         }
     }
 
-    private void SaveSeaObjects()
+    public void SaveSeaObjectData()
     {
         UpdateSeaObjectPosition();
-        // GameManager.instance.dataManager.SaveSeaObjectData(curSeaObjectDataList);
+        GameManager.instance.dataManager.SaveSeaObjectData(curSeaObjectDataList);
     }
 
     private void UpdateSeaObjectPosition()

@@ -6,13 +6,14 @@ public class SeaObjectData : MonoBehaviour
     public int type_id;
     public Vector3 position;
 
-    public bool isInstantiated = false;
+    public bool instantiated = false;
 
-    public void Setup(int id, int type_id, Vector3 position)
+    public void Setup(int id, int type_id, Vector3 position, bool instantiated)
     {
         this.id = id;
         this.type_id = type_id;
         this.position = position;
+        this.instantiated = instantiated;
     }
 
     public void Setup(SeaObjectData data)
@@ -20,6 +21,7 @@ public class SeaObjectData : MonoBehaviour
         this.id = data.id;
         this.type_id = data.type_id;
         this.position = data.position;
+        this.instantiated = data.instantiated;
     }
 
     public override string ToString()

@@ -116,7 +116,7 @@ public class EditPopupController : MonoBehaviour, IPopup
 
     private void SaveSeaObjetData()
     {
-        
+        popupManager.SaveSeaObjetData();
     }
 
 #region Button Event
