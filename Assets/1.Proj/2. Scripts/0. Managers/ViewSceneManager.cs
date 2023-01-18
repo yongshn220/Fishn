@@ -9,7 +9,7 @@ public class ViewSceneManager : MonoBehaviour
     public FishManager fishManager;
     public PopupManager popupManager;
 
-    List<FishData> fishDataList;
+    List<EntityData> entityDataList;
     GameData gameData;
 
     void Awake()
@@ -28,7 +28,7 @@ public class ViewSceneManager : MonoBehaviour
             yield return new WaitForSeconds(1);
             //Wait and Try again
         }
-        fishDataList = LoadFishDataList();
+        entityDataList = LoadEntityDataList();
         gameData = LoadGameData();
 
         Setup();
@@ -40,18 +40,18 @@ public class ViewSceneManager : MonoBehaviour
         GameManager.instance.SetViewSceneManager(this);
         fishTankManager.Setup(this, gameData); // Setup Order 1 : FishTankManager must be setup first before FishManager
         cameraManager.Setup(this);             // Setup Order 2
-        fishManager.Setup(this, fishDataList); // Setup Order 3
+        fishManager.Setup(this, entityDataList); // Setup Order 3
         popupManager.Setup(this);
     }
 
     // Load Fish Data from DataManager.
-    private List<FishData> LoadFishDataList()
+    private List<EntityData> LoadEntityDataList()
     {
-        if (GameManager.instance.dataManager.fishDataList != null)
+        if (GameManager.instance.dataManager.entityDataList != null)
         {
-            return GameManager.instance.dataManager.fishDataList;
+            return GameManager.instance.dataManager.entityDataList;
         }
-        return new List<FishData>(); // TO DO : need to handle the error situation.
+        return new List<EntityData>(); // TO DO : need to handle the error situation.
     }
 
     // Load User Game data (ex. fish tank level)

@@ -13,14 +13,29 @@ public class Database
     public async UniTask<string> AsyncLoadUserData(string uid)
     {
         WWWForm form = new WWWForm();
-
-        form.AddField("command", "login");
-        form.AddField("uid", uid);
+        form.AddField(DBstr.COMMAND, DBstr.LOGIN);
+        form.AddField(DBstr.UID, uid);
 
         UnityWebRequest www = UnityWebRequest.Post(URL, form);
 
         await www.SendWebRequest();
 
+        return www.downloadHandler.text;
+    }
+
+    public async UniTask<string> AsyncLoadGameData(string uid)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField(DBstr.COMMAND, DBstr.GAMEDATA);
+        form.AddField(DBstr.UID, uid);
+
+        return await AsyncSendPostRequest(form);
+    }
+
+    private async UniTask<string> AsyncSendPostRequest(WWWForm form)
+    {
+        UnityWebRequest www = UnityWebRequest.Post(URL, form);
+        await www.SendWebRequest();
         return www.downloadHandler.text;
     }
 

@@ -57,12 +57,12 @@ public class FishManager : MonoBehaviour
     public List<GameObject> entityList = new List<GameObject>();
 
     // Start here. Generate fish depends on the data.
-    public void Setup(ViewSceneManager sceneManager, List<FishData> fishDataList)
+    public void Setup(ViewSceneManager sceneManager, List<EntityData> EntityDataList)
     {
         this.sceneManager = sceneManager;
         SetupMovePoint();
-        GenerateUnits(fishDataList);
-        // GenerateUnits(fishDataList);
+        GenerateUnits(EntityDataList);
+        // GenerateUnits(entityDataList);
     }
 
 #region GenerateMovePoint
@@ -76,18 +76,18 @@ public class FishManager : MonoBehaviour
 
 #region GenerateFish
     // Instantiate All fish into the Fish-tank.
-    void GenerateUnits(List<FishData> fishDataList)
+    void GenerateUnits(List<EntityData> entityDataList)
     {
-        for (int i = 0; i < fishDataList.Count; i++)
+        for (int i = 0; i < entityDataList.Count; i++)
         {
-            GameObject EntityObject = InstantiateFish(fishDataList[i]);
-            SetupFishController(EntityObject, fishDataList[i]);
+            GameObject EntityObject = InstantiateFish(entityDataList[i]);
+            SetupFishController(EntityObject, entityDataList[i]);
             SetupFishMovement(EntityObject);
             entityList.Add(EntityObject);
         }
     }
 
-    GameObject InstantiateFish(FishData fishData)
+    GameObject InstantiateFish(EntityData entityData)
     {
         Vector3 randomVector = UnityEngine.Random.insideUnitSphere;
         randomVector = new Vector3(randomVector.x * spawnBounds.x, randomVector.y * spawnBounds.y, randomVector.z * spawnBounds.z);
@@ -95,7 +95,7 @@ public class FishManager : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0);
 
 
-        GameObject entityPrefab = GameManager.instance.scriptableObjectManager.TryGetEntityPrefabById(fishData.type_id);
+        GameObject entityPrefab = GameManager.instance.scriptableObjectManager.TryGetEntityPrefabById(entityData.type_id);
         if (entityPrefab)
         {
             return Instantiate(entityPrefab, spawnPosition, rotation);
@@ -103,12 +103,12 @@ public class FishManager : MonoBehaviour
         return null;
     }
 
-    void SetupFishController(GameObject entity, FishData fishData)
+    void SetupFishController(GameObject entity, EntityData entityData)
     {
-        if (fishData != null)
+        if (entityData != null)
         {
             FishController entityCtrl = entity.AddComponent<FishController>();
-            entityCtrl.Setup(fishData.id, fishData.type_id, fishData.born_datetime, fishData.feed_datetime);
+            entityCtrl.Setup(entityData.id, entityData.type_id, entityData.born_datetime, entityData.feed_datetime);
         }
     }
 

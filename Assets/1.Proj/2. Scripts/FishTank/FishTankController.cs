@@ -58,7 +58,7 @@ public class FishTankController : MonoBehaviour
     private void SaveSeaObjects()
     {
         UpdateSeaObjectPosition();
-        GameManager.instance.dataManager.SaveSeaObjectData();
+        // GameManager.instance.dataManager.SaveSeaObjectData(curSeaObjectDataList);
     }
 
     private void UpdateSeaObjectPosition()
