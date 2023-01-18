@@ -23,15 +23,6 @@ public class Database
         return www.downloadHandler.text;
     }
 
-    public async UniTask<string> AsyncLoadGameData(string uid)
-    {
-        WWWForm form = new WWWForm();
-        form.AddField(DBstr.COMMAND, DBstr.GAMEDATA);
-        form.AddField(DBstr.UID, uid);
-
-        return await AsyncSendPostRequest(form);
-    }
-
     private async UniTask<string> AsyncSendPostRequest(WWWForm form)
     {
         UnityWebRequest www = UnityWebRequest.Post(URL, form);

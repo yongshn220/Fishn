@@ -19,7 +19,7 @@ public static class DatabaseHelper
 #region LOAD
     public static async UniTask<UserData> AsyncLoadUserData()
     {
-        string res = await database.AsyncLoadGameData(uid);
+        string res = await database.AsyncLoadUserData(uid);
 
         JObject json = JObject.Parse(res);
         return GetUserDataFromJson(json);
