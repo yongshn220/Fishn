@@ -14,7 +14,7 @@ public class StorePopupController : MonoBehaviour, IPopup
     private Button blockingButton;
     private StoreContent storeContent;
 
-    private List<SeaPlantScriptableObjectStructure> seaPlantList;
+    private List<SeaObjectScriptableObjectStructure> seaPlantList;
 
     void Awake()
     {
@@ -31,10 +31,10 @@ public class StorePopupController : MonoBehaviour, IPopup
     public void Setup(PopupManager popupManager)
     {
         this.popupManager = popupManager;
-        this.seaPlantList = GameManager.instance.scriptableObjectManager.GetSeaPlantList();
+        this.seaPlantList = GameManager.instance.scriptableObjectManager.GetSeaObjectList();
         SetupItems();
     }
-    
+
     public void Enable()
     {
 

@@ -34,4 +34,9 @@ public class FishTankManager : MonoBehaviour
     {
         return fishTankController.GetCameraContainer();
     }
+
+    public void SaveSeaObjectData()
+    {
+        
+    }
 }

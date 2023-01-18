@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using Cysharp.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 
 public class Database
 {
@@ -22,4 +23,9 @@ public class Database
 
         return www.downloadHandler.text;
     }
+
+    public async UniTaskVoid AsyncSaveSeaObjectData(string uid, JArray jarray)
+    {
+    }
 }
+

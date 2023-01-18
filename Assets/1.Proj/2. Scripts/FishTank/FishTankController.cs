@@ -12,6 +12,8 @@ public class FishTankController : MonoBehaviour
     private CameraContainer cameraContainer;
     private Transform previewTransform;
     private Transform structureTransform;
+
+    private List<SeaObjectData> curSeaObjectDataList = new List<SeaObjectData>();
     
     void Awake()
     {
@@ -23,23 +25,47 @@ public class FishTankController : MonoBehaviour
     // Start is called before the first frame update
     public void Setup()
     {
-        List<SeaPlantData> seaPlantList = new List<SeaPlantData>();
-        seaPlantList.Add(new SeaPlantData(1, 1, new Vector3(0, 0, 0)));
-        seaPlantList.Add(new SeaPlantData(2, 2, new Vector3(1, 0, 1)));
+        List<SeaObjectData> seaObjectDataList = new List<SeaObjectData>();
 
-        LoadStructures(seaPlantList);
+        SeaObjectData newData = new SeaObjectData();
+        newData.Setup(1,1, new Vector3(0,0,0));
+        seaObjectDataList.Add(newData);
+
+        newData = new SeaObjectData();
+        newData.Setup(2,2, new Vector3(1, 0, 1));
+        seaObjectDataList.Add(newData);
+
+        LoadSeaObjects(seaObjectDataList);
     }
 
-    private void LoadStructures(List<SeaPlantData> seaPlantList)
+    private void LoadSeaObjects(List<SeaObjectData> seaObjectDataList)
     {
         GameObject prefab;
-        foreach (var plant in seaPlantList)
+        foreach (var data in seaObjectDataList)
         {
-            prefab = GameManager.instance.scriptableObjectManager.TryGetSeaPlantPrefabById(plant.id);
+            prefab = GameManager.instance.scriptableObjectManager.TryGetSeaPlantPrefabById (data.id);
             if (prefab)
             {
-                Instantiate(prefab, plant.position, Quaternion.identity, structureTransform);
+                GameObject seaObject = Instantiate(prefab, data.position, Quaternion.identity, structureTransform);
+                SeaObjectData seaObjectData = seaObject.AddComponent<SeaObjectData>();
+                seaObjectData.Setup(data);
+                seaObjectData.isInstantiated = true;
+                curSeaObjectDataList.Add(data);
             }
+        }
+    }
+
+    private void SaveSeaObjects()
+    {
+        UpdateSeaObjectPosition();
+        GameManager.instance.dataManager.SaveSeaObjectData();
+    }
+
+    private void UpdateSeaObjectPosition()
+    {
+        foreach (SeaObjectData data in curSeaObjectDataList)
+        {
+            data.position = data.transform.position;
         }
     }
 

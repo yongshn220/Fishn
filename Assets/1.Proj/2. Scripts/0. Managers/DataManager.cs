@@ -5,6 +5,10 @@ using Cysharp.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using System;
 
+/*
+    1. Receive Json data from DatabaseHelper -> apply to Unity.
+    2. Receive Unity data from All Unity classes -> send to DatabaseHelper.
+*/
 public class DataManager : MonoBehaviour
 {
     public bool isDataReady = false;
@@ -12,10 +16,10 @@ public class DataManager : MonoBehaviour
     JObject jsonData;
 
     public GameData gameData = null;
-    public List<SeaPlantData> seaPlantDataList = new List<SeaPlantData>();
-    public List<RockData> rockDataList = new List<RockData>();
+    public List<SeaObjectData> seaPlantDataList = new List<SeaObjectData>();
     public List<FishData> fishDataList = new List<FishData>();
 
+#region Load
     public void LoadUserData()
     {
         Action<JObject> callback = (json) =>
@@ -25,13 +29,20 @@ public class DataManager : MonoBehaviour
         };
         DatabaseHelper.LoadUserData(callback).Forget();
     }
+#endregion
+
+#region Save
+    public void SaveSeaObjectData(List<SeaObjectData> seaObjectDataList)
+    {
+        DatabaseHelper.SaveSeaObjectData(seaObjectDataList);
+    }
+#endregion
 
     private void SetDataFromJson(JObject json)
     {
         jsonData = json;
         SetGameDataFromJson(jsonData["gamedata"]);
         SetSeaPlantDataFromJson(jsonData["seaplantList"]);
-        SetRockDataFromJson(jsonData["rockList"]);
         SetFishDataFromJson(jsonData["fishList"]);
 
         PrintUserData();
@@ -46,10 +57,6 @@ public class DataManager : MonoBehaviour
             print(f.ToString());
         }
         foreach(var f in seaPlantDataList)
-        {
-            print(f.ToString());
-        }
-        foreach(var f in rockDataList)
         {
             print(f.ToString());
         }
@@ -76,26 +83,9 @@ public class DataManager : MonoBehaviour
             float posz = (float) plant["posz"];
             Vector3 position = new Vector3(posx, posy, posz);
 
-            seaPlantDataList.Add(new SeaPlantData(id, type_id, position));
-        }
-
-
-    }
-
-    private void SetRockDataFromJson(JToken rockDataJson)
-    {
-        rockDataList.Clear();
-
-        foreach (var rock in rockDataJson)
-        {
-            int id = (int) rock["id"];
-            int type_id = (int) rock["type_id"];
-            float posx = (float) rock["posx"];
-            float posy = (float) rock["posy"];
-            float posz = (float) rock["posz"];
-            Vector3 position = new Vector3(posx, posy, posz);
-            
-            rockDataList.Add(new RockData(id, type_id, position));
+            SeaObjectData newData = new SeaObjectData();
+            newData.Setup(id, type_id, position);
+            seaPlantDataList.Add(newData);
         }
     }
 
@@ -133,64 +123,5 @@ public class GameData
     public override string ToString()
     {
         return $"id = {id}, tank_id = {tank_id}, coral = {coral}";
-    }
-}
-
-public class SeaPlantData
-{
-    public int id;
-    public int type_id;
-    public Vector3 position;
-
-    public SeaPlantData(int id, int type_id, Vector3 position)
-    {
-        this.id = id;
-        this.type_id = type_id;
-        this.position = position;
-    }
-
-    public override string ToString()
-    {
-        return $"id = {id}, position = {position}";
-    }
-}
-
-public class RockData
-{
-    public int id;
-    public int type_id;
-    public Vector3 position;
-
-    public RockData(int id, int type_id, Vector3 position)
-    {
-        this.id = id;
-        this.type_id = type_id;
-        this.position = position;
-    }
-
-    public override string ToString()
-    {
-        return $"id = {id}, position = {position}";
-    }
-}
-
-public class FishData
-{
-    public int id;
-    public int type_id;
-    public DateTime born_datetime;
-    public DateTime feed_datetime;
-
-    public FishData(int id, int type_id, DateTime born_datetime, DateTime feed_datetime)
-    {
-        this.id = id;
-        this.type_id = type_id;
-        this.born_datetime = born_datetime;
-        this.feed_datetime = feed_datetime;
-    }
-
-    public override string ToString()
-    {
-        return $"id = {id}, type_id = {type_id}, born_datetime = {born_datetime}, feed_datetime = {feed_datetime}";
     }
 }

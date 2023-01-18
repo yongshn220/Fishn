@@ -1,0 +1,237 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1207933b1d5d4421385452469827d97f, type: 3}
+  m_Name: SeaObjectScriptableObject
+  m_EditorClassIdentifier: 
+  seaObjects:
+  - id: 0
+    name: 
+    coral: 0
+    type: 0
+    size: 0
+    prefab: {fileID: 0}
+  - id: 1
+    name: Small Deep Kelp 1
+    coral: 10
+    type: 0
+    size: 0
+    prefab: {fileID: 8034499035807330066, guid: 1300231c1884e4ae98472a1ee96ff328, type: 3}
+  - id: 2
+    name: Small Deep Kelp 2
+    coral: 10
+    type: 0
+    size: 0
+    prefab: {fileID: 1174874494261909603, guid: fdefb2817c2a9408cb79fd037e9c2929, type: 3}
+  - id: 3
+    name: Small Deep Kelp 3
+    coral: 10
+    type: 0
+    size: 0
+    prefab: {fileID: 7612304349650563608, guid: fa0772e94976c42608bf477ac000eafb, type: 3}
+  - id: 4
+    name: Small Kelp 1
+    coral: 10
+    type: 0
+    size: 0
+    prefab: {fileID: 3483322066333283760, guid: cc253f42b54e14c2aa325d0531b66dfa, type: 3}
+  - id: 5
+    name: Small Short Seagrass
+    coral: 15
+    type: 0
+    size: 0
+    prefab: {fileID: 1570132709768525104, guid: b9d0100d6a00746f9a142be31e1be500, type: 3}
+  - id: 6
+    name: Medium Deep Kelp 1
+    coral: 15
+    type: 0
+    size: 1
+    prefab: {fileID: 4238853121823436299, guid: e98a84aaf3d0a4cc8a2c9875776e9a3a, type: 3}
+  - id: 7
+    name: Medium Deep Kelp 2
+    coral: 15
+    type: 0
+    size: 1
+    prefab: {fileID: 6612859418184668677, guid: 671487232269241b3897b2ab02b45971, type: 3}
+  - id: 8
+    name: Medium Deep Kelp 3
+    coral: 15
+    type: 0
+    size: 1
+    prefab: {fileID: 5097872223389069413, guid: 7b5998161dae44b9ea388fc150861579, type: 3}
+  - id: 9
+    name: Medium Kelp 1
+    coral: 15
+    type: 0
+    size: 1
+    prefab: {fileID: 7162350269737482821, guid: ecf9d4453b7c7436fb3fb7570ef7a345, type: 3}
+  - id: 10
+    name: Medium Short Seagrass
+    coral: 15
+    type: 0
+    size: 1
+    prefab: {fileID: 3422934186621488158, guid: 7b5ce222e636944ada2b9ee3ec747d3b, type: 3}
+  - id: 11
+    name: Large Deep Kelp 1
+    coral: 15
+    type: 0
+    size: 2
+    prefab: {fileID: 3401152456834166988, guid: 7d91958b3b6614de8895c2f03a12c441, type: 3}
+  - id: 12
+    name: Large Deep Kelp 2
+    coral: 20
+    type: 0
+    size: 2
+    prefab: {fileID: 7537327277596018771, guid: ab52699c06cf145ddbbbc5c50fc3c235, type: 3}
+  - id: 13
+    name: Large Deep Kelp 3
+    coral: 20
+    type: 0
+    size: 2
+    prefab: {fileID: 4805570264228657525, guid: a21392ca304a64f998bca4da3fda778a, type: 3}
+  - id: 14
+    name: Large Kelp 1
+    coral: 20
+    type: 0
+    size: 2
+    prefab: {fileID: 3048263651970065713, guid: 348aacc4d1f2b4d0496821e4d3f13fad, type: 3}
+  - id: 15
+    name: Large Short Seagrass
+    coral: 20
+    type: 0
+    size: 2
+    prefab: {fileID: 5216434357956515801, guid: e32f2eed9e64e414888f524d8166c83e, type: 3}
+  - id: 16
+    name: Small Arch 1
+    coral: 20
+    type: 1
+    size: 0
+    prefab: {fileID: 2027381122372448917, guid: 20f7ed203869b4d0f9db3398d84b6ae2, type: 3}
+  - id: 17
+    name: Small Rock 1
+    coral: 20
+    type: 1
+    size: 0
+    prefab: {fileID: 8524343418825754005, guid: b78f42faa7a0143299d89d6e0e34196f, type: 3}
+  - id: 18
+    name: Small Rock 2
+    coral: 20
+    type: 1
+    size: 0
+    prefab: {fileID: 4218543444490506128, guid: 9a5344df43bff4f6e92e155dd17bbcc3, type: 3}
+  - id: 19
+    name: Small Rock 3
+    coral: 25
+    type: 1
+    size: 0
+    prefab: {fileID: 8295942421999574079, guid: 13dfc8db5e93244afa991453f1bda93b, type: 3}
+  - id: 20
+    name: Small Rock 4
+    coral: 25
+    type: 1
+    size: 0
+    prefab: {fileID: 9053880699180890060, guid: 2e31126031eca4a57ba419c219468d5a, type: 3}
+  - id: 21
+    name: Small Rock 5
+    coral: 25
+    type: 1
+    size: 0
+    prefab: {fileID: 7336801465068920814, guid: 1b212255939d247c9a3d62892ad6cde9, type: 3}
+  - id: 22
+    name: Small Rock 6
+    coral: 25
+    type: 1
+    size: 0
+    prefab: {fileID: 4540262794067239937, guid: 7335f9f3079b54a37ba1f77b11dbac59, type: 3}
+  - id: 23
+    name: Medium Arch 1
+    coral: 25
+    type: 1
+    size: 1
+    prefab: {fileID: 2890576854049301767, guid: 537952ca4510b4fe5b8a2ef8c2d27014, type: 3}
+  - id: 24
+    name: Medium Rock 1
+    coral: 25
+    type: 1
+    size: 1
+    prefab: {fileID: 8407840507023832479, guid: 9ec740e77e9024dacb45daab1dad34a3, type: 3}
+  - id: 25
+    name: Medium Rock 3
+    coral: 25
+    type: 1
+    size: 1
+    prefab: {fileID: 646888122734879557, guid: 02fb04617a844437a9d65e3efd125657, type: 3}
+  - id: 26
+    name: Medium Rock 4
+    coral: 25
+    type: 1
+    size: 1
+    prefab: {fileID: 8566685907241834366, guid: eb315838baae44761a366ae0eb020b6e, type: 3}
+  - id: 27
+    name: Medium Rock 5
+    coral: 30
+    type: 1
+    size: 1
+    prefab: {fileID: 7774157372608121194, guid: efb1df8ba90024925ab643e27d6e8d7f, type: 3}
+  - id: 28
+    name: Medium Rock 6
+    coral: 30
+    type: 1
+    size: 1
+    prefab: {fileID: 6927570899203890746, guid: c93f10a358b4d47ce927190e71212df6, type: 3}
+  - id: 29
+    name: Large Arch 1
+    coral: 30
+    type: 1
+    size: 2
+    prefab: {fileID: 7417044119894489440, guid: 3a8dc3f10ca6b44ebbab2ce94bbac53e, type: 3}
+  - id: 30
+    name: Large Rock 1
+    coral: 30
+    type: 1
+    size: 2
+    prefab: {fileID: 1203286196592075440, guid: ddcf5f8043d5b427d850b84afb3d0cad, type: 3}
+  - id: 31
+    name: Large Rock 2
+    coral: 30
+    type: 1
+    size: 2
+    prefab: {fileID: 6570294264513213745, guid: f8a0124d7997f45ab8d1ec67ce984029, type: 3}
+  - id: 32
+    name: Large Rock 3
+    coral: 30
+    type: 1
+    size: 2
+    prefab: {fileID: 140838124585459297, guid: e4ee543d7969f47bfb48457dbadb3625, type: 3}
+  - id: 33
+    name: Large Rock 4
+    coral: 30
+    type: 1
+    size: 2
+    prefab: {fileID: 853199836014826317, guid: 86013c4495fb84c50a02580f7092004d, type: 3}
+  - id: 34
+    name: Large Rock 4
+    coral: 30
+    type: 1
+    size: 2
+    prefab: {fileID: 853199836014826317, guid: 86013c4495fb84c50a02580f7092004d, type: 3}
+  - id: 35
+    name: Large Rock 5
+    coral: 30
+    type: 1
+    size: 2
+    prefab: {fileID: 553621803011933957, guid: e3402bf1c6f374896a63a36aca12b4a0, type: 3}
+  - id: 36
+    name: Large Rock 6
+    coral: 35
+    type: 1
+    size: 2
+    prefab: {fileID: 1866243124956011540, guid: b1911541ff9e4444fbac2f92058bdae1, type: 3}

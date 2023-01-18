@@ -83,8 +83,10 @@ public class EditPopupController : MonoBehaviour, IPopup
                 selectedSeaObject = hitObject;
             }
 
+            // Outside of UI clicked
             if (hitObject == null && results.Count == 0)
             {
+                SaveSeaObjetData();
                 ClosePopup();
             }
         }
@@ -112,6 +114,10 @@ public class EditPopupController : MonoBehaviour, IPopup
         }
     }
 
+    private void SaveSeaObjetData()
+    {
+        
+    }
 
 #region Button Event
     // Outside of the current UI is clicked -> Close the current UI.

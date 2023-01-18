@@ -20,7 +20,7 @@ public class StoreItemController : MonoBehaviour
         previewButton.onClick.AddListener(OnPreviewButtonClick);
     }
 
-    public void  Setup(StorePopupController popupController, SeaPlantScriptableObjectStructure seaPlant)
+    public void Setup(StorePopupController popupController, SeaObjectScriptableObjectStructure seaPlant)
     {
         this.popupController = popupController;
         this.id = seaPlant.id;
