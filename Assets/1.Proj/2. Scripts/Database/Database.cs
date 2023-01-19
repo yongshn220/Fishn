@@ -15,7 +15,7 @@ public class Database
      public async UniTask<string> AsyncLoadUserData(string uid)
     {
         JObject json = new JObject();
-        json["data"] = uid;
+        json["uid"] = uid;
         return await AsyncPostWebRequest(json, "login");
     }
 
@@ -23,6 +23,7 @@ public class Database
     {
         JObject json = new JObject();
         json["data"] = jArray;
+        json["uid"] = uid;
         return await AsyncPostWebRequest(json, "save/seaobjects");
     }
 

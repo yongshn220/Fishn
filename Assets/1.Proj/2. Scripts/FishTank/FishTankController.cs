@@ -31,6 +31,8 @@ public class FishTankController : MonoBehaviour
     private void LoadSeaObjects(List<SeaObjectData> seaObjectDataList)
     {
         GameObject prefab;
+        print(seaObjectDataList);
+        
         foreach (var data in seaObjectDataList)
         {
             prefab = GameManager.instance.scriptableObjectManager.TryGetSeaPlantPrefabById (data.id);
