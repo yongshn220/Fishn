@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8295942421999574073}
   m_Layer: 0
   m_Name: '[S] Rock 3'
-  m_TagString: Untagged
+  m_TagString: SeaObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

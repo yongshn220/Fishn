@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6927570899203890740}
   m_Layer: 0
   m_Name: '[M] Rock 6'
-  m_TagString: Untagged
+  m_TagString: SeaObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

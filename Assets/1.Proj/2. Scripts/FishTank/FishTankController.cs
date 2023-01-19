@@ -32,10 +32,10 @@ public class FishTankController : MonoBehaviour
     {
         GameObject prefab;
         print(seaObjectDataList);
-        
+
         foreach (var data in seaObjectDataList)
         {
-            prefab = GameManager.instance.scriptableObjectManager.TryGetSeaPlantPrefabById (data.id);
+            prefab = GameManager.instance.scriptableObjectManager.TryGetSeaPlantPrefabById (data.type_id);
             if (prefab)
             {
                 GameObject seaObject = Instantiate(prefab, data.position, Quaternion.identity, structureTransform);

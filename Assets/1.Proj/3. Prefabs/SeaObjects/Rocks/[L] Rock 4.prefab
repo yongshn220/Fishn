@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 853199836014826307}
   m_Layer: 0
   m_Name: '[L] Rock 4'
-  m_TagString: Untagged
+  m_TagString: SeaObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

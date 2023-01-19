@@ -10,8 +10,6 @@ public class ScriptableObjectManager : MonoBehaviour
 
     public SeaObjectScriptableObject SeaObjectList;
 
-    public RockScriptableObject RockList;
-
     public FishTankScriptableObject FishTankList;
 
 #region Get One
@@ -43,11 +41,6 @@ public class ScriptableObjectManager : MonoBehaviour
     {
         return SeaObjectList.seaObjects.ToList().Find(s => s.id == id)?.prefab;
     }
-
-    public GameObject TryGetRockPrefabById(int id)
-    {
-        return RockList.rocks.ToList().Find(s => s.id == id)?.prefab;
-    }
 #endregion
 
 #region Get All
@@ -56,19 +49,9 @@ public class ScriptableObjectManager : MonoBehaviour
         return SeaObjectList.seaObjects.ToList();
     }
 
-    public List<RockScriptableObjectStructure> GetRockList()
-    {
-        return RockList.rocks.ToList();
-    }
-
     public List<GameObject> GetSeaPlantPrefabList()
     {
         return SeaObjectList.seaObjects.ToList().ConvertAll(s => s.prefab);
-    }
-
-    public List<GameObject> GetRockPrefabList()
-    {
-        return RockList.rocks.ToList().ConvertAll(s => s.prefab);
     }
 #endregion
 }

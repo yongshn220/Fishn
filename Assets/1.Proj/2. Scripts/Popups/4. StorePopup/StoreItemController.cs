@@ -11,6 +11,7 @@ public class StoreItemController : MonoBehaviour
     public int id;
     public Image itemImage;
     public TMP_Text coralValue;
+    public TMP_Text itemName;
     public Button buyButton;
     public Button previewButton;
 
@@ -25,6 +26,7 @@ public class StoreItemController : MonoBehaviour
         this.popupController = popupController;
         this.id = seaPlant.id;
         this.coralValue.text = seaPlant.coral.ToString();
+        this.itemName.text = seaPlant.name;
     }
 
     private void OnBuyButtonClick()

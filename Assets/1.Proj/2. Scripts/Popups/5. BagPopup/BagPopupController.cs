@@ -9,15 +9,25 @@ public class BagPopupController : MonoBehaviour, IPopup
     private PopupType type = PopupType.BagPopup;
     private BagContent bagContent;
     private Button blockingButton;
+    private Button entityButton;
+    private Button plantButton;
+    private Button rockButton;
 
     void Awake()
     {
         bagContent = GetComponentInChildren<BagContent>();
         blockingButton = GetComponentInChildren<BlockingPanel>()?.GetComponent<Button>();
+        entityButton = GetComponentInChildren<EntityButton>()?.GetComponent<Button>();
+        plantButton = GetComponentInChildren<PlantButton>()?.GetComponent<Button>();
+        rockButton = GetComponentInChildren<RockButton>()?.GetComponent<Button>();
     }
+    
     void Start()
     {
         blockingButton.onClick.AddListener(OnBlockingPanelClick);
+        entityButton.onClick.AddListener(OnEntityButtonClick);
+        plantButton.onClick.AddListener(OnPlantButtonClick);
+        rockButton.onClick.AddListener(OnRockButtonClick);
     }
 
 #region IPopup
@@ -47,6 +57,21 @@ public class BagPopupController : MonoBehaviour, IPopup
     private void OnBlockingPanelClick()
     {
         popupManager.ClosePopup(this.type);
+    }
+
+    private void OnEntityButtonClick()
+    {
+
+    }
+
+    private void OnPlantButtonClick()
+    {
+        
+    }
+
+    private void OnRockButtonClick()
+    {
+        
     }
 
     #endregion

@@ -6,32 +6,40 @@ using UnityEngine.EventSystems;
 
 public class StorePopupController : MonoBehaviour, IPopup
 {
-
     public StoreItemController itemPrefab;
 
     private PopupManager popupManager;
     private PopupType type = PopupType.StorePopup;
     private Button blockingButton;
+    private Button entityButton;
+    private Button plantButton;
+    private Button rockButton;
     private StoreContent storeContent;
 
-    private List<SeaObjectScriptableObjectStructure> seaPlantList;
+    private List<SeaObjectScriptableObjectStructure> seaObjectItemList;
 
     void Awake()
     {
         storeContent = transform.GetComponentInChildren<StoreContent>();
         blockingButton = transform.GetComponentInChildren<BlockingPanel>()?.GetComponent<Button>();
+        entityButton = transform.GetComponentInChildren<EntityButton>()?.GetComponent<Button>();
+        plantButton = transform.GetComponentInChildren<PlantButton>()?.GetComponent<Button>();
+        rockButton = transform.GetComponentInChildren<RockButton>()?.GetComponent<Button>();
     }
 
     void Start()
     {
         blockingButton.onClick.AddListener(OnBlockingPanelClick);
+        entityButton.onClick.AddListener(OnEntityButtonClick);
+        plantButton.onClick.AddListener(OnPlantButtonClick);
+        rockButton.onClick.AddListener(OnRockButtonClick);
     }
 
 #region IPopup
     public void Setup(PopupManager popupManager)
     {
         this.popupManager = popupManager;
-        this.seaPlantList = GameManager.instance.scriptableObjectManager.GetSeaObjectList();
+        this.seaObjectItemList = GameManager.instance.scriptableObjectManager.GetSeaObjectList();
         SetupItems();
     }
 
@@ -49,13 +57,7 @@ public class StorePopupController : MonoBehaviour, IPopup
 #region Setup
     private void SetupItems()
     {
-        ClearItemsInContent();
-        print(seaPlantList.Count);
-        foreach (var plantData in seaPlantList)
-        {
-            itemPrefab.Setup(this, plantData);
-            Instantiate(itemPrefab, Vector3.zero, Quaternion.identity, storeContent.transform);
-        }
+        OnPlantButtonClick();
     }
 
     private void ClearItemsInContent()
@@ -76,6 +78,37 @@ public class StorePopupController : MonoBehaviour, IPopup
     public void OnPreviewButtonClick(int id)
     {
         
+    }
+
+    public void OnEntityButtonClick()
+    {
+        //
+    }
+
+    public void OnPlantButtonClick()
+    {
+        print("Plant");
+        ClearItemsInContent();
+        var seaPlantItemList = seaObjectItemList.FindAll((i) => i.type == SeaObjectType.Plant);
+
+        foreach (var itemData in seaPlantItemList)
+        {
+            itemPrefab.Setup(this, itemData);
+            Instantiate(itemPrefab, Vector3.zero, Quaternion.identity, storeContent.transform);
+        }
+    }
+
+    public void OnRockButtonClick()
+    {
+        print("Rock");
+        ClearItemsInContent();
+        var rockItemList = seaObjectItemList.FindAll((i) => i.type == SeaObjectType.Rock);
+
+        foreach (var itemData in rockItemList)
+        {
+            itemPrefab.Setup(this, itemData);
+            Instantiate(itemPrefab, Vector3.zero, Quaternion.identity, storeContent.transform);
+        }
     }
 
     // Outside of the current UI is clicked -> Close the current UI.
