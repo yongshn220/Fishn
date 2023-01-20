@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EntityScriptableObject", menuName = "ScriptableObject/EntityScriptableObject")]
 public class EntityScriptableObject : ScriptableObject
 {
-    public EntityScriptableObjectStructure[] Entity;
+    public EntityScriptableObjectStructure[] entities;
 }

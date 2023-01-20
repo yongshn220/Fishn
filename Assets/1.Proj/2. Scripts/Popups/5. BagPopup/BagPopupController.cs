@@ -21,7 +21,7 @@ public class BagPopupController : MonoBehaviour, IPopup
         plantButton = GetComponentInChildren<PlantButton>()?.GetComponent<Button>();
         rockButton = GetComponentInChildren<RockButton>()?.GetComponent<Button>();
     }
-    
+
     void Start()
     {
         blockingButton.onClick.AddListener(OnBlockingPanelClick);
@@ -61,7 +61,7 @@ public class BagPopupController : MonoBehaviour, IPopup
 
     private void OnEntityButtonClick()
     {
-
+        
     }
 
     private void OnPlantButtonClick()

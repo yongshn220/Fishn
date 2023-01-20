@@ -15,7 +15,7 @@ public class ScriptableObjectManager : MonoBehaviour
 #region Get One
     public GameObject TryGetEntityPrefabById(int id)
     {
-        foreach (var entity in EntityList.Entity)
+        foreach (var entity in EntityList.entities)
         {
             if (entity.id == id)
             {
@@ -44,12 +44,18 @@ public class ScriptableObjectManager : MonoBehaviour
 #endregion
 
 #region Get All
+
+    public List<EntityScriptableObjectStructure> GetEntityList()
+    {
+        return EntityList.entities.ToList();
+    }
+    
     public List<SeaObjectScriptableObjectStructure> GetSeaObjectList()
     {
         return SeaObjectList.seaObjects.ToList();
     }
 
-    public List<GameObject> GetSeaPlantPrefabList()
+    public List<GameObject> GetSeaObjectPrefabList()
     {
         return SeaObjectList.seaObjects.ToList().ConvertAll(s => s.prefab);
     }

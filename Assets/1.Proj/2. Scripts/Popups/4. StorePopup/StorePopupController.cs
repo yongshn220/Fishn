@@ -17,6 +17,7 @@ public class StorePopupController : MonoBehaviour, IPopup
     private StoreContent storeContent;
 
     private List<SeaObjectScriptableObjectStructure> seaObjectItemList;
+    private List<EntityScriptableObjectStructure> entityItemList;
 
     void Awake()
     {
@@ -40,6 +41,7 @@ public class StorePopupController : MonoBehaviour, IPopup
     {
         this.popupManager = popupManager;
         this.seaObjectItemList = GameManager.instance.scriptableObjectManager.GetSeaObjectList();
+        this.entityItemList = GameManager.instance.scriptableObjectManager.GetEntityList();
         SetupItems();
     }
 
@@ -57,7 +59,7 @@ public class StorePopupController : MonoBehaviour, IPopup
 #region Setup
     private void SetupItems()
     {
-        OnPlantButtonClick();
+        OnEntityButtonClick();
     }
 
     private void ClearItemsInContent()
@@ -82,7 +84,16 @@ public class StorePopupController : MonoBehaviour, IPopup
 
     public void OnEntityButtonClick()
     {
-        //
+        ClearItemsInContent();
+
+        foreach (var entityData in entityItemList)
+        {
+            if (entityData.id != -1)
+            {
+                itemPrefab.Setup(this, entityData);
+                Instantiate(itemPrefab, Vector3.zero, Quaternion.identity, storeContent.transform);
+            }
+        }
     }
 
     public void OnPlantButtonClick()
@@ -93,8 +104,11 @@ public class StorePopupController : MonoBehaviour, IPopup
 
         foreach (var itemData in seaPlantItemList)
         {
-            itemPrefab.Setup(this, itemData);
-            Instantiate(itemPrefab, Vector3.zero, Quaternion.identity, storeContent.transform);
+            if (itemData.id != -1)
+            {
+                itemPrefab.Setup(this, itemData);
+                Instantiate(itemPrefab, Vector3.zero, Quaternion.identity, storeContent.transform);
+            }
         }
     }
 
@@ -106,8 +120,11 @@ public class StorePopupController : MonoBehaviour, IPopup
 
         foreach (var itemData in rockItemList)
         {
-            itemPrefab.Setup(this, itemData);
-            Instantiate(itemPrefab, Vector3.zero, Quaternion.identity, storeContent.transform);
+            if (itemData.id != -1)
+            {
+                itemPrefab.Setup(this, itemData);
+                Instantiate(itemPrefab, Vector3.zero, Quaternion.identity, storeContent.transform);
+            }
         }
     }
 

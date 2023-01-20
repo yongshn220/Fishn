@@ -66,7 +66,6 @@ public class FishManager : MonoBehaviour
     }
 
 #region GenerateMovePoint
-
     // Get Move Points from its children.
     void SetupMovePoint()
     {

@@ -21,12 +21,20 @@ public class StoreItemController : MonoBehaviour
         previewButton.onClick.AddListener(OnPreviewButtonClick);
     }
 
-    public void Setup(StorePopupController popupController, SeaObjectScriptableObjectStructure seaPlant)
+    public void Setup(StorePopupController popupController, SeaObjectScriptableObjectStructure seaObject)
     {
         this.popupController = popupController;
-        this.id = seaPlant.id;
-        this.coralValue.text = seaPlant.coral.ToString();
-        this.itemName.text = seaPlant.name;
+        this.id = seaObject.id;
+        this.coralValue.text = seaObject.coral.ToString();
+        this.itemName.text = seaObject.name;
+    }
+
+    public void Setup(StorePopupController popupController, EntityScriptableObjectStructure entity)
+    {
+        this.popupController = popupController;
+        this.id = entity.id;
+        this.coralValue.text = entity.coral.ToString();
+        this.itemName.text = entity.name;
     }
 
     private void OnBuyButtonClick()
