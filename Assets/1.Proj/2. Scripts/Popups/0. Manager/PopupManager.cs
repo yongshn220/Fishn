@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -11,6 +12,7 @@ public enum PopupType
     StorePopup,
     BagPopup,
     EditPopup,
+    CheckPopup,
 }
 
 public class PopupManager : MonoBehaviour
@@ -28,6 +30,7 @@ public class PopupManager : MonoBehaviour
         popups[(int) PopupType.StorePopup] = GetComponentInChildren<StorePopupController>();
         popups[(int) PopupType.BagPopup] = GetComponentInChildren<BagPopupController>();
         popups[(int) PopupType.EditPopup] = GetComponentInChildren<EditPopupController>();
+        popups[(int) PopupType.CheckPopup] = GetComponentInChildren<CheckPopupController>();
     }
 
 #region Set up
@@ -116,10 +119,26 @@ public class PopupManager : MonoBehaviour
     }
 #endregion
 
-#region A
+#region Edit Popup interaction
     public void SaveSeaObjetData()
     {
         sceneManager.fishTankManager.SaveSeaObjectData();
+    }
+#endregion
+
+#region Store Popup interaction
+    public async UniTaskVoid TryBuyItem(int id, ItemType type)
+    {
+        EnableUI(PopupType.CheckPopup);
+
+        CheckPopupController checkPopup = popups[(int) PopupType.CheckPopup] as CheckPopupController;
+
+        bool bUserDecision = await checkPopup.WaitUserDecision();
+
+        if (bUserDecision) 
+        {
+            bool result = GameManager.instance.purchaseManager.TryPurchase(id, type);
+        }
     }
 #endregion
 }

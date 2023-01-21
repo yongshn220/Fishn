@@ -9,8 +9,9 @@ public enum SeaObjectSize
     Large,
 }
 
-public enum SeaObjectType
+public enum ItemType
 {
+    Entity,
     Plant,
     Rock,
 }
@@ -21,7 +22,7 @@ public class SeaObjectScriptableObjectStructure
     public int id;
     public string name;
     public int coral;
-    public SeaObjectType type;
+    public ItemType type;
     public SeaObjectSize size;
     public GameObject prefab;
 }

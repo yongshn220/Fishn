@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,9 @@ public class CheckPopupController : MonoBehaviour, IPopup
     private Button blockingButton;
     private Button noButton;
     private Button yesButton;
-    private Action callback;
+
+    private bool isButtonPressed;
+    private bool bUserDecision;
 
     void Awake()
     {
@@ -41,23 +44,25 @@ public class CheckPopupController : MonoBehaviour, IPopup
         
     }
 #endregion
-    public void SetCallback(Action callback)
+
+    public async UniTask<bool> WaitUserDecision()
     {
-        
+        await new WaitUntil(() => isButtonPressed);
+        return bUserDecision;
     }
 
     private void OnBlockingPanelClick()
-    {
-
-    }
+    {}
 
     private void OnNoButtonClick()
     {   
-
+        bUserDecision = false;
+        isButtonPressed = true;
     }
 
     private void OnYesButtonClick()
     {
-
+        bUserDecision = true;
+        isButtonPressed = true;
     }
 }

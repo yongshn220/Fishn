@@ -8,9 +8,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance {get; private set;}
 
-    public DataManager dataManager;
-    public ScriptableObjectManager scriptableObjectManager;
-    public ViewSceneManager viewSceneManager;
+    [HideInInspector] public DataManager dataManager;
+    [HideInInspector] public ScriptableObjectManager scriptableObjectManager;
+    [HideInInspector] public ViewSceneManager viewSceneManager;
+    [HideInInspector] public PurchaseManager purchaseManager;
 
     void Awake()
     {
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
 
         dataManager = GetComponentInChildren<DataManager>();
         scriptableObjectManager = GetComponentInChildren<ScriptableObjectManager>();
+        purchaseManager = GetComponentInChildren<PurchaseManager>();
     }
 
     void Start()

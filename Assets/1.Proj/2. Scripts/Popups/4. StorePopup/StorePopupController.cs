@@ -72,11 +72,14 @@ public class StorePopupController : MonoBehaviour, IPopup
 #endregion
 
 #region Button Event
+    // Called from Item Controller.
     public void OnBuyButtonClick(int id)
     {
         print($"{id} - buy");
+        // popupManager.TryBuyItem(id)
     }
 
+    // Called from item controller.
     public void OnPreviewButtonClick(int id)
     {
         
@@ -100,7 +103,7 @@ public class StorePopupController : MonoBehaviour, IPopup
     {
         print("Plant");
         ClearItemsInContent();
-        var seaPlantItemList = seaObjectItemList.FindAll((i) => i.type == SeaObjectType.Plant);
+        var seaPlantItemList = seaObjectItemList.FindAll((i) => i.type == ItemType.Plant);
 
         foreach (var itemData in seaPlantItemList)
         {
@@ -116,7 +119,7 @@ public class StorePopupController : MonoBehaviour, IPopup
     {
         print("Rock");
         ClearItemsInContent();
-        var rockItemList = seaObjectItemList.FindAll((i) => i.type == SeaObjectType.Rock);
+        var rockItemList = seaObjectItemList.FindAll((i) => i.type == ItemType.Rock);
 
         foreach (var itemData in rockItemList)
         {
