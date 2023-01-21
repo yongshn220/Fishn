@@ -14,8 +14,7 @@ public class StaticPopupController : MonoBehaviour, IPopup
     public void Setup(PopupManager popupManager)
     {
         this.popupManager = popupManager;
-        gameData = GameManager.instance.dataManager.gameData;
-        coralText.text = gameData.coral.ToString();
+        coralText.text = GameManager.instance.dataManager.GetUserCoral().ToString();
     }
 
     public void Enable()

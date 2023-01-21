@@ -13,10 +13,15 @@ public class FishTankManager : MonoBehaviour
         myTransform = transform;
     }
 
-    public void Setup(ViewSceneManager sceneManager, GameData gameData)
+    public void Setup(ViewSceneManager sceneManager)
     {
         this.sceneManager = sceneManager;
-        LoadFishTank(gameData.tank_id);
+        int tank_id = GameManager.instance.dataManager.GetUserTankId();
+        if (tank_id >= 0)
+        {
+            LoadFishTank(tank_id);
+        }
+        Debug.LogError("No Tank_id is provided.");
     }
 
     private void LoadFishTank(int id)

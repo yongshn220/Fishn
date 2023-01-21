@@ -73,14 +73,13 @@ public class StorePopupController : MonoBehaviour, IPopup
 
 #region Button Event
     // Called from Item Controller.
-    public void OnBuyButtonClick(int id)
+    public void OnBuyButtonClick(int id, ItemType type)
     {
-        print($"{id} - buy");
-        // popupManager.TryBuyItem(id)
+        popupManager.TryBuyItem(id, type).Forget();
     }
 
     // Called from item controller.
-    public void OnPreviewButtonClick(int id)
+    public void OnPreviewButtonClick(int id, ItemType type)
     {
         
     }

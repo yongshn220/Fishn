@@ -14,7 +14,7 @@ public class DataManager : MonoBehaviour
     public bool isDataReady = false;
 
     private UserData userData;
-    public GameData gameData = null;
+    private GameData gameData = null;
     public List<SeaObjectData> seaObjectDataList = new List<SeaObjectData>();
     public List<EntityData> entityDataList = new List<EntityData>();
 
@@ -41,6 +41,15 @@ public class DataManager : MonoBehaviour
     }
 #endregion
 
+    public int GetUserTankId()
+    {
+        return (gameData != null)? gameData.tank_id : -1;
+    }
+
+    public int GetUserCoral()
+    {
+        return (gameData != null)? gameData.coral : -1;
+    }
 }
 
 

@@ -6,6 +6,7 @@ public class PurchaseManager : MonoBehaviour
 {
     public bool TryPurchase(int id, ItemType type)
     {
+        Debug.Log("try buy : " + id + type);
         return false;
     }
 }

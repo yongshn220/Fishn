@@ -19,14 +19,12 @@ public class EditPopupController : MonoBehaviour, IPopup
     private EditMode currentMode = EditMode.None;
     private PopupType type = PopupType.EditPopup;
 
-    public new Camera camera;
-
+    private new Camera camera;
     private Button frontViewButton;
     private Button topViewButton;
 
     private GameObject selectedSeaObject;
 
-    public GraphicRaycaster raycaster;
     void Awake()    
     {
         frontViewButton = GetComponentInChildren<FrontViewButton>()?.GetComponent<Button>();

@@ -49,7 +49,7 @@ public class PopupManager : MonoBehaviour
     private void SetInitialVisibleStatus()
     {
         EnableUIs(new PopupType[] {PopupType.StaticPopup, PopupType.MainUIPopup});
-        DisableUIs(new PopupType[] {PopupType.StorePopup, PopupType.BagPopup, PopupType.EditPopup});
+        DisableUIs(new PopupType[] {PopupType.StorePopup, PopupType.BagPopup, PopupType.EditPopup, PopupType.CheckPopup});
     }
 #endregion
 
@@ -139,6 +139,7 @@ public class PopupManager : MonoBehaviour
         {
             bool result = GameManager.instance.purchaseManager.TryPurchase(id, type);
         }
+        DisableUI(PopupType.CheckPopup);
     }
 #endregion
 }

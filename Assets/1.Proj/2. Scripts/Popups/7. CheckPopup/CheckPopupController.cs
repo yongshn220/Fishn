@@ -29,30 +29,22 @@ public class CheckPopupController : MonoBehaviour, IPopup
     }
 
 #region IPopup
-    public void Setup(PopupManager popupManager)
-    {
-        
-    }
+    public void Setup(PopupManager popupManager){}
 
-    public void Enable()
-    {
-        
-    }
+    public void Enable(){}
 
-    public void Disable()
-    {
-        
-    }
+    public void Disable(){}
 #endregion
 
     public async UniTask<bool> WaitUserDecision()
     {
         await new WaitUntil(() => isButtonPressed);
+        isButtonPressed = false;
         return bUserDecision;
     }
 
-    private void OnBlockingPanelClick()
-    {}
+#region Button event
+    private void OnBlockingPanelClick(){}
 
     private void OnNoButtonClick()
     {   
@@ -65,4 +57,5 @@ public class CheckPopupController : MonoBehaviour, IPopup
         bUserDecision = true;
         isButtonPressed = true;
     }
+#endregion
 }

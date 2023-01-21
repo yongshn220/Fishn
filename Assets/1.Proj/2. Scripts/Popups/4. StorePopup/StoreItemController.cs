@@ -9,6 +9,7 @@ public class StoreItemController : MonoBehaviour
     public StorePopupController popupController;
 
     public int id;
+    public ItemType type;
     public Image itemImage;
     public TMP_Text coralValue;
     public TMP_Text itemName;
@@ -25,6 +26,7 @@ public class StoreItemController : MonoBehaviour
     {
         this.popupController = popupController;
         this.id = seaObject.id;
+        this.type = seaObject.type;
         this.coralValue.text = seaObject.coral.ToString();
         this.itemName.text = seaObject.name;
     }
@@ -33,17 +35,18 @@ public class StoreItemController : MonoBehaviour
     {
         this.popupController = popupController;
         this.id = entity.id;
+        this.type = entity.type;
         this.coralValue.text = entity.coral.ToString();
         this.itemName.text = entity.name;
     }
 
     private void OnBuyButtonClick()
     {
-        popupController.OnBuyButtonClick(id);
+        popupController.OnBuyButtonClick(id, type);
     }
 
     private void OnPreviewButtonClick()
     {
-        popupController.OnPreviewButtonClick(id);
+        popupController.OnPreviewButtonClick(id, type);
     }
 }
