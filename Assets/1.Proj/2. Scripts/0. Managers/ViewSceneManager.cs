@@ -36,10 +36,10 @@ public class ViewSceneManager : MonoBehaviour
     private void Setup()
     {
         GameManager.instance.SetViewSceneManager(this);
-        fishTankManager.Setup(this); // Setup Order 1 : FishTankManager must be setup first before FishManager
-        cameraManager.Setup(this);             // Setup Order 2
-        fishManager.Setup(this, entityDataList); // Setup Order 3
-        popupManager.Setup(this);
+        fishTankManager.Setup(this);             // Setup Order 1 
+        cameraManager.Setup(this);               // Setup Order 2 : require fishTankMgr setup 
+        fishManager.Setup(this, entityDataList); // Setup Order 3 : require fishTankMgr setup
+        popupManager.Setup(this);                // Setup Order 4 : require fishTankMgr setup
     }
 
     // Load Fish Data from DataManager.

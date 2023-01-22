@@ -13,6 +13,9 @@ public class BagPopupController : MonoBehaviour, IPopup
     private Button plantButton;
     private Button rockButton;
 
+    private List<EntityMono> entityMonoList = new List<EntityMono>();
+    private List<SeaObjectMono> seaObjectMonoList = new List<SeaObjectMono>();
+
     void Awake()
     {
         bagContent = GetComponentInChildren<BagContent>();
@@ -59,9 +62,26 @@ public class BagPopupController : MonoBehaviour, IPopup
         popupManager.ClosePopup(this.type);
     }
 
+    private void ClearItemsInContent()
+    {
+        foreach (Transform child in bagContent.transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
     private void OnEntityButtonClick()
     {
-        
+        ClearItemsInContent();
+
+        foreach (var entityData in entitySOList)
+        {
+            if (entityData.id != -1)
+            {
+                StoreItemController itemCtrl = Instantiate(itemPrefab, Vector3.zero, Quaternion.identity, storeContent.transform);
+                itemCtrl.Setup(this, entityData);
+            }
+        }
     }
 
     private void OnPlantButtonClick()

@@ -84,7 +84,7 @@ public class StorePopupController : MonoBehaviour, IPopup
         
     }
 
-    public void OnEntityButtonClick()
+    private void OnEntityButtonClick()
     {
         ClearItemsInContent();
 
@@ -98,7 +98,7 @@ public class StorePopupController : MonoBehaviour, IPopup
         }
     }
 
-    public void OnPlantButtonClick()
+    private void OnPlantButtonClick()
     {
         print("Plant");
         ClearItemsInContent();
@@ -114,7 +114,7 @@ public class StorePopupController : MonoBehaviour, IPopup
         }
     }
 
-    public void OnRockButtonClick()
+    private void OnRockButtonClick()
     {
         print("Rock");
         ClearItemsInContent();

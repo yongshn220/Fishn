@@ -13,7 +13,10 @@ public class FishTankController : MonoBehaviour
     private Transform previewTransform;
     private Transform structureTransform;
 
-    private List<SeaObjectMono> curSeaObjectMonoList = new List<SeaObjectMono>();
+    private List<SeaObjectMono> enabledSeaObjectMonoList = new List<SeaObjectMono>(); // Instantiated
+    private List<SeaObjectData> disabledSeaObjectDataList = new List<SeaObjectData>(); // Uninstantiated 
+
+    
     
     void Awake()
     {
@@ -43,11 +46,18 @@ public class FishTankController : MonoBehaviour
 
         if (!prefab) { Debug.LogError("No following prefab exists."); return; }
         
-        GameObject seaObject = Instantiate(prefab, data.position, Quaternion.identity, structureTransform);
-        SeaObjectMono instantiatedSeaObjectData = seaObject.AddComponent<SeaObjectMono>();
-        instantiatedSeaObjectData.Setup(data);
-        instantiatedSeaObjectData.instantiated = true;
-        curSeaObjectMonoList.Add(instantiatedSeaObjectData);
+        if (data.instantiated)
+        {
+            GameObject seaObject = Instantiate(prefab, data.position, Quaternion.identity, structureTransform);
+            SeaObjectMono seaObjectMono = seaObject.AddComponent<SeaObjectMono>();
+            seaObjectMono.Setup(data);
+            seaObjectMono.instantiated = true;
+            enabledSeaObjectMonoList.Add(seaObjectMono);
+        }
+        else
+        {
+            disabledSeaObjectDataList.Add(data);
+        }
     }
 #endregion
 
@@ -55,12 +65,12 @@ public class FishTankController : MonoBehaviour
     public void SaveSeaObjectData()
     {
         UpdateSeaObjectPosition();
-        GameManager.instance.dataManager.SaveSeaObjectData(curSeaObjectMonoList);
+        GameManager.instance.dataManager.SaveSeaObjectData(enabledSeaObjectMonoList);
     }
 
     private void UpdateSeaObjectPosition()
     {
-        foreach (SeaObjectMono data in curSeaObjectMonoList)
+        foreach (SeaObjectMono data in enabledSeaObjectMonoList)
         {
             data.position = data.transform.position;
         }

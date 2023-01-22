@@ -60,6 +60,7 @@ public class EditPopupController : MonoBehaviour, IPopup
         this.popupManager = popupManager;
         this.camera = GameManager.instance.viewSceneManager?.cameraManager.GetBrainCamera();
         this.isSetup = true;
+        ResetRemoveButton();
     }
 
     public void Enable()
