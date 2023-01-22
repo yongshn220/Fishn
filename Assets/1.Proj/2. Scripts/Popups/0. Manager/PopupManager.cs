@@ -127,7 +127,7 @@ public class PopupManager : MonoBehaviour
 #endregion
 
 #region Store Popup interaction
-    public async UniTaskVoid TryBuyItem(int id, ItemType type)
+    public async UniTaskVoid TryBuyItem(int id, ItemType type, int coral)
     {
         EnableUI(PopupType.CheckPopup);
 
@@ -137,7 +137,7 @@ public class PopupManager : MonoBehaviour
 
         if (bUserDecision) 
         {
-            bool result = GameManager.instance.purchaseManager.TryPurchase(id, type);
+            bool result = GameManager.instance.purchaseManager.TryPurchase(id, type, coral);
         }
         DisableUI(PopupType.CheckPopup);
     }

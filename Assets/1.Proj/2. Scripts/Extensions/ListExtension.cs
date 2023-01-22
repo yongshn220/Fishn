@@ -59,4 +59,28 @@ public static class ListExtension
         }
         return newList;
     }
+
+    public static List<SeaObjectData> ConvertToData(this List<SeaObjectMono> monoList)
+    {
+        List<SeaObjectData> dataList = new List<SeaObjectData>();
+
+        foreach(var mono in monoList)
+        {
+            SeaObjectData data = new SeaObjectData(mono.id, mono.type_id, mono.position, mono.instantiated);
+            dataList.Add(data);
+        }
+        return dataList;
+    }
+
+    public static List<EntityData> ConvertToData(this List<EntityMono> monoList)
+    {
+        List<EntityData> dataList = new List<EntityData>();
+
+        foreach(var mono in monoList)
+        {
+            EntityData data = new EntityData(mono.id, mono.type_id, mono.born_datetime, mono.feed_datetime);
+            dataList.Add(data);
+        }
+        return dataList;
+    }
 }

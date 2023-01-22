@@ -17,11 +17,14 @@ public class FishTankManager : MonoBehaviour
     {
         this.sceneManager = sceneManager;
         int tank_id = GameManager.instance.dataManager.GetUserTankId();
-        if (tank_id >= 0)
+        
+        if (tank_id < 0)
         {
-            LoadFishTank(tank_id);
+            Debug.LogError("No Tank_id is provided.");
+            return;
         }
-        Debug.LogError("No Tank_id is provided.");
+
+        LoadFishTank(tank_id);
     }
 
     private void LoadFishTank(int id)
@@ -43,5 +46,10 @@ public class FishTankManager : MonoBehaviour
     public void SaveSeaObjectData()
     {
         fishTankController.SaveSeaObjectData();
+    }
+
+    public void AddSeaObject(int id, int type)
+    {
+
     }
 }

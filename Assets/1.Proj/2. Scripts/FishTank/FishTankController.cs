@@ -13,7 +13,7 @@ public class FishTankController : MonoBehaviour
     private Transform previewTransform;
     private Transform structureTransform;
 
-    private List<SeaObjectData> curSeaObjectDataList = new List<SeaObjectData>();
+    private List<SeaObjectMono> curSeaObjectMonoList = new List<SeaObjectMono>();
     
     void Awake()
     {
@@ -39,10 +39,10 @@ public class FishTankController : MonoBehaviour
             if (prefab)
             {
                 GameObject seaObject = Instantiate(prefab, data.position, Quaternion.identity, structureTransform);
-                SeaObjectData instantiatedSeaObjectData = seaObject.AddComponent<SeaObjectData>();
+                SeaObjectMono instantiatedSeaObjectData = seaObject.AddComponent<SeaObjectMono>();
                 instantiatedSeaObjectData.Setup(data);
                 instantiatedSeaObjectData.instantiated = true;
-                curSeaObjectDataList.Add(instantiatedSeaObjectData);
+                curSeaObjectMonoList.Add(instantiatedSeaObjectData);
             }
         }
     }
@@ -50,12 +50,12 @@ public class FishTankController : MonoBehaviour
     public void SaveSeaObjectData()
     {
         UpdateSeaObjectPosition();
-        GameManager.instance.dataManager.SaveSeaObjectData(curSeaObjectDataList);
+        GameManager.instance.dataManager.SaveSeaObjectData(curSeaObjectMonoList);
     }
 
     private void UpdateSeaObjectPosition()
     {
-        foreach (SeaObjectData data in curSeaObjectDataList)
+        foreach (SeaObjectMono data in curSeaObjectMonoList)
         {
             data.position = data.transform.position;
         }

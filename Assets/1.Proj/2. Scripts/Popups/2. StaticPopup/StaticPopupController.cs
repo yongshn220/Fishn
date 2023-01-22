@@ -14,7 +14,7 @@ public class StaticPopupController : MonoBehaviour, IPopup
     public void Setup(PopupManager popupManager)
     {
         this.popupManager = popupManager;
-        coralText.text = GameManager.instance.dataManager.GetUserCoral().ToString();
+        coralText.text = Fishn.Wallet.coral.ToString();
     }
 
     public void Enable()

@@ -16,8 +16,8 @@ public class StorePopupController : MonoBehaviour, IPopup
     private Button rockButton;
     private StoreContent storeContent;
 
-    private List<SeaObjectScriptableObjectStructure> seaObjectItemList;
-    private List<EntityScriptableObjectStructure> entityItemList;
+    private List<SeaObjectScriptableObjectStructure> seaObjectSOList;
+    private List<EntityScriptableObjectStructure> entitySOList;
 
     void Awake()
     {
@@ -40,8 +40,8 @@ public class StorePopupController : MonoBehaviour, IPopup
     public void Setup(PopupManager popupManager)
     {
         this.popupManager = popupManager;
-        this.seaObjectItemList = GameManager.instance.scriptableObjectManager.GetSeaObjectList();
-        this.entityItemList = GameManager.instance.scriptableObjectManager.GetEntityList();
+        this.seaObjectSOList = GameManager.instance.scriptableObjectManager.GetSeaObjectList();
+        this.entitySOList = GameManager.instance.scriptableObjectManager.GetEntityList();
         SetupItems();
     }
 
@@ -73,9 +73,9 @@ public class StorePopupController : MonoBehaviour, IPopup
 
 #region Button Event
     // Called from Item Controller.
-    public void OnBuyButtonClick(int id, ItemType type)
+    public void OnBuyButtonClick(int id, ItemType type, int coral)
     {
-        popupManager.TryBuyItem(id, type).Forget();
+        popupManager.TryBuyItem(id, type, coral).Forget();
     }
 
     // Called from item controller.
@@ -88,12 +88,12 @@ public class StorePopupController : MonoBehaviour, IPopup
     {
         ClearItemsInContent();
 
-        foreach (var entityData in entityItemList)
+        foreach (var entityData in entitySOList)
         {
             if (entityData.id != -1)
             {
-                itemPrefab.Setup(this, entityData);
-                Instantiate(itemPrefab, Vector3.zero, Quaternion.identity, storeContent.transform);
+                StoreItemController itemCtrl = Instantiate(itemPrefab, Vector3.zero, Quaternion.identity, storeContent.transform);
+                itemCtrl.Setup(this, entityData);
             }
         }
     }
@@ -102,14 +102,14 @@ public class StorePopupController : MonoBehaviour, IPopup
     {
         print("Plant");
         ClearItemsInContent();
-        var seaPlantItemList = seaObjectItemList.FindAll((i) => i.type == ItemType.Plant);
+        var seaPlantSOList = seaObjectSOList.FindAll((i) => i.type == ItemType.Plant);
 
-        foreach (var itemData in seaPlantItemList)
+        foreach (var plantSO in seaPlantSOList)
         {
-            if (itemData.id != -1)
+            if (plantSO.id != -1)
             {
-                itemPrefab.Setup(this, itemData);
-                Instantiate(itemPrefab, Vector3.zero, Quaternion.identity, storeContent.transform);
+                StoreItemController itemCtrl = Instantiate(itemPrefab, Vector3.zero, Quaternion.identity, storeContent.transform);
+                itemCtrl.Setup(this, plantSO);
             }
         }
     }
@@ -118,14 +118,14 @@ public class StorePopupController : MonoBehaviour, IPopup
     {
         print("Rock");
         ClearItemsInContent();
-        var rockItemList = seaObjectItemList.FindAll((i) => i.type == ItemType.Rock);
+        var rockSOList = seaObjectSOList.FindAll((i) => i.type == ItemType.Rock);
 
-        foreach (var itemData in rockItemList)
+        foreach (var rockSO in rockSOList)
         {
-            if (itemData.id != -1)
+            if (rockSO.id != -1)
             {
-                itemPrefab.Setup(this, itemData);
-                Instantiate(itemPrefab, Vector3.zero, Quaternion.identity, storeContent.transform);
+                StoreItemController itemCtrl = Instantiate(itemPrefab, Vector3.zero, Quaternion.identity, storeContent.transform);
+                itemCtrl.Setup(this, rockSO);
             }
         }
     }

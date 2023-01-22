@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraProjection : MonoBehaviour
 {
-    public Camera camera;
+    public new Camera camera;
 
     public float transition;
     public float transitionSpeed = 2.0f;

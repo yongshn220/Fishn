@@ -11,21 +11,35 @@ using System.Text;
 public class Database
 {
     const string URL = "https://w6yc5awthi.execute-api.us-east-2.amazonaws.com/default/Fishn-maindb";
-    
+
+#region Load
      public async UniTask<string> AsyncLoadUserData(string uid)
     {
         JObject json = new JObject();
         json["uid"] = uid;
         return await AsyncPostWebRequest(json, "login");
     }
+#endregion
 
+#region Save
     public async UniTask<string> AsyncSaveSeaObjectData(string uid, JArray jArray)
     {
         JObject json = new JObject();
-        json["data"] = jArray;
         json["uid"] = uid;
+        json["data"] = jArray;
         return await AsyncPostWebRequest(json, "save/seaobjects");
     }
+#endregion
+
+#region Add
+    public async UniTask<string> AsyncAddSeaObjectData(string uid, JObject jObject)
+    {
+        JObject json = new JObject();
+        json["uid"] = uid;
+        json["data"] = jObject;
+        return await AsyncPostWebRequest(json, "add/seaobject");
+    }
+#endregion
 
     private async UniTask<string> AsyncPostWebRequest(JObject json, string contentType)
     {
@@ -38,21 +52,5 @@ public class Database
         await request.SendWebRequest();
         return request.downloadHandler.text;
     }
-
-    // public async UniTask<string> AsyncLoadUserData(string uid)
-    // {
-    //     WWWForm form = new WWWForm();
-    //     form.AddField(DBstr.COMMAND, DBstr.LOGIN);
-    //     form.AddField(DBstr.UID, uid);
-
-    //     return await AsyncSendPostRequest(form);
-    // }
-
-    // private async UniTask<string> AsyncSendPostRequest(WWWForm form)
-    // {
-    //     UnityWebRequest www = UnityWebRequest.Post(URL, form);
-    //     await www.SendWebRequest();
-    //     return www.downloadHandler.text;
-    // }
 }
 

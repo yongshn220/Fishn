@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SeaObjectData : MonoBehaviour
+public class SeaObjectData
 {
     public int id;
     public int type_id;
@@ -8,7 +8,7 @@ public class SeaObjectData : MonoBehaviour
 
     public bool instantiated = false;
 
-    public void Setup(int id, int type_id, Vector3 position, bool instantiated)
+    public SeaObjectData(int id, int type_id, Vector3 position, bool instantiated)
     {
         this.id = id;
         this.type_id = type_id;
@@ -16,7 +16,7 @@ public class SeaObjectData : MonoBehaviour
         this.instantiated = instantiated;
     }
 
-    public void Setup(SeaObjectData data)
+    public SeaObjectData(SeaObjectData data)
     {
         this.id = data.id;
         this.type_id = data.type_id;

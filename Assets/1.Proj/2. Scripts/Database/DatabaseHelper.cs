@@ -15,19 +15,19 @@ using Newtonsoft.Json.Linq;
 public static class DatabaseHelper
 {
     static Database database = new Database();
-    static string uid = SystemInfo.deviceUniqueIdentifier;
+    static string UID = SystemInfo.deviceUniqueIdentifier;
 
-#region LOAD
+#region Load
     public static async UniTask<UserData> AsyncLoadUserData()
     {
-        string res = await database.AsyncLoadUserData(uid);
+        string res = await database.AsyncLoadUserData(UID);
 
         JObject json = JObject.Parse(res);
         return GetUserDataFromJson(json);
     }
 #endregion
 
-#region SAVE
+#region Save
     public static async UniTaskVoid SaveSeaObjectData(List<SeaObjectData> seaObjectDataList)
     {
         JArray jArray = new JArray();
@@ -36,11 +36,17 @@ public static class DatabaseHelper
         {
             jArray.Add(ConvertSeaObjectToJson(data));
         }
+        string res = await database.AsyncSaveSeaObjectData(UID, jArray);
+    }
 
-        Debug.Log(JsonConvert.SerializeObject(jArray));
+#endregion
 
-        string res = await database.AsyncSaveSeaObjectData(uid, jArray);
-        Debug.Log(res);
+#region Add
+    public static async UniTaskVoid AddSeaObjectData(SeaObjectData seaObjectData)
+    {
+        JObject jObject = new JObject();
+        jObject = ConvertSeaObjectToJson(seaObjectData);
+        string res = await database.AsyncAddSeaObjectData(UID, jObject);
     }
 #endregion
 
@@ -90,10 +96,7 @@ public static class DatabaseHelper
             bool instantiated = (bool) plant[DBstr.INSTANTIATED];
             Vector3 position = new Vector3(posx, posy, posz);
 
-            GameObject tempObject = new GameObject();
-            SeaObjectData seaObjectData = tempObject.AddComponent<SeaObjectData>();
-
-            seaObjectData.Setup(id, type_id, position, instantiated);
+            SeaObjectData seaObjectData = new SeaObjectData(id, type_id, position, instantiated);
             seaObjectDataList.Add(seaObjectData);
         }
         return seaObjectDataList;
@@ -109,11 +112,8 @@ public static class DatabaseHelper
             int type_id = (int) fish[DBstr.TYPE_ID];
             DateTime born_datetime = DateTime.Parse((string) fish[DBstr.BORN_DATETIME]); // TO DO : handling parse fail.
             DateTime feed_datetime = DateTime.Parse((string) fish[DBstr.FEED_DATETIME]); // TO DO : handling parse fail.
-            
-            GameObject tempObject = new GameObject();
-            EntityData entityData = tempObject.AddComponent<EntityData>();
 
-            entityData.Setup(id, type_id, born_datetime, feed_datetime);
+            EntityData entityData = new EntityData(id, type_id, born_datetime, feed_datetime);
             entityDataList.Add(entityData);
         }
         return entityDataList;
