@@ -42,7 +42,7 @@ public static class DatabaseHelper
 #endregion
 
 #region Add
-    public static async UniTaskVoid AddSeaObjectData(SeaObjectData seaObjectData)
+    public static async UniTask AddSeaObjectData(SeaObjectData seaObjectData)
     {
         JObject jObject = new JObject();
         jObject = ConvertSeaObjectToJson(seaObjectData);

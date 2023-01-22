@@ -28,25 +28,30 @@ public class FishTankController : MonoBehaviour
         LoadSeaObjects(GameManager.instance.dataManager.seaObjectDataList);
     }
 
+ #region Add | Instantiate 
     private void LoadSeaObjects(List<SeaObjectData> seaObjectDataList)
     {
-        GameObject prefab;
-        print(seaObjectDataList);
-
         foreach (var data in seaObjectDataList)
         {
-            prefab = GameManager.instance.scriptableObjectManager.TryGetSeaPlantPrefabById (data.type_id);
-            if (prefab)
-            {
-                GameObject seaObject = Instantiate(prefab, data.position, Quaternion.identity, structureTransform);
-                SeaObjectMono instantiatedSeaObjectData = seaObject.AddComponent<SeaObjectMono>();
-                instantiatedSeaObjectData.Setup(data);
-                instantiatedSeaObjectData.instantiated = true;
-                curSeaObjectMonoList.Add(instantiatedSeaObjectData);
-            }
+            AddSeaObject(data);
         }
     }
 
+    public void AddSeaObject(SeaObjectData data)
+    {
+        GameObject prefab = GameManager.instance.scriptableObjectManager.TryGetSeaPlantPrefabById(data.type_id);
+
+        if (!prefab) { Debug.LogError("No following prefab exists."); return; }
+        
+        GameObject seaObject = Instantiate(prefab, data.position, Quaternion.identity, structureTransform);
+        SeaObjectMono instantiatedSeaObjectData = seaObject.AddComponent<SeaObjectMono>();
+        instantiatedSeaObjectData.Setup(data);
+        instantiatedSeaObjectData.instantiated = true;
+        curSeaObjectMonoList.Add(instantiatedSeaObjectData);
+    }
+#endregion
+
+#region Update | Save
     public void SaveSeaObjectData()
     {
         UpdateSeaObjectPosition();
@@ -60,6 +65,7 @@ public class FishTankController : MonoBehaviour
             data.position = data.transform.position;
         }
     }
+#endregion
 
     public CameraContainer GetCameraContainer()
     {

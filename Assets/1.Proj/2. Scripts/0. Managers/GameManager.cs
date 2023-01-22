@@ -39,3 +39,13 @@ public class GameManager : MonoBehaviour
         this.viewSceneManager = viewSceneManager;
     }
 }
+
+
+public enum LayerType
+{
+    Default = 0,
+    UI = 5,
+    Obstacle = 6,
+    Entity = 7,
+    ObjectLighter = 8,
+}

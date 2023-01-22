@@ -17,7 +17,7 @@ public class FishTankManager : MonoBehaviour
     {
         this.sceneManager = sceneManager;
         int tank_id = GameManager.instance.dataManager.GetUserTankId();
-        
+
         if (tank_id < 0)
         {
             Debug.LogError("No Tank_id is provided.");
@@ -27,9 +27,9 @@ public class FishTankManager : MonoBehaviour
         LoadFishTank(tank_id);
     }
 
-    private void LoadFishTank(int id)
+    private void LoadFishTank(int tank_id)
     {
-        GameObject prefab = GameManager.instance.scriptableObjectManager.TryGetFishTankPrefabById(id);
+        GameObject prefab = GameManager.instance.scriptableObjectManager.TryGetFishTankPrefabById(tank_id);
         if (prefab)
         {
             GameObject fishTankObject = Instantiate(prefab, Vector3.zero, Quaternion.identity, myTransform); // Tip 1 : Awake() of prefab is called when it instantiated.
@@ -48,8 +48,8 @@ public class FishTankManager : MonoBehaviour
         fishTankController.SaveSeaObjectData();
     }
 
-    public void AddSeaObject(int id, int type)
+    public void AddSeaObject(SeaObjectData seaObjectData)
     {
-
+        fishTankController.AddSeaObject(seaObjectData);
     }
 }

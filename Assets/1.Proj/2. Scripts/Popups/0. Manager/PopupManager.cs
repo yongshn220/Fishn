@@ -137,9 +137,14 @@ public class PopupManager : MonoBehaviour
 
         if (bUserDecision) 
         {
-            bool result = GameManager.instance.purchaseManager.TryPurchase(id, type, coral);
+            bool result = await GameManager.instance.purchaseManager.TryPurchase(id, type, coral);
         }
         DisableUI(PopupType.CheckPopup);
     }
 #endregion
+
+    public RectTransform GetRectTransform()
+    {
+        return transform.GetComponent<RectTransform>();
+    }
 }
