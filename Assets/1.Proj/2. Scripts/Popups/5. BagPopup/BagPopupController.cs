@@ -11,18 +11,15 @@ public class BagPopupController : MonoBehaviour, IPopup
     private PopupType type = PopupType.BagPopup;
     private BagContent bagContent;
     private Button blockingButton;
-    private Button entityButton;
     private Button plantButton;
     private Button rockButton;
 
-    private List<EntityData> disabledEntityDataList = new List<EntityData>();
     private List<SeaObjectData> disabledSeaObjectDataList = new List<SeaObjectData>();
 
     void Awake()
     {
         bagContent = GetComponentInChildren<BagContent>();
         blockingButton = GetComponentInChildren<BlockingPanel>()?.GetComponent<Button>();
-        entityButton = GetComponentInChildren<EntityButton>()?.GetComponent<Button>();
         plantButton = GetComponentInChildren<PlantButton>()?.GetComponent<Button>();
         rockButton = GetComponentInChildren<RockButton>()?.GetComponent<Button>();
     }
@@ -30,7 +27,6 @@ public class BagPopupController : MonoBehaviour, IPopup
     void Start()
     {
         blockingButton.onClick.AddListener(OnBlockingPanelClick);
-        entityButton.onClick.AddListener(OnEntityButtonClick);
         plantButton.onClick.AddListener(OnPlantButtonClick);
         rockButton.onClick.AddListener(OnRockButtonClick);
     }
@@ -40,7 +36,6 @@ public class BagPopupController : MonoBehaviour, IPopup
     {
         this.popupManager = popupManager;
         this.disabledSeaObjectDataList = popupManager.GetDisabledSeaObjectDataList();
-        // this.disabledEntityDataList = popupManager.GetDisabledEntityDataList();
         // event ++
     }
 
@@ -85,21 +80,6 @@ public class BagPopupController : MonoBehaviour, IPopup
         foreach (Transform child in bagContent.transform)
         {
             Destroy(child.gameObject);
-        }
-    }
-
-    private void OnEntityButtonClick()
-    {
-        ClearItemsInContent();
-
-        foreach (var entityData in disabledEntityDataList)
-        {
-            if (entityData.id != -1)
-            {
-                BagItemController itemCtrl = Instantiate(itemPrefab, Vector3.zero, Quaternion.identity, bagContent.transform);
-                var entitySO = GameManager.instance.scriptableObjectManager.TryGetEntitySOById(entityData.type_id);
-                itemCtrl.Setup(this, entitySO, 1);
-            }
         }
     }
 

@@ -169,9 +169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b9e45ca2cdbe47f091af47a7f9be763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
   nameText: {fileID: 6946541449794824921}
-  amountText: {fileID: 0}
+  amountText: {fileID: 6946541450044340789}
   useButton: {fileID: 6946541449778510704}
 --- !u!1 &6946541449559227364
 GameObject:
@@ -631,7 +630,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100 / 100
+  m_text: x 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

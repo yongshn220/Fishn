@@ -52,17 +52,16 @@ public class FishManager : MonoBehaviour
 #endregion
 
     private ViewSceneManager sceneManager;
-
+    
     public List<Transform> movePoints;
     public List<GameObject> entityList = new List<GameObject>();
 
     // Start here. Generate fish depends on the data.
-    public void Setup(ViewSceneManager sceneManager, List<EntityData> EntityDataList)
+    public void Setup(ViewSceneManager sceneManager)
     {
         this.sceneManager = sceneManager;
         SetupMovePoint();
-        GenerateUnits(EntityDataList);
-        // GenerateUnits(entityDataList);
+        GenerateUnits(GameManager.instance.dataManager.entityDataList);
     }
 
 #region GenerateMovePoint
@@ -75,18 +74,20 @@ public class FishManager : MonoBehaviour
 
 #region GenerateFish
     // Instantiate All fish into the Fish-tank.
-    void GenerateUnits(List<EntityData> entityDataList)
+    private void GenerateUnits(List<EntityData> entityDataList)
     {
-        for (int i = 0; i < entityDataList.Count; i++)
+        if (entityDataList.Count < 0) return;
+
+        foreach (EntityData entityData in entityDataList)
         {
-            GameObject EntityObject = InstantiateFish(entityDataList[i]);
-            SetupFishController(EntityObject, entityDataList[i]);
+            GameObject EntityObject = InstantiateFish(entityData);
+            SetupFishController(EntityObject, entityData);
             SetupFishMovement(EntityObject);
             entityList.Add(EntityObject);
         }
     }
 
-    GameObject InstantiateFish(EntityData entityData)
+    private GameObject InstantiateFish(EntityData entityData)
     {
         Vector3 randomVector = UnityEngine.Random.insideUnitSphere;
         randomVector = new Vector3(randomVector.x * spawnBounds.x, randomVector.y * spawnBounds.y, randomVector.z * spawnBounds.z);
@@ -102,7 +103,7 @@ public class FishManager : MonoBehaviour
         return null;
     }
 
-    void SetupFishController(GameObject entity, EntityData entityData)
+    private void SetupFishController(GameObject entity, EntityData entityData)
     {
         if (entityData != null)
         {
@@ -111,7 +112,7 @@ public class FishManager : MonoBehaviour
         }
     }
 
-    void SetupFishMovement(GameObject entity)
+    private void SetupFishMovement(GameObject entity)
     {
         entity.AddComponent<FishMovement>();
         entity.GetComponent<FishMovement>()?.AssignManager(this);
