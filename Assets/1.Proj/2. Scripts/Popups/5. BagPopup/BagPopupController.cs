@@ -35,19 +35,13 @@ public class BagPopupController : MonoBehaviour, IPopup
     public void Setup(PopupManager popupManager)
     {
         this.popupManager = popupManager;
-        this.disabledSeaObjectDataList = popupManager.GetDisabledSeaObjectDataList();
-        // event ++
+        this.disabledSeaObjectDataList = popupManager.GetDisabledSeaObjectDataList(); // disabledObject -> put in Bag.
+        OnPlantButtonClick();
     }
 
-    public void Enable()
-    {
+    public void Enable(){}
 
-    }
-
-    public void Disable()
-    {
-        
-    }
+    public void Disable(){}
 #endregion
 
 
@@ -55,11 +49,6 @@ public class BagPopupController : MonoBehaviour, IPopup
     private void OnDisabledSeaObjectDataListUpdate()
     {
         this.disabledSeaObjectDataList = popupManager.GetDisabledSeaObjectDataList();
-    }
-
-    private void OnDisabledEntityDataListUpdate()
-    {
-        // this.disabledEntityDataList = popupManager.GetDisabledEntityDataList();
     }
 #endregion
 

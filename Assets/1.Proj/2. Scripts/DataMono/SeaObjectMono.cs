@@ -16,4 +16,9 @@ public class SeaObjectMono : MonoBehaviour
         this.position = data.position;
         this.instantiated = data.instantiated;
     }
+
+    public SeaObjectData ToData()
+    {
+        return new SeaObjectData(this.id, this.type_id, this.position, this.instantiated);
+    }
 }

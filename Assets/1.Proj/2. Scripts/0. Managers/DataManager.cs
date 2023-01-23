@@ -37,9 +37,9 @@ public class DataManager : MonoBehaviour
 #endregion
 
 #region Save
-    public void SaveSeaObjectData(List<SeaObjectMono> seaObjectMonoList)
+    public void SaveSeaObjectData(List<SeaObjectData> seaObjectDataList)
     {
-        this.seaObjectDataList = seaObjectMonoList.ConvertToData();
+        this.seaObjectDataList = seaObjectDataList;
         DatabaseHelper.SaveSeaObjectData(seaObjectDataList).Forget();
     }
 #endregion

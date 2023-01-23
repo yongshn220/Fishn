@@ -48,13 +48,26 @@ public class FishTankManager : MonoBehaviour
         return fishTankController.disabledSeaObjectDataListDeepCopy;
     }
 
-    public void SaveSeaObjectData()
+    public void UpdateAllSeaObjectMonoPosition()
     {
-        fishTankController.SaveSeaObjectData();
+        fishTankController.UpdateAllSeaObjectMonoPosition();
     }
 
-    public void AddSeaObject(SeaObjectData seaObjectData)
+    // Take seaObject out from the bag to tank.
+    public void RemoveSeaObjectFromTank(SeaObjectMono seaObjectMono)
     {
-        fishTankController.AddSeaObject(seaObjectData);
+        fishTankController.RemoveSeaObjectFromTank(seaObjectMono);
+    }
+
+    // Put seaObject in the bag from tank.
+    public void LoadSeaObjectFromBag()
+    {
+        // fishTankController.LoadSeaObjectFromBag();
+    }
+
+    // Called when a new fish added.
+    public void InstantiateSeaObject(SeaObjectData seaObjectData)
+    {
+        fishTankController.InstantiateSeaObject(seaObjectData);
     }
 }

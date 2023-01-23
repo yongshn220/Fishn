@@ -145,7 +145,7 @@ public class EditPopupController : MonoBehaviour, IPopup
         // Outside of UI clicked -> Close Popup
         if (hitObject == null && results.Count == 0)
         {
-            SaveSeaObjetData();
+            UpdateAllSeaObjectPosition();
             ClosePopup();
         }
     }
@@ -169,9 +169,9 @@ public class EditPopupController : MonoBehaviour, IPopup
         }
     }
 
-    private void SaveSeaObjetData()
+    private void UpdateAllSeaObjectPosition()
     {
-        popupManager.SaveSeaObjetData();
+        popupManager.UpdateAllSeaObjectPosition();
     }
 #endregion
 
@@ -203,7 +203,11 @@ public class EditPopupController : MonoBehaviour, IPopup
 
     private void OnRemoveButtonClick()
     {
-        print("remove");
+        if (removeTargetSeaObject)
+        {
+            SeaObjectMono seaObjectMono = removeTargetSeaObject.GetComponent<SeaObjectMono>();
+            popupManager.RemoveSeaObjectFromTank(seaObjectMono);
+        }
     }
 #endregion
 }

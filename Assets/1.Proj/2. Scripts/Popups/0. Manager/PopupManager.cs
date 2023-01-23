@@ -120,14 +120,19 @@ public class PopupManager : MonoBehaviour
 #endregion
 
 #region Edit Popup Interaction
-    public void SaveSeaObjetData()
+    public void UpdateAllSeaObjectPosition()
     {
-        sceneManager.fishTankManager.SaveSeaObjectData();
+        sceneManager.fishTankManager.UpdateAllSeaObjectMonoPosition();
     }
 
     public RectTransform GetRectTransform()
     {
         return transform.GetComponent<RectTransform>();
+    }
+
+    public void RemoveSeaObjectFromTank(SeaObjectMono seaObjectMono)
+    {   
+        sceneManager.fishTankManager.RemoveSeaObjectFromTank(seaObjectMono);
     }
 #endregion
 

@@ -19,7 +19,7 @@ public class PurchaseManager : MonoBehaviour
         {
             SeaObjectData newData = new SeaObjectData(-1, type_id, Vector3.zero, true);
             await GameManager.instance.dataManager.AddSeaObject(newData);
-            GameManager.instance.viewSceneManager.fishTankManager.AddSeaObject(newData);
+            GameManager.instance.viewSceneManager.fishTankManager.InstantiateSeaObject(newData);
         }
 
         // Fishn.Wallet.Use(coral);

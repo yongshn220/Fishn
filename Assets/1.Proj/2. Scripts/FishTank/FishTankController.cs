@@ -28,19 +28,19 @@ public class FishTankController : MonoBehaviour
     // Start is called before the first frame update
     public void Setup()
     {
-        LoadSeaObjects(GameManager.instance.dataManager.seaObjectDataList);
+        SeaObjectSetup(GameManager.instance.dataManager.seaObjectDataList);
     }
 
- #region Add | Instantiate 
-    private void LoadSeaObjects(List<SeaObjectData> seaObjectDataList)
+ #region Load | Instantiate 
+    private void SeaObjectSetup(List<SeaObjectData> seaObjectDataList)
     {
         foreach (var data in seaObjectDataList)
         {
-            AddSeaObject(data);
+            InstantiateSeaObject(data);
         }
     }
 
-    public void AddSeaObject(SeaObjectData data)
+    public void InstantiateSeaObject(SeaObjectData data)
     {
         GameObject prefab = GameManager.instance.scriptableObjectManager.TryGetSeaPlantPrefabById(data.type_id);
 
@@ -61,21 +61,56 @@ public class FishTankController : MonoBehaviour
     }
 #endregion
 
-#region Update | Save
+#region Save
     public void SaveSeaObjectData()
     {
-        UpdateSeaObjectPosition();
-        GameManager.instance.dataManager.SaveSeaObjectData(enabledSeaObjectMonoList);
+        List<SeaObjectData> allSeaObjectData = GetExistSeaObjectDataList();
+        GameManager.instance.dataManager.SaveSeaObjectData(allSeaObjectData);
     }
+#endregion
 
-    private void UpdateSeaObjectPosition()
+#region Update
+
+    public void UpdateAllSeaObjectMonoPosition()
     {
         foreach (SeaObjectMono data in enabledSeaObjectMonoList)
         {
             data.position = data.transform.position;
         }
+        SaveSeaObjectData();
+    }
+
+    public void RemoveSeaObjectFromTank(SeaObjectMono targetMono)
+    {
+        targetMono.instantiated = false;
+        enabledSeaObjectMonoList.Remove(targetMono);
+        disabledSeaObjectDataList.Add(targetMono.ToData());
+        Destroy(targetMono);
+        //Callback. to do
+        SaveSeaObjectData();
+    }
+
+    public void LoadSeaObjectFromBag(SeaObjectData targetData)
+    {
+        SaveSeaObjectData();
     }
 #endregion
+
+    private void RemoveSeaObject()
+    {
+
+    }
+
+    // Gather the enabled Mono and disabled data into one List<SeaObjectData> and return.
+    private List<SeaObjectData> GetExistSeaObjectDataList()
+    {
+        List<SeaObjectData> resultList = new List<SeaObjectData>();
+
+        resultList.AddRange(enabledSeaObjectMonoList.ConvertToData());
+        resultList.AddRange(disabledSeaObjectDataList);
+
+        return resultList;
+    }
 
     public CameraContainer GetCameraContainer()
     {
