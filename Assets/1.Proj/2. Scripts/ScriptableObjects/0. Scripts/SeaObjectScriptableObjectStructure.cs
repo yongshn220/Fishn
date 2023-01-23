@@ -11,6 +11,7 @@ public enum SeaObjectSize
 
 public enum ItemType
 {
+    None,
     Entity,
     Plant,
     Rock,

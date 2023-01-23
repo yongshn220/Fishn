@@ -119,14 +119,19 @@ public class PopupManager : MonoBehaviour
     }
 #endregion
 
-#region Edit Popup interaction
+#region Edit Popup Interaction
     public void SaveSeaObjetData()
     {
         sceneManager.fishTankManager.SaveSeaObjectData();
     }
+
+    public RectTransform GetRectTransform()
+    {
+        return transform.GetComponent<RectTransform>();
+    }
 #endregion
 
-#region Store Popup interaction
+#region Store Popup Interaction
     public async UniTaskVoid TryBuyItem(int id, ItemType type, int coral)
     {
         EnableUI(PopupType.CheckPopup);
@@ -143,8 +148,10 @@ public class PopupManager : MonoBehaviour
     }
 #endregion
 
-    public RectTransform GetRectTransform()
+#region Bag Popup Interaction
+    public List<SeaObjectData> GetDisabledSeaObjectDataList()
     {
-        return transform.GetComponent<RectTransform>();
+        return sceneManager.fishTankManager.GetDisabledSeaObjectDataList();
     }
+#endregion
 }

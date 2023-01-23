@@ -60,6 +60,16 @@ public static class ListExtension
         return newList;
     }
 
+    public static List<SeaObjectData> DeepCopy(this List<SeaObjectData> dataList)
+    {
+        List<SeaObjectData> newList = new List<SeaObjectData>();
+        foreach (var data in dataList)
+        {
+            newList.Add(new SeaObjectData(data.id, data.type_id, data.position, data.instantiated));
+        }
+        return newList;
+    }
+
     public static List<SeaObjectData> ConvertToData(this List<SeaObjectMono> monoList)
     {
         List<SeaObjectData> dataList = new List<SeaObjectData>();

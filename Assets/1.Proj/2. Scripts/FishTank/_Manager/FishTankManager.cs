@@ -43,6 +43,11 @@ public class FishTankManager : MonoBehaviour
         return fishTankController.GetCameraContainer();
     }
 
+    public List<SeaObjectData> GetDisabledSeaObjectDataList()
+    {
+        return fishTankController.disabledSeaObjectDataListDeepCopy;
+    }
+
     public void SaveSeaObjectData()
     {
         fishTankController.SaveSeaObjectData();

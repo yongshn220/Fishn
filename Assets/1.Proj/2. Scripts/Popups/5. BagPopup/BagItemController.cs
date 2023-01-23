@@ -16,9 +16,18 @@ public class BagItemController : MonoBehaviour
         useButton.onClick.AddListener(OnUseButtonClick);
     }
 
-    public void  Setup(BagPopupController popupController)
+    public void Setup(BagPopupController popupController, EntityScriptableObjectStructure entitySO, int amount)
     {
         this.popupController = popupController;
+        this.id = entitySO.id;
+        this.nameText.text = entitySO.name;
+    }
+
+    public void Setup(BagPopupController popupController, SeaObjectScriptableObjectStructure seaObjectSO, int amount)
+    {
+        this.popupController = popupController;
+        this.id = seaObjectSO.id;
+        this.nameText.text = seaObjectSO.name;
     }
 
     private void OnUseButtonClick()
