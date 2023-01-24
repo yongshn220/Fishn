@@ -9,10 +9,11 @@ public class BagPopupController : MonoBehaviour, IPopup
 
     private PopupManager popupManager;
     private PopupType type = PopupType.BagPopup;
+    private ItemType currentMenuType = ItemType.None;
     private BagContent bagContent;
-    private Button blockingButton;
-    private Button plantButton;
-    private Button rockButton;
+    private Button blockingButton; 
+    private Button plantMenuButton;
+    private Button rockMenuButton;
 
     private List<SeaObjectData> disabledSeaObjectDataList = new List<SeaObjectData>();
 
@@ -20,15 +21,15 @@ public class BagPopupController : MonoBehaviour, IPopup
     {
         bagContent = GetComponentInChildren<BagContent>();
         blockingButton = GetComponentInChildren<BlockingPanel>()?.GetComponent<Button>();
-        plantButton = GetComponentInChildren<PlantButton>()?.GetComponent<Button>();
-        rockButton = GetComponentInChildren<RockButton>()?.GetComponent<Button>();
+        plantMenuButton = GetComponentInChildren<PlantButton>()?.GetComponent<Button>();
+        rockMenuButton = GetComponentInChildren<RockButton>()?.GetComponent<Button>();
     }
 
     void Start()
     {
         blockingButton.onClick.AddListener(OnBlockingPanelClick);
-        plantButton.onClick.AddListener(OnPlantButtonClick);
-        rockButton.onClick.AddListener(OnRockButtonClick);
+        plantMenuButton.onClick.AddListener(OnPlantButtonClick);
+        rockMenuButton.onClick.AddListener(OnRockButtonClick);
     }
 
 #region IPopup
@@ -53,14 +54,15 @@ public class BagPopupController : MonoBehaviour, IPopup
     private void OnDisabledSeaObjectDataListUpdate()
     {
         this.disabledSeaObjectDataList = popupManager.GetDisabledSeaObjectDataList();
-        print("Delegate called");
+        if (currentMenuType == ItemType.Plant) OnPlantButtonClick(); // Load Plant content
+        if (currentMenuType == ItemType.Rock) OnRockButtonClick(); // Load Rock content
     }
 #endregion
 
 #region Button Event
-    public void OnBuyButtonClick(int id)
+    public void OnUseButtonClick(int type_id)
     {
-        
+        popupManager.LoadSeaObjectFromBag(type_id);
     }
 
     // Outside of the current UI is clicked -> Close the current UI.
@@ -101,6 +103,7 @@ public class BagPopupController : MonoBehaviour, IPopup
                 itemCtrl.Setup(this, seaPlantSO, seaObjectPair.Value);
             }
         }
+        currentMenuType = ItemType.Plant;
     }
 
     private void OnRockButtonClick()
@@ -127,6 +130,7 @@ public class BagPopupController : MonoBehaviour, IPopup
                 itemCtrl.Setup(this, seaPlantSO, seaObjectPair.Value);
             }
         }
+        currentMenuType = ItemType.Rock;
     }
 
     // Count each data into dictionary.

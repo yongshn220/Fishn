@@ -60,9 +60,9 @@ public class FishTankManager : MonoBehaviour
     }
 
     // Put seaObject in the bag from tank.
-    public void LoadSeaObjectFromBag()
+    public void LoadSeaObjectFromBag(int type_id)
     {
-        // fishTankController.LoadSeaObjectFromBag();
+        fishTankController.LoadSeaObjectFromBag(type_id);
     }
 
     // Called when a new fish added.

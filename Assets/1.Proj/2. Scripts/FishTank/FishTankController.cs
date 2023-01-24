@@ -87,20 +87,27 @@ public class FishTankController : MonoBehaviour
         enabledSeaObjectMonoList.Remove(targetMono);
         disabledSeaObjectDataList.Add(targetMono.ToData());
         Destroy(targetMono.gameObject);
-        OnSeaObjectUpdate?.Invoke(); // Delegate call.
+        OnSeaObjectUpdate?.Invoke(); // Delegate Invoke.
         SaveSeaObjectData();
     }
 
-    public void LoadSeaObjectFromBag(SeaObjectData targetData)
+    public void LoadSeaObjectFromBag(int type_id)
     {
+        foreach (var data in disabledSeaObjectDataList)
+        {
+            if (data.type_id == type_id)
+            {
+                data.instantiated = true;
+                data.position = Vector3.zero;
+                InstantiateSeaObject(data);
+                disabledSeaObjectDataList.Remove(data);
+                break;
+            }
+        }
+        OnSeaObjectUpdate?.Invoke(); // Delegate Invoke.
         SaveSeaObjectData();
     }
 #endregion
-
-    private void RemoveSeaObject()
-    {
-        
-    }
 
     // Gather the enabled Mono and disabled data into one List<SeaObjectData> and return.
     private List<SeaObjectData> GetExistSeaObjectDataList()

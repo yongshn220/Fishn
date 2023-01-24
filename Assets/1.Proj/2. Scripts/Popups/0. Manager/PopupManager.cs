@@ -157,5 +157,10 @@ public class PopupManager : MonoBehaviour
     {
         return sceneManager.fishTankManager.GetDisabledSeaObjectDataList();
     }
+
+    public void LoadSeaObjectFromBag(int type_id)
+    {
+        sceneManager.fishTankManager.LoadSeaObjectFromBag(type_id);
+    }
 #endregion
 }
