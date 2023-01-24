@@ -18,7 +18,8 @@ public class PurchaseManager : MonoBehaviour
         if (type == ItemType.Plant || type == ItemType.Rock)
         {
             SeaObjectData newData = new SeaObjectData(-1, type_id, Vector3.zero, true);
-            await GameManager.instance.dataManager.AddSeaObject(newData);
+            int id = await GameManager.instance.dataManager.AddSeaObject(newData);
+            newData.id = id;
             GameManager.instance.viewSceneManager.fishTankManager.InstantiateSeaObject(newData);
         }
 

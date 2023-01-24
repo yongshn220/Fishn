@@ -100,7 +100,7 @@ public class ScriptableObjectManager : MonoBehaviour
 
     public ItemType GetSeaObjectItemTypeById(int id)
     {
-        if (id < 0) {return ItemType.None;}
+        if (id < 0) { return ItemType.None; }
         return seaObjectIdAndTypeDict[id];
     }
 }

@@ -45,9 +45,10 @@ public class DataManager : MonoBehaviour
 #endregion
 
 #region Add
-    public async UniTask AddSeaObject(SeaObjectData newData)
+    public async UniTask<int> AddSeaObject(SeaObjectData newData)
     {
-        await DatabaseHelper.AddSeaObjectData(newData);
+        int id = await DatabaseHelper.AddSeaObjectData(newData);
+        return id;
     }
 
     public void AddEntity(int type_id)

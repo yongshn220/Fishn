@@ -60,7 +60,7 @@ public class BagPopupController : MonoBehaviour, IPopup
 #region Button Event
     public void OnBuyButtonClick(int id)
     {
-
+        
     }
 
     // Outside of the current UI is clicked -> Close the current UI.

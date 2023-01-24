@@ -94,7 +94,6 @@ public class PopupManager : MonoBehaviour
             targetUI.blocksRaycasts = false;
             popups[(int) type].Disable();
         }
-    
     }
 
     private void EnableUIs(PopupType[] types)

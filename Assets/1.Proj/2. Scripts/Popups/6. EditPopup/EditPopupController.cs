@@ -208,6 +208,7 @@ public class EditPopupController : MonoBehaviour, IPopup
             SeaObjectMono seaObjectMono = removeTargetSeaObject.GetComponent<SeaObjectMono>();
             popupManager.RemoveSeaObjectFromTank(seaObjectMono);
         }
+        ResetRemoveButton();
     }
 #endregion
 }

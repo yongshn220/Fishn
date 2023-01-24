@@ -38,15 +38,15 @@ public static class DatabaseHelper
         }
         string res = await database.AsyncSaveSeaObjectData(UID, jArray);
     }
-
 #endregion
 
 #region Add
-    public static async UniTask AddSeaObjectData(SeaObjectData seaObjectData)
+    public static async UniTask<int> AddSeaObjectData(SeaObjectData seaObjectData)
     {
         JObject jObject = new JObject();
         jObject = ConvertSeaObjectToJson(seaObjectData);
-        string res = await database.AsyncAddSeaObjectData(UID, jObject);
+        string id = await database.AsyncAddSeaObjectData(UID, jObject);
+        return int.Parse(id);
     }
 #endregion
 
