@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 
@@ -17,6 +18,7 @@ public class FishTankController : MonoBehaviour
     private List<SeaObjectData> disabledSeaObjectDataList = new List<SeaObjectData>(); // Uninstantiated 
     public List<SeaObjectData> disabledSeaObjectDataListDeepCopy { get {return disabledSeaObjectDataList.DeepCopy();}}
     
+    public static event Action OnSeaObjectUpdate;
     
     void Awake()
     {
@@ -70,7 +72,6 @@ public class FishTankController : MonoBehaviour
 #endregion
 
 #region Update
-
     public void UpdateAllSeaObjectMonoPosition()
     {
         foreach (SeaObjectMono data in enabledSeaObjectMonoList)
@@ -85,8 +86,8 @@ public class FishTankController : MonoBehaviour
         targetMono.instantiated = false;
         enabledSeaObjectMonoList.Remove(targetMono);
         disabledSeaObjectDataList.Add(targetMono.ToData());
-        Destroy(targetMono);
-        //Callback. to do
+        Destroy(targetMono.gameObject);
+        OnSeaObjectUpdate?.Invoke(); // Delegate call.
         SaveSeaObjectData();
     }
 
@@ -98,7 +99,7 @@ public class FishTankController : MonoBehaviour
 
     private void RemoveSeaObject()
     {
-
+        
     }
 
     // Gather the enabled Mono and disabled data into one List<SeaObjectData> and return.

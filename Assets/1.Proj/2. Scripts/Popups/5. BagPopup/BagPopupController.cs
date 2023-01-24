@@ -36,10 +36,14 @@ public class BagPopupController : MonoBehaviour, IPopup
     {
         this.popupManager = popupManager;
         this.disabledSeaObjectDataList = popupManager.GetDisabledSeaObjectDataList(); // disabledObject -> put in Bag.
+        FishTankController.OnSeaObjectUpdate += OnDisabledSeaObjectDataListUpdate;    // Delegate(Action)
         OnPlantButtonClick();
     }
 
-    public void Enable(){}
+    public void Enable()
+    {
+        OnPlantButtonClick();
+    }
 
     public void Disable(){}
 #endregion
@@ -49,6 +53,7 @@ public class BagPopupController : MonoBehaviour, IPopup
     private void OnDisabledSeaObjectDataListUpdate()
     {
         this.disabledSeaObjectDataList = popupManager.GetDisabledSeaObjectDataList();
+        print("Delegate called");
     }
 #endregion
 
