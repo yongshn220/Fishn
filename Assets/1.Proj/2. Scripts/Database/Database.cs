@@ -50,7 +50,9 @@ public class Database
         request.SetRequestHeader("Content-Type", contentType);
 
         await request.SendWebRequest();
-        return request.downloadHandler.text;
+        string result = request.downloadHandler.text;
+        request.Dispose();
+        return result;
     }
 }
 
