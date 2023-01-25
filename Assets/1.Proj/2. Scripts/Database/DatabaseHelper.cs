@@ -48,9 +48,29 @@ public static class DatabaseHelper
         string id = await database.AsyncAddSeaObjectData(UID, jObject);
         return int.Parse(id);
     }
+
+    public static async UniTask<int> AddEntityData(EntityData entityData)
+    {
+        JObject jObject = new JObject();
+        jObject = ConvertEntityToJson(entityData);
+        string id = await database.AsyncAddEntityData(UID, jObject);
+        Debug.Log(id);
+        return int.Parse(id);
+    }
 #endregion
 
 #region Convert Class to JSON
+    private static JObject ConvertEntityToJson(EntityData entityData)
+    {
+        JObject jObject = new JObject();
+        jObject[DBstr.ID] = entityData.id;
+        jObject[DBstr.TYPE_ID] = entityData.type_id;
+        Debug.Log(entityData.born_datetime.ToFormatString());
+        jObject[DBstr.BORN_DATETIME] = entityData.born_datetime.ToFormatString();
+        jObject[DBstr.FEED_DATETIME] = entityData.feed_datetime.ToFormatString();
+        return jObject;
+    }
+
     private static JObject ConvertSeaObjectToJson(SeaObjectData seaObjectData)
     {
         JObject jObject = new JObject();

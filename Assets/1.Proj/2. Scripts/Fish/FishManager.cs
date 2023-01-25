@@ -61,7 +61,7 @@ public class FishManager : MonoBehaviour
     {
         this.sceneManager = sceneManager;
         SetupMovePoint();
-        GenerateUnits(GameManager.instance.dataManager.entityDataList);
+        GenerateEntities(GameManager.instance.dataManager.entityDataList);
     }
 
 #region GenerateMovePoint
@@ -74,16 +74,24 @@ public class FishManager : MonoBehaviour
 
 #region GenerateFish
     // Instantiate All fish into the Fish-tank.
-    private void GenerateUnits(List<EntityData> entityDataList)
+    public void GenerateEntity(EntityData entityData)
+    {
+        if (entityData == null) return;
+
+        GameObject entity = InstantiateFish(entityData);
+        SetupFishController(entity, entityData);
+        SetupFishMovement(entity);
+        entityList.Add(entity);
+    }
+
+    // Instantiate All fish into the Fish-tank.
+    private void GenerateEntities(List<EntityData> entityDataList)
     {
         if (entityDataList.Count < 0) return;
 
         foreach (EntityData entityData in entityDataList)
         {
-            GameObject EntityObject = InstantiateFish(entityData);
-            SetupFishController(EntityObject, entityData);
-            SetupFishMovement(EntityObject);
-            entityList.Add(EntityObject);
+            GenerateEntity(entityData);
         }
     }
 

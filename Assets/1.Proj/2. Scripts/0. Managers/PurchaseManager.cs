@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using Fishn;
 using Cysharp.Threading.Tasks;
@@ -12,14 +13,15 @@ public class PurchaseManager : MonoBehaviour
 
         if (type == ItemType.Entity)
         {
-            
+            EntityData newData = new EntityData(-1, type_id, DateTime.Now, DateTime.Now);
+            newData.id = await GameManager.instance.dataManager.AddEntity(newData);
+            GameManager.instance.viewSceneManager.fishManager.GenerateEntity(newData);
         }
 
         if (type == ItemType.Plant || type == ItemType.Rock)
         {
             SeaObjectData newData = new SeaObjectData(-1, type_id, Vector3.zero, true);
-            int id = await GameManager.instance.dataManager.AddSeaObject(newData);
-            newData.id = id;
+            newData.id = await GameManager.instance.dataManager.AddSeaObject(newData);
             GameManager.instance.viewSceneManager.fishTankManager.InstantiateSeaObject(newData);
         }
 

@@ -51,9 +51,10 @@ public class DataManager : MonoBehaviour
         return id;
     }
 
-    public void AddEntity(int type_id)
+    public async UniTask<int> AddEntity(EntityData newData)
     {
-
+        int id = await DatabaseHelper.AddEntityData(newData);
+        return id;
     }
 #endregion
 
