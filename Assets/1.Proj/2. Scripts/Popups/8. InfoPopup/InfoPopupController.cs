@@ -84,26 +84,28 @@ public class InfoPopupController : MonoBehaviour, IPopup
     // Raycast
     private void TrySelectSeaObject()
     {
-        GameObject hitObject = RaycastHelper.RaycastAtMousePosition(camera);
+        GameObject hitEntity = RaycastHelper.RaycastTagAtMousePosition(camera, "Entity");
 
         // Object selected -> Save selected Object
-        if (hitObject && hitObject.CompareTag("Entity"))
+        if (hitEntity)
         {
-            selectedEntity = hitObject;
+            selectedEntity = hitEntity;
             OpenSelectedEntityInfo();
         }
     }
 
     private void TryClosePopup()
     {
-        GameObject hitObject = RaycastHelper.RaycastAtMousePosition(camera);
+        GameObject hitEntity = RaycastHelper.RaycastTagAtMousePosition(camera, "Entity");
         List<RaycastResult> results = RaycastHelper.UIRaycastAtMousePoision();
 
         // Outside of UI clicked -> Close Popup
-        if (hitObject == null && results.Count == 0)
+        if (hitEntity == null && results.Count == 0)
         {
             CloseSelectedEntityInfo();
         }
+        print(hitEntity);
+        print(results.Count);
     }
 
     private void OpenSelectedEntityInfo()
@@ -125,6 +127,7 @@ public class InfoPopupController : MonoBehaviour, IPopup
 
     private void CloseSelectedEntityInfo()
     {
+        print("Close");
         selectPointTr.gameObject.SetActive(false);
         popupManager.ClosePopup(PopupType.InfoPopup);
     }
