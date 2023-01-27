@@ -9,25 +9,27 @@ public class InfoPopupController : MonoBehaviour, IPopup
 {
     private PopupManager popupManager;
     private new Camera camera;
-    private Button sellButton;
+    private Button earnButton;
     private TMP_Text nameText;
     private TMP_Text ageText;
     private TMP_Text feedText;
+    private Transform selectPointTr;
     private bool isSetup = false;
 
     private GameObject selectedEntity;
 
     void Awake()
     {
-        sellButton = transform.GetComponentInChildren<SellButton>()?.GetComponent<Button>();
+        earnButton = transform.GetComponentInChildren<InfoEarnButton>()?.GetComponent<Button>();
         nameText = transform.GetComponentInChildren<InfoNameText>()?.GetComponent<TMP_Text>();
         ageText = transform.GetComponentInChildren<InfoAgeText>()?.GetComponent<TMP_Text>();
         feedText = transform.GetComponentInChildren<InfoFeedText>()?.GetComponent<TMP_Text>();
+        selectPointTr = transform.GetComponentInChildren<InfoSelectPoint>()?.GetComponent<Transform>();
     }
 
     void Start()
     {
-        sellButton.onClick.AddListener(OnSellButtonClick);
+        earnButton.onClick.AddListener(OnEarnButtonClick);
     }
 
     void Update()
@@ -35,6 +37,11 @@ public class InfoPopupController : MonoBehaviour, IPopup
         if (isSetup && (popupManager.currentType == PopupType.MainUIPopup || popupManager.currentType == PopupType.InfoPopup))
         {
             HandleMouseClickEvent();
+        }
+
+        if (selectedEntity)
+        {
+            UpdateSelectPointPosition();
         }
     }
 
@@ -53,11 +60,18 @@ public class InfoPopupController : MonoBehaviour, IPopup
 #endregion
 
 #region Button Event
-    private void OnSellButtonClick()
+    private void OnEarnButtonClick()
     {
-        print("sell button clicked");
+        print("earn button clicked");
     }
 #endregion
+
+    private void UpdateSelectPointPosition()
+    {
+        // set SelectPoint points the selected Entity.
+        Vector3 worldPosition = selectedEntity.transform.position + (Vector3.up * selectedEntity.GetComponent<CapsuleCollider>().radius);
+        selectPointTr.position = camera.WorldToScreenPoint(worldPosition);
+    }
 
     private void HandleMouseClickEvent()
     {
@@ -96,17 +110,22 @@ public class InfoPopupController : MonoBehaviour, IPopup
     { 
         if (!selectedEntity) return;
         
+        // Info popup setting.
         EntityMono mono = selectedEntity.GetComponent<EntityMono>();
         var entitySO = GameManager.instance.scriptableObjectManager.TryGetEntitySOById(mono.type_id);
         nameText.text = entitySO.name;
         ageText.text = $"{mono.born_datetime.GetDayPassedFromNow()}";
         feedText.text = $"{mono.feed_datetime.GetHourPassedFromNow()} hrs ago.";
 
+        // Pointing activate
+        selectPointTr.gameObject.SetActive(true);
+
         popupManager.OpenPopup(PopupType.InfoPopup);
     }
 
     private void CloseSelectedEntityInfo()
     {
+        selectPointTr.gameObject.SetActive(false);
         popupManager.ClosePopup(PopupType.InfoPopup);
     }
 }
