@@ -32,7 +32,7 @@ public class InfoPopupController : MonoBehaviour, IPopup
 
     void Update()
     {
-        if (isSetup && popupManager.currentType == PopupType.MainUIPopup )
+        if (isSetup && (popupManager.currentType == PopupType.MainUIPopup || popupManager.currentType == PopupType.InfoPopup))
         {
             HandleMouseClickEvent();
         }
