@@ -11,7 +11,7 @@ public class EntityMono : MonoBehaviour
     public DateTime born_datetime;
     public DateTime feed_datetime;
 
-    public EntityMono(EntityData data)
+    public void Setup(EntityData data)
     {
         this.id = data.id;
         this.type_id = data.type_id;

@@ -79,6 +79,8 @@ public class FishManager : MonoBehaviour
         if (entityData == null) return;
 
         GameObject entity = InstantiateFish(entityData);
+        EntityMono mono = entity.AddComponent<EntityMono>();
+        mono.Setup(entityData);
         SetupFishController(entity, entityData);
         SetupFishMovement(entity);
         entityList.Add(entity);
@@ -101,7 +103,6 @@ public class FishManager : MonoBehaviour
         randomVector = new Vector3(randomVector.x * spawnBounds.x, randomVector.y * spawnBounds.y, randomVector.z * spawnBounds.z);
         Vector3 spawnPosition = transform.position + randomVector;
         Quaternion rotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0);
-
 
         GameObject entityPrefab = GameManager.instance.scriptableObjectManager.TryGetEntityPrefabById(entityData.type_id);
         if (entityPrefab)

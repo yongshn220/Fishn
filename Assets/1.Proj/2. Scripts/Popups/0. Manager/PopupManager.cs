@@ -13,6 +13,7 @@ public enum PopupType
     BagPopup,
     EditPopup,
     CheckPopup,
+    InfoPopup,
 }
 
 public class PopupManager : MonoBehaviour
@@ -31,6 +32,7 @@ public class PopupManager : MonoBehaviour
         popups[(int) PopupType.BagPopup] = GetComponentInChildren<BagPopupController>();
         popups[(int) PopupType.EditPopup] = GetComponentInChildren<EditPopupController>();
         popups[(int) PopupType.CheckPopup] = GetComponentInChildren<CheckPopupController>();
+        popups[(int) PopupType.InfoPopup] = GetComponentInChildren<InfoPopupController>();
     }
 
 #region Set up
@@ -38,7 +40,7 @@ public class PopupManager : MonoBehaviour
     {
         this.sceneManager = sceneManager;
 
-        SetInitialVisibleStatus();
+        SetInitialVisibility();
 
         foreach (IPopup popup in popups)
         {
@@ -46,10 +48,10 @@ public class PopupManager : MonoBehaviour
         }
     }
 
-    private void SetInitialVisibleStatus()
+    private void SetInitialVisibility()
     {
         EnableUIs(new PopupType[] {PopupType.StaticPopup, PopupType.MainUIPopup});
-        DisableUIs(new PopupType[] {PopupType.StorePopup, PopupType.BagPopup, PopupType.EditPopup, PopupType.CheckPopup});
+        DisableUIs(new PopupType[] {PopupType.StorePopup, PopupType.BagPopup, PopupType.EditPopup, PopupType.CheckPopup, PopupType.InfoPopup});
     }
 #endregion
 
