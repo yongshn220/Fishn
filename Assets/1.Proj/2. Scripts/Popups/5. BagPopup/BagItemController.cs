@@ -22,7 +22,7 @@ public class BagItemController : MonoBehaviour
         this.popupController = popupController;
         this.type_id = entitySO.id;
         this.nameText.text = entitySO.name;
-        this.amountText.text = "x " + amount.ToString();
+        this.amountText.text = amount.ToString();
     }
 
     public void Setup(BagPopupController popupController, SeaObjectScriptableObjectStructure seaObjectSO, int amount)
@@ -30,7 +30,7 @@ public class BagItemController : MonoBehaviour
         this.popupController = popupController;
         this.type_id = seaObjectSO.id;
         this.nameText.text = seaObjectSO.name;
-        this.amountText.text = "x " + amount.ToString();
+        this.amountText.text = amount.ToString();
     }
 
     private void OnUseButtonClick()
