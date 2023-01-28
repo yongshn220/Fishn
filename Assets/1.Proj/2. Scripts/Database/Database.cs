@@ -47,6 +47,14 @@ public class Database
         json["data"] = jObject;
         return await AsyncPostWebRequest(json, "add/entity");
     }
+
+    public async UniTask<string> AsyncAddCoralPlantData(string uid, JObject jObject)
+    {
+        JObject json = new JObject();
+        json["uid"] = uid;
+        json["data"] = jObject;
+        return await AsyncPostWebRequest(json, "add/coralplant");
+    }
 #endregion
 
     private async UniTask<string> AsyncPostWebRequest(JObject json, string contentType)

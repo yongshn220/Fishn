@@ -29,7 +29,7 @@ public class StoreItemController : MonoBehaviour
         this.id = seaObject.id;
         this.type = seaObject.type;
         this.coral = seaObject.coral;
-        this.coralValue.text = coral.ToString();
+        this.coralValue.text = this.coral.ToString();
         this.itemName.text = seaObject.name;
     }
 
@@ -39,8 +39,18 @@ public class StoreItemController : MonoBehaviour
         this.id = entity.id;
         this.type = entity.type;
         this.coral = entity.coral;
-        this.coralValue.text = coral.ToString();
+        this.coralValue.text = this.coral.ToString();
         this.itemName.text = entity.name;
+    }
+
+    public void Setup(StorePopupController popupController, CoralScriptableObjectStructure coralPlant)
+    {
+        this.popupController = popupController;
+        this.id = coralPlant.id;
+        this.type = coralPlant.type;
+        this.coral = coralPlant.coral;
+        this.coralValue.text = this.coral.ToString();
+        this.itemName.text = coralPlant.name + $" [{coralPlant.unitPrice}]";
     }
 
     private void OnBuyButtonClick()

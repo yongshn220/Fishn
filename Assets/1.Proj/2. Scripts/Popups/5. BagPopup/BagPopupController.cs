@@ -16,6 +16,7 @@ public class BagPopupController : MonoBehaviour, IPopup
     private Button rockMenuButton;
 
     private List<SeaObjectData> disabledSeaObjectDataList = new List<SeaObjectData>();
+    // private List<>
 
     void Awake()
     {

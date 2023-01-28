@@ -15,8 +15,9 @@ public class DataManager : MonoBehaviour
 
     private UserData userData;
     private GameData gameData = null;
-    public List<SeaObjectData> seaObjectDataList = new List<SeaObjectData>();
     public List<EntityData> entityDataList = new List<EntityData>();
+    public List<SeaObjectData> seaObjectDataList = new List<SeaObjectData>();
+    public List<CoralPlantData> coralPlantDataList = new List<CoralPlantData>();
 
 
 #region Load
@@ -27,8 +28,9 @@ public class DataManager : MonoBehaviour
     {
         userData = await DatabaseHelper.AsyncLoadUserData();
         gameData = userData.gameData;
-        seaObjectDataList = userData.seaObjectDataList;
         entityDataList = userData.entityDataList;
+        seaObjectDataList = userData.seaObjectDataList;
+        coralPlantDataList = userData.coralPlantDataList;
 
         Fishn.Wallet.SetCoral(gameData.coral); 
         isDataReady = true;
@@ -42,6 +44,11 @@ public class DataManager : MonoBehaviour
         this.seaObjectDataList = seaObjectDataList;
         DatabaseHelper.SaveSeaObjectData(seaObjectDataList).Forget();
     }
+
+    public void SaveCoralPlantData()
+    {
+        
+    }
 #endregion
 
 #region Add
@@ -54,6 +61,12 @@ public class DataManager : MonoBehaviour
     public async UniTask<int> AddEntity(EntityData newData)
     {
         int id = await DatabaseHelper.AddEntityData(newData);
+        return id;
+    }
+
+    public async UniTask<int> AddCoralPlant(CoralPlantData newData)
+    {
+        int id = await DatabaseHelper.AddCoralPlant(newData);
         return id;
     }
 #endregion

@@ -70,4 +70,9 @@ public class FishTankManager : MonoBehaviour
     {
         fishTankController.InstantiateSeaObject(seaObjectData);
     }
+
+    public void InstantiateCoralPlant(CoralPlantData coralPlantData)
+    {
+        fishTankController.InstantiateCoralPlant(coralPlantData);
+    }
 }

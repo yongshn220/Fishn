@@ -14,9 +14,15 @@ public class FishTankController : MonoBehaviour
     private Transform previewTransform;
     private Transform structureTransform;
 
+    // Sea Object Lists
     private List<SeaObjectMono> enabledSeaObjectMonoList = new List<SeaObjectMono>(); // Instantiated
     private List<SeaObjectData> disabledSeaObjectDataList = new List<SeaObjectData>(); // Uninstantiated 
     public List<SeaObjectData> disabledSeaObjectDataListDeepCopy { get {return disabledSeaObjectDataList.DeepCopy();}}
+
+    // Coral Plant Lists
+    private List<CoralPlantMono> enabledCoralPlantMonoList = new List<CoralPlantMono>(); // Instantiated
+    private List<CoralPlantData> disabledCoralPlantDataList = new List<CoralPlantData>(); // Uninstantiated 
+    public List<CoralPlantData> disabledCoralPlantDataListDeepCopy { get {return disabledCoralPlantDataList.DeepCopy();}}
     
     public static event Action OnSeaObjectUpdate;
     
@@ -31,6 +37,7 @@ public class FishTankController : MonoBehaviour
     public void Setup()
     {
         SeaObjectSetup(GameManager.instance.dataManager.seaObjectDataList);
+        CoralPlantSetup(GameManager.instance.dataManager.coralPlantDataList);
     }
 
  #region Load | Instantiate 
@@ -42,9 +49,17 @@ public class FishTankController : MonoBehaviour
         }
     }
 
+    private void CoralPlantSetup(List<CoralPlantData> coralPlantDataList)
+    {
+        foreach (var data in coralPlantDataList)
+        {
+            InstantiateCoralPlant(data);
+        }
+    }
+
     public void InstantiateSeaObject(SeaObjectData data)
     {
-        GameObject prefab = GameManager.instance.scriptableObjectManager.TryGetSeaPlantPrefabById(data.type_id);
+        GameObject prefab = GameManager.instance.scriptableObjectManager.TryGetSeaObjectPrefabById(data.type_id);
 
         if (!prefab) { Debug.LogError("No following prefab exists."); return; }
         
@@ -59,6 +74,26 @@ public class FishTankController : MonoBehaviour
         else
         {
             disabledSeaObjectDataList.Add(data);
+        }
+    }
+
+    public void InstantiateCoralPlant(CoralPlantData data)
+    {
+        var coralPlantSO = GameManager.instance.scriptableObjectManager.TryGetCoralPlantSOById(data.type_id);
+
+        if (coralPlantSO == null) { Debug.LogError("No following prefab exists."); return; }
+        
+        if (data.instantiated)
+        {
+            GameObject seaObject = Instantiate(coralPlantSO.prefab, data.position, Quaternion.identity, structureTransform);
+            CoralPlantMono coralPlantMono = seaObject.AddComponent<CoralPlantMono>();
+            coralPlantMono.Setup(data, coralPlantSO);
+            coralPlantMono.instantiated = true;
+            enabledCoralPlantMonoList.Add(coralPlantMono);
+        }
+        else
+        {
+            disabledCoralPlantDataList.Add(data);
         }
     }
 #endregion

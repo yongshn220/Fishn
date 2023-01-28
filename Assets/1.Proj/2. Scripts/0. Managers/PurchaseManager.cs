@@ -25,6 +25,13 @@ public class PurchaseManager : MonoBehaviour
             GameManager.instance.viewSceneManager.fishTankManager.InstantiateSeaObject(newData);
         }
 
+        if (type == ItemType.Coral)
+        {
+            CoralPlantData newData = new CoralPlantData(-1, type_id, Vector3.zero, true);
+            newData.id = await GameManager.instance.dataManager.AddCoralPlant(newData);
+            GameManager.instance.viewSceneManager.fishTankManager.InstantiateCoralPlant(newData);
+        }
+
         // Fishn.Wallet.Use(coral);
 
 

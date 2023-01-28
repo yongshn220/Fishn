@@ -104,8 +104,6 @@ public class InfoPopupController : MonoBehaviour, IPopup
         {
             CloseSelectedEntityInfo();
         }
-        print(hitEntity);
-        print(results.Count);
     }
 
     private void OpenSelectedEntityInfo()

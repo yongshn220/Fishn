@@ -14,10 +14,12 @@ public class StorePopupController : MonoBehaviour, IPopup
     private Button entityButton;
     private Button plantButton;
     private Button rockButton;
+    private Button coralButton;
     private StoreContent storeContent;
 
-    private List<SeaObjectScriptableObjectStructure> seaObjectSOList;
     private List<EntityScriptableObjectStructure> entitySOList;
+    private List<SeaObjectScriptableObjectStructure> seaObjectSOList;
+    private List<CoralScriptableObjectStructure> coralSOList;
 
     void Awake()
     {
@@ -26,6 +28,7 @@ public class StorePopupController : MonoBehaviour, IPopup
         entityButton = transform.GetComponentInChildren<EntityButton>()?.GetComponent<Button>();
         plantButton = transform.GetComponentInChildren<PlantButton>()?.GetComponent<Button>();
         rockButton = transform.GetComponentInChildren<RockButton>()?.GetComponent<Button>();
+        coralButton = transform.GetComponentInChildren<CoralButton>()?.GetComponent<Button>();
     }
 
     void Start()
@@ -34,14 +37,16 @@ public class StorePopupController : MonoBehaviour, IPopup
         entityButton.onClick.AddListener(OnEntityButtonClick);
         plantButton.onClick.AddListener(OnPlantButtonClick);
         rockButton.onClick.AddListener(OnRockButtonClick);
+        coralButton.onClick.AddListener(OnCoralButtonClick);
     }
 
 #region IPopup
     public void Setup(PopupManager popupManager)
     {
         this.popupManager = popupManager;
-        this.seaObjectSOList = GameManager.instance.scriptableObjectManager.GetSeaObjectList();
         this.entitySOList = GameManager.instance.scriptableObjectManager.GetEntityList();
+        this.seaObjectSOList = GameManager.instance.scriptableObjectManager.GetSeaObjectList();
+        this.coralSOList = GameManager.instance.scriptableObjectManager.GetCoralPlantList();
         SetupItems();
     }
 
@@ -100,7 +105,6 @@ public class StorePopupController : MonoBehaviour, IPopup
 
     private void OnPlantButtonClick()
     {
-        print("Plant");
         ClearItemsInContent();
         var seaPlantSOList = seaObjectSOList.FindAll((i) => i.type == ItemType.Plant);
 
@@ -116,7 +120,6 @@ public class StorePopupController : MonoBehaviour, IPopup
 
     private void OnRockButtonClick()
     {
-        print("Rock");
         ClearItemsInContent();
         var rockSOList = seaObjectSOList.FindAll((i) => i.type == ItemType.Rock);
 
@@ -126,6 +129,19 @@ public class StorePopupController : MonoBehaviour, IPopup
             {
                 StoreItemController itemCtrl = Instantiate(itemPrefab, Vector3.zero, Quaternion.identity, storeContent.transform);
                 itemCtrl.Setup(this, rockSO);
+            }
+        }
+    }
+
+    private void OnCoralButtonClick()
+    {
+        ClearItemsInContent();
+        foreach (var coralSO in coralSOList)
+        {
+            if (coralSO.id != -1)
+            {
+                StoreItemController itemCtrl = Instantiate(itemPrefab, Vector3.zero, Quaternion.identity, storeContent.transform);
+                itemCtrl.Setup(this, coralSO);
             }
         }
     }

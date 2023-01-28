@@ -60,6 +60,16 @@ public static class ListExtension
         return newList;
     }
 
+    public static List<EntityData> DeepCopy(this List<EntityData> dataList)
+    {
+        List<EntityData> newList = new List<EntityData>();
+        foreach (var data in dataList)
+        {
+            newList.Add(new EntityData(data.id, data.type_id, data.born_datetime, data.feed_datetime));
+        }
+        return newList;
+    }
+
     public static List<SeaObjectData> DeepCopy(this List<SeaObjectData> dataList)
     {
         List<SeaObjectData> newList = new List<SeaObjectData>();
@@ -70,12 +80,12 @@ public static class ListExtension
         return newList;
     }
 
-    public static List<EntityData> DeepCopy(this List<EntityData> dataList)
+    public static List<CoralPlantData> DeepCopy(this List<CoralPlantData> dataList)
     {
-        List<EntityData> newList = new List<EntityData>();
+        List<CoralPlantData> newList = new List<CoralPlantData>();
         foreach (var data in dataList)
         {
-            newList.Add(new EntityData(data.id, data.type_id, data.born_datetime, data.feed_datetime));
+            newList.Add(new CoralPlantData(data.id, data.type_id, data.position, data.instantiated));
         }
         return newList;
     }

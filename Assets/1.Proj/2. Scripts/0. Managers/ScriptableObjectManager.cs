@@ -7,10 +7,9 @@ using System.Linq;
 public class ScriptableObjectManager : MonoBehaviour
 {
     public EntityScriptableObject EntityList;
-
     public SeaObjectScriptableObject SeaObjectList;
-
     public FishTankScriptableObject FishTankList;
+    public CoralScriptableObject CoralPlantList;
 
     private Dictionary<int, ItemType> seaObjectIdAndTypeDict = new Dictionary<int, ItemType>(); // USAGE: To easily get the item_type with type_id of <SeaObjectData> class.
 
@@ -49,6 +48,18 @@ public class ScriptableObjectManager : MonoBehaviour
         return null;
     }
 
+    public CoralScriptableObjectStructure TryGetCoralPlantSOById(int id)
+    {
+        foreach (var coralSO in CoralPlantList.corals)
+        {
+            if (coralSO.id == id)
+            {
+                return coralSO;
+            }
+        }
+        return null;
+    }
+
     public GameObject TryGetFishTankPrefabById(int id)
     {
         foreach (var tank in FishTankList.fishTanks)
@@ -61,9 +72,14 @@ public class ScriptableObjectManager : MonoBehaviour
         return null;
     }
 
-    public GameObject TryGetSeaPlantPrefabById(int id)
+    public GameObject TryGetSeaObjectPrefabById(int id)
     {
         return SeaObjectList.seaObjects.ToList().Find(s => s.id == id)?.prefab;
+    }
+
+    public GameObject TryGetCoralPlantPrefabById(int id)
+    {
+        return CoralPlantList.corals.ToList().Find(s => s.id == id)?.prefab;
     }
 
     public SeaObjectScriptableObjectStructure TryGetSeaObjectSOById(int id)
@@ -92,10 +108,16 @@ public class ScriptableObjectManager : MonoBehaviour
         return SeaObjectList.seaObjects.ToList();
     }
 
+    public List<CoralScriptableObjectStructure> GetCoralPlantList()
+    {
+        return CoralPlantList.corals.ToList();
+    }
+
     public List<GameObject> GetSeaObjectPrefabList()
     {
         return SeaObjectList.seaObjects.ToList().ConvertAll(s => s.prefab);
     }
+
 #endregion
 
     public ItemType GetSeaObjectItemTypeById(int id)

@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4422291669023719149
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4422291669023719145}
+  - component: {fileID: 4422291669023719144}
+  - component: {fileID: 4422291669023719151}
+  - component: {fileID: 4422291669023719150}
+  - component: {fileID: 4422291669023719146}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4422291669023719145
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4422291669023719149}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.46546355, y: 2.082972, z: -3.622287}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4422291669023719144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4422291669023719149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 825edf0897d054881b2fa6d19f402602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataManager: {fileID: 0}
+  scriptableObjectManager: {fileID: 0}
+  viewSceneManager: {fileID: 0}
+  purchaseManager: {fileID: 0}
+--- !u!114 &4422291669023719151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4422291669023719149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad309eb970e1840b7822c88683b50d23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDataReady: 0
+  coralPlantDataList: []
+--- !u!114 &4422291669023719150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4422291669023719149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fadf0756de77464e8ec0876181a730a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EntityList: {fileID: 11400000, guid: 36435afaddcdc49ac90acbda3b3d6385, type: 2}
+  SeaObjectList: {fileID: 11400000, guid: 12385c07706074e419cd2a6ee24effde, type: 2}
+  FishTankList: {fileID: 11400000, guid: 68023b3c635374b7996cf65b1328584d, type: 2}
+  CoralPlantList: {fileID: 11400000, guid: 3057a32e091e341e6a744e1ce1226c8b, type: 2}
+--- !u!114 &4422291669023719146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4422291669023719149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ac1b1bcf8ee54c95a3bf450774b7236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

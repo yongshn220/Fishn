@@ -399,6 +399,23 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5017988535986194581, guid: e668976d6b5d549838010865810878fc, type: 3}
   m_PrefabInstance: {fileID: 5017988536406646652}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1871268712 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1871268712, guid: 6938b03dcbf0f4a31827e87af0ee5211, type: 3}
+  m_PrefabInstance: {fileID: 4725609643502440887}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1871268717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871268712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7fb5d6ceee14413fa7471071202ecc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2096184659
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,30 +675,6 @@ PrefabInstance:
     - target: {fileID: 6377184585709657780, guid: 6938b03dcbf0f4a31827e87af0ee5211, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7863591726289334553, guid: 6938b03dcbf0f4a31827e87af0ee5211, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7863591726289334553, guid: 6938b03dcbf0f4a31827e87af0ee5211, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7863591726289334553, guid: 6938b03dcbf0f4a31827e87af0ee5211, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7863591727010940371, guid: 6938b03dcbf0f4a31827e87af0ee5211, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7863591727010940371, guid: 6938b03dcbf0f4a31827e87af0ee5211, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7863591727010940371, guid: 6938b03dcbf0f4a31827e87af0ee5211, type: 3}
-      propertyPath: m_Color.r
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6938b03dcbf0f4a31827e87af0ee5211, type: 3}
@@ -1369,6 +1362,10 @@ PrefabInstance:
     - target: {fileID: 9056970429961440294, guid: 4d0a4a3722424472da457982e2c4c12d, type: 3}
       propertyPath: m_Name
       value: BagPopup
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056970429961440294, guid: 4d0a4a3722424472da457982e2c4c12d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9056970430261492521, guid: 4d0a4a3722424472da457982e2c4c12d, type: 3}
       propertyPath: m_AnchorMax.x

@@ -15,6 +15,7 @@ public enum ItemType
     Entity,
     Plant,
     Rock,
+    Coral,
 }
 
 [Serializable]

@@ -17,9 +17,9 @@ public static class DBstr
 
     // Parameter Names
     public const string GAMEDATA = "gameData";
-    public const string ENTITYDATALIST = "entityDataList";
-    public const string SEAOBJECTDATALIST = "seaObjectDataList";
-
+    public const string ENTITYDATA_LIST = "entityDataList";
+    public const string SEAOBJECTDATA_LIST = "seaObjectDataList";
+    public const string CORALPLANTDATA_LIST = "coralPlantDataList";
 
     // Data Struct
     public const string ID = "id";

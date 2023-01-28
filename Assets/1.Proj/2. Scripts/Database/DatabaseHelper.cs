@@ -57,6 +57,15 @@ public static class DatabaseHelper
         Debug.Log(id);
         return int.Parse(id);
     }
+
+    public static async UniTask<int> AddCoralPlant(CoralPlantData coralPlantData)
+    {
+        JObject jObject = new JObject();
+        jObject = ConvertCoralPlantToJson(coralPlantData);
+        string id = await database.AsyncAddCoralPlantData(UID, jObject);
+        return int.Parse(id);
+
+    }
 #endregion
 
 #region Convert Class to JSON
@@ -82,6 +91,18 @@ public static class DatabaseHelper
         jObject[DBstr.INSTANTIATED] = seaObjectData.instantiated;
         return jObject;
     }
+
+    private static JObject ConvertCoralPlantToJson(CoralPlantData coralPlantData)
+    {
+        JObject jObject = new JObject();
+        jObject[DBstr.ID] = coralPlantData.id;
+        jObject[DBstr.TYPE_ID] = coralPlantData.type_id;
+        jObject[DBstr.POSX] = coralPlantData.position.x;
+        jObject[DBstr.POSY] = coralPlantData.position.y;
+        jObject[DBstr.POSZ] = coralPlantData.position.z;
+        jObject[DBstr.INSTANTIATED] = coralPlantData.instantiated;
+        return jObject;
+    }
 #endregion
 
 #region Convert Json to Class
@@ -89,8 +110,9 @@ public static class DatabaseHelper
     {
         UserData userData = new UserData();
         userData.gameData = GetGameDataFromJson(json[DBstr.GAMEDATA]);
-        userData.entityDataList = GetEntityDataListFromJson(json[DBstr.ENTITYDATALIST]);
-        userData.seaObjectDataList =  GetSeaObjectDataListFromJson(json[DBstr.SEAOBJECTDATALIST]);
+        userData.entityDataList = GetEntityDataListFromJson(json[DBstr.ENTITYDATA_LIST]);
+        userData.seaObjectDataList = GetSeaObjectDataListFromJson(json[DBstr.SEAOBJECTDATA_LIST]);
+        userData.coralPlantDataList = GetCoralPlantDataListFronJson(json[DBstr.CORALPLANTDATA_LIST]);
 
         return userData;
     }
@@ -103,10 +125,10 @@ public static class DatabaseHelper
         return new GameData(id, tank_id, coral);
     }
 
-    private static List<SeaObjectData> GetSeaObjectDataListFromJson(JToken seaPlantDataJson)
+    private static List<SeaObjectData> GetSeaObjectDataListFromJson(JToken seaObjectDataJson)
     {
         List<SeaObjectData> seaObjectDataList = new List<SeaObjectData>();
-        foreach (var plant in seaPlantDataJson)
+        foreach (var plant in seaObjectDataJson)
         {
             int id = (int) plant[DBstr.ID];
             int type_id = (int) plant[DBstr.TYPE_ID];
@@ -120,6 +142,25 @@ public static class DatabaseHelper
             seaObjectDataList.Add(seaObjectData);
         }
         return seaObjectDataList;
+    }
+
+    private static List<CoralPlantData> GetCoralPlantDataListFronJson(JToken coralPlantDataJson)
+    {
+        List<CoralPlantData> coralPlantDataList = new List<CoralPlantData>();
+        foreach (var plant in coralPlantDataJson)
+        {
+            int id = (int) plant[DBstr.ID];
+            int type_id = (int) plant[DBstr.TYPE_ID];
+            float posx = (float) plant[DBstr.POSX];
+            float posy = (float) plant[DBstr.POSY];
+            float posz = (float) plant[DBstr.POSZ];
+            bool instantiated = (bool) plant[DBstr.INSTANTIATED];
+            Vector3 position = new Vector3(posx, posy, posz);
+
+            CoralPlantData coralPlantData = new CoralPlantData(id, type_id, position, instantiated);
+            coralPlantDataList.Add(coralPlantData);
+        }
+        return coralPlantDataList;
     }
 
     private static List<EntityData> GetEntityDataListFromJson(JToken fishDataJson)
