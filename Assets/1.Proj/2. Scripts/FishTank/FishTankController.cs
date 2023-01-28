@@ -24,7 +24,8 @@ public class FishTankController : MonoBehaviour
     private List<CoralPlantData> disabledCoralPlantDataList = new List<CoralPlantData>(); // Uninstantiated 
     public List<CoralPlantData> disabledCoralPlantDataListDeepCopy { get {return disabledCoralPlantDataList.DeepCopy();}}
     
-    public static event Action OnSeaObjectUpdate;
+    public static event Action<List<SeaObjectData>> OnDisabledSeaObjectUpdate;
+    public static event Action<List<CoralPlantData>> OnDisabledCoralPlantUpdate;
     
     void Awake()
     {
@@ -104,6 +105,12 @@ public class FishTankController : MonoBehaviour
         List<SeaObjectData> allSeaObjectData = GetExistSeaObjectDataList();
         GameManager.instance.dataManager.SaveSeaObjectData(allSeaObjectData);
     }
+
+    public void SaveCoralPlantData()
+    {
+        List<CoralPlantData> allCoralPlantData = GetExistCoralPlantDataList();
+        GameManager.instance.dataManager.SaveCoralPlantData(allCoralPlantData);
+    }
 #endregion
 
 #region Update
@@ -122,8 +129,18 @@ public class FishTankController : MonoBehaviour
         enabledSeaObjectMonoList.Remove(targetMono);
         disabledSeaObjectDataList.Add(targetMono.ToData());
         Destroy(targetMono.gameObject);
-        OnSeaObjectUpdate?.Invoke(); // Delegate Invoke.
+        OnDisabledSeaObjectUpdate?.Invoke(disabledSeaObjectDataListDeepCopy); // Event Invoke.
         SaveSeaObjectData();
+    }
+
+    public void RemoveCoralPlantFromTank(CoralPlantMono targetMono)
+    {
+        targetMono.instantiated = false;
+        enabledCoralPlantMonoList.Remove(targetMono);
+        disabledCoralPlantDataList.Add(targetMono.ToData());
+        Destroy(targetMono.gameObject);
+        OnDisabledCoralPlantUpdate?.Invoke(disabledCoralPlantDataListDeepCopy); // Event Invoke.
+        SaveCoralPlantData();
     }
 
     public void LoadSeaObjectFromBag(int type_id)
@@ -139,8 +156,25 @@ public class FishTankController : MonoBehaviour
                 break;
             }
         }
-        OnSeaObjectUpdate?.Invoke(); // Delegate Invoke.
+        OnDisabledSeaObjectUpdate?.Invoke(disabledSeaObjectDataListDeepCopy); // Delegate Invoke.
         SaveSeaObjectData();
+    }
+
+    public void LoadCoralPlantFromBag(int type_id)
+    {
+        foreach (var data in disabledCoralPlantDataList)
+        {
+            if (data.type_id == type_id)
+            {
+                data.instantiated = true;
+                data.position = Vector3.zero;
+                InstantiateCoralPlant(data);
+                disabledCoralPlantDataList.Remove(data);
+                break;
+            }
+        }
+        OnDisabledCoralPlantUpdate?.Invoke(disabledCoralPlantDataListDeepCopy); // Delegate Invoke.
+        SaveCoralPlantData();
     }
 #endregion
 
@@ -151,6 +185,16 @@ public class FishTankController : MonoBehaviour
 
         resultList.AddRange(enabledSeaObjectMonoList.ConvertToData());
         resultList.AddRange(disabledSeaObjectDataList);
+
+        return resultList;
+    }
+
+    private List<CoralPlantData> GetExistCoralPlantDataList()
+    {
+        List<CoralPlantData> resultList = new List<CoralPlantData>();
+
+        resultList.AddRange(enabledCoralPlantMonoList.ConvertToData());
+        resultList.AddRange(disabledCoralPlantDataList);
 
         return resultList;
     }

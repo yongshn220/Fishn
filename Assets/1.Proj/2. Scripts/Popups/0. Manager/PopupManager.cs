@@ -136,6 +136,11 @@ public class PopupManager : MonoBehaviour
         sceneManager.fishTankManager.RemoveSeaObjectFromTank(seaObjectMono);
     }
 
+    public void RemoveCoralPlantFromTank(CoralPlantMono coralPlantMono)
+    {
+        sceneManager.fishTankManager.RemoveCoralPlantFromTank(coralPlantMono);
+    }
+
     public void SetCoralLightingState(bool state)
     {
         sceneManager.fishTankManager.SetCoralLightingState(state);
@@ -163,6 +168,11 @@ public class PopupManager : MonoBehaviour
     public List<SeaObjectData> GetDisabledSeaObjectDataList()
     {
         return sceneManager.fishTankManager.GetDisabledSeaObjectDataList();
+    }
+
+    public List<CoralPlantData> GetDisabledCoralPlantDataList()
+    {
+        return sceneManager.fishTankManager.GetDisabledCoralPlantDataList();
     }
 
     public void LoadSeaObjectFromBag(int type_id)

@@ -29,6 +29,14 @@ public class Database
         json["data"] = jArray;
         return await AsyncPostWebRequest(json, "save/seaobjects");
     }
+
+    public async UniTask<string> AsyncSaveCoralPlantData(string uid, JArray jArray)
+    {
+        JObject json = new JObject();
+        json["uid"] = uid;
+        json["data"] = jArray;
+        return await AsyncPostWebRequest(json, "save/coralplants");
+    }
 #endregion
 
 #region Add

@@ -48,6 +48,11 @@ public class FishTankManager : MonoBehaviour
         return fishTankController.disabledSeaObjectDataListDeepCopy;
     }
 
+    public List<CoralPlantData> GetDisabledCoralPlantDataList()
+    {
+        return fishTankController.disabledCoralPlantDataListDeepCopy;
+    }
+
     public void UpdateAllSeaObjectMonoPosition()
     {
         fishTankController.UpdateAllSeaObjectMonoPosition();
@@ -57,6 +62,11 @@ public class FishTankManager : MonoBehaviour
     public void RemoveSeaObjectFromTank(SeaObjectMono seaObjectMono)
     {
         fishTankController.RemoveSeaObjectFromTank(seaObjectMono);
+    }
+
+    public void RemoveCoralPlantFromTank(CoralPlantMono coralPlantMono)
+    {
+        fishTankController.RemoveCoralPlantFromTank(coralPlantMono);
     }
 
     // Put seaObject in the bag from tank.

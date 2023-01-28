@@ -38,6 +38,17 @@ public static class DatabaseHelper
         }
         string res = await database.AsyncSaveSeaObjectData(UID, jArray);
     }
+
+    public static async UniTaskVoid SaveCoralPlantData(List<CoralPlantData> coralPlantDataList)
+    {
+        JArray jArray = new JArray();
+        
+        foreach(CoralPlantData data in coralPlantDataList)
+        {
+            jArray.Add(ConvertCoralPlantToJson(data));
+        }
+        string res = await database.AsyncSaveCoralPlantData(UID, jArray);
+    }
 #endregion
 
 #region Add

@@ -209,8 +209,16 @@ public class EditPopupController : MonoBehaviour, IPopup
     {
         if (removeTargetSeaObject)
         {
-            SeaObjectMono seaObjectMono = removeTargetSeaObject.GetComponent<SeaObjectMono>();
-            popupManager.RemoveSeaObjectFromTank(seaObjectMono);
+            SeaObjectMono seaObjectMono;
+            if (removeTargetSeaObject.TryGetComponent<SeaObjectMono>(out seaObjectMono))
+            {
+                popupManager.RemoveSeaObjectFromTank(seaObjectMono);
+            }
+            CoralPlantMono coralPlantMono;
+            if (removeTargetSeaObject.TryGetComponent<CoralPlantMono>(out coralPlantMono))
+            {
+                popupManager.RemoveCoralPlantFromTank(coralPlantMono);
+            }
         }
         ResetRemoveButton();
     }

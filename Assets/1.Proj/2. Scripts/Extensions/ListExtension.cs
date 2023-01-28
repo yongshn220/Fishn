@@ -102,6 +102,18 @@ public static class ListExtension
         return dataList;
     }
 
+    public static List<CoralPlantData> ConvertToData(this List<CoralPlantMono> monoList)
+    {
+        List<CoralPlantData> dataList = new List<CoralPlantData>();
+
+        foreach(var mono in monoList)
+        {
+            CoralPlantData data = new CoralPlantData(mono.id, mono.type_id, mono.position, mono.instantiated);
+            dataList.Add(data);
+        }
+        return dataList;
+    }
+
     public static List<EntityData> ConvertToData(this List<EntityMono> monoList)
     {
         List<EntityData> dataList = new List<EntityData>();

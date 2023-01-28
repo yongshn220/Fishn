@@ -16,7 +16,7 @@ public class BagPopupController : MonoBehaviour, IPopup
     private Button rockMenuButton;
 
     private List<SeaObjectData> disabledSeaObjectDataList = new List<SeaObjectData>();
-    // private List<>
+    private List<CoralPlantData> disabledCoralPlantDataList = new List<CoralPlantData>();
 
     void Awake()
     {
@@ -37,8 +37,10 @@ public class BagPopupController : MonoBehaviour, IPopup
     public void Setup(PopupManager popupManager)
     {
         this.popupManager = popupManager;
-        this.disabledSeaObjectDataList = popupManager.GetDisabledSeaObjectDataList(); // disabledObject -> put in Bag.
-        FishTankController.OnSeaObjectUpdate += OnDisabledSeaObjectDataListUpdate;    // Delegate(Action)
+        this.disabledSeaObjectDataList = popupManager.GetDisabledSeaObjectDataList();         // disabledObject -> put in Bag.
+        this.disabledCoralPlantDataList = popupManager.GetDisabledCoralPlantDataList();        
+        FishTankController.OnDisabledSeaObjectUpdate += OnDisabledSeaObjectDataListUpdate;    // Add Listener to Event.
+        FishTankController.OnDisabledCoralPlantUpdate += OnDisabledCoralPlantDataListUpdate;
         OnPlantButtonClick();
     }
 
@@ -52,9 +54,16 @@ public class BagPopupController : MonoBehaviour, IPopup
 
 
 #region Delegate Callback
-    private void OnDisabledSeaObjectDataListUpdate()
+    private void OnDisabledSeaObjectDataListUpdate(List<SeaObjectData> seaObjectDataList)
     {
-        this.disabledSeaObjectDataList = popupManager.GetDisabledSeaObjectDataList();
+        this.disabledSeaObjectDataList = seaObjectDataList;
+        if (currentMenuType == ItemType.Plant) OnPlantButtonClick(); // Load Plant content
+        if (currentMenuType == ItemType.Rock) OnRockButtonClick(); // Load Rock content
+    }
+
+    private void OnDisabledCoralPlantDataListUpdate(List<CoralPlantData> coralPlantDataList)
+    {
+        this.disabledCoralPlantDataList = coralPlantDataList;
         if (currentMenuType == ItemType.Plant) OnPlantButtonClick(); // Load Plant content
         if (currentMenuType == ItemType.Rock) OnRockButtonClick(); // Load Rock content
     }

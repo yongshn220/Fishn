@@ -45,9 +45,10 @@ public class DataManager : MonoBehaviour
         DatabaseHelper.SaveSeaObjectData(seaObjectDataList).Forget();
     }
 
-    public void SaveCoralPlantData()
+    public void SaveCoralPlantData(List<CoralPlantData> coralPlantDataList)
     {
-        
+        this.coralPlantDataList = coralPlantDataList;
+        DatabaseHelper.SaveCoralPlantData(coralPlantDataList).Forget();
     }
 #endregion
 
