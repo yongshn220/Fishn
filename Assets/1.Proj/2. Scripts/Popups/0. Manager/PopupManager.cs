@@ -40,12 +40,12 @@ public class PopupManager : MonoBehaviour
     {
         this.sceneManager = sceneManager;
 
-        SetInitialVisibility();
-
         foreach (IPopup popup in popups)
         {
             popup.Setup(this);
         }
+
+        SetInitialVisibility(); // All popups must be set up first.
     }
 
     private void SetInitialVisibility()
@@ -134,6 +134,11 @@ public class PopupManager : MonoBehaviour
     public void RemoveSeaObjectFromTank(SeaObjectMono seaObjectMono)
     {   
         sceneManager.fishTankManager.RemoveSeaObjectFromTank(seaObjectMono);
+    }
+
+    public void SetCoralLightingState(bool state)
+    {
+        sceneManager.fishTankManager.SetCoralLightingState(state);
     }
 #endregion
 

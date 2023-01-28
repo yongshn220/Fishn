@@ -159,4 +159,16 @@ public class FishTankController : MonoBehaviour
     {
         return cameraContainer;
     }
+
+    public void SetCoralLightingState(bool state)
+    {
+        if (state)
+        {
+            enabledCoralPlantMonoList.ForEach((m) => m.gameObject.layer = (int) LayerType.ObjectLighter);
+        }
+        else
+        {
+            enabledCoralPlantMonoList.ForEach((m) => m.gameObject.layer = (int) LayerType.Default);
+        }
+    }
 }

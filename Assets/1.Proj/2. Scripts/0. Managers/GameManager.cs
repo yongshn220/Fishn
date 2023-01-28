@@ -48,4 +48,5 @@ public enum LayerType
     Obstacle = 6,
     Entity = 7,
     ObjectLighter = 8,
+    CoralPlant = 9,
 }

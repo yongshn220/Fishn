@@ -7,6 +7,7 @@ TagManager:
   - MovePoint
   - Entity
   - SeaObject
+  - CoralPlant
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Obstacle
   - Entity
   - ObjectLighter
-  - 
+  - CoralPlant
   - 
   - 
   - 

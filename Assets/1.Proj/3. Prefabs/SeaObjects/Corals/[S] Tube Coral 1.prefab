@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6312200215658113385}
   - component: {fileID: 6312200215658113390}
   - component: {fileID: 6312200215658113391}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: '[S] Tube Coral 1'
-  m_TagString: Untagged
+  m_TagString: CoralPlant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

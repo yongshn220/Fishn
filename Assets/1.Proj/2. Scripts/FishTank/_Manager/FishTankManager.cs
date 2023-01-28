@@ -75,4 +75,9 @@ public class FishTankManager : MonoBehaviour
     {
         fishTankController.InstantiateCoralPlant(coralPlantData);
     }
+
+    public void SetCoralLightingState(bool state)
+    {
+        fishTankController.SetCoralLightingState(state);
+    }
 }

@@ -27,6 +27,7 @@ public class EditPopupController : MonoBehaviour, IPopup
 
     private GameObject selectedSeaObject;
     private GameObject removeTargetSeaObject;
+    private int previousTargetLayer;
 
     void Awake()    
     {
@@ -66,11 +67,13 @@ public class EditPopupController : MonoBehaviour, IPopup
     public void Enable()
     {
         currentMode = EditMode.Front;
+        popupManager.SetCoralLightingState(false);
     }
 
     public void Disable()
     {
         currentMode = EditMode.None;
+        popupManager.SetCoralLightingState(true);
     }
 #endregion
 
@@ -99,7 +102,7 @@ public class EditPopupController : MonoBehaviour, IPopup
     {
         if (removeTargetSeaObject)
         {
-            removeTargetSeaObject.layer = (int) LayerType.Default;
+            removeTargetSeaObject.layer = previousTargetLayer;
         }
         removeTargetSeaObject = null;
         removeButton.gameObject.SetActive(false);     // disable remove button.
@@ -110,12 +113,13 @@ public class EditPopupController : MonoBehaviour, IPopup
     {
         GameObject hitObject = RaycastHelper.RaycastAtMousePosition(camera);
 
-        if (hitObject && hitObject.CompareTag("SeaObject"))
+        if (hitObject && (hitObject.CompareTag("SeaObject") || hitObject.CompareTag("CoralPlant")))
         {
             ResetRemoveButton(); // Clear previous removeButton history.
 
-            removeTargetSeaObject = hitObject;
-            removeTargetSeaObject.layer = (int) LayerType.ObjectLighter;
+            removeTargetSeaObject = hitObject; // save remove-target.
+            previousTargetLayer = removeTargetSeaObject.layer; // save current layer #.
+            removeTargetSeaObject.layer = (int) LayerType.ObjectLighter; // set new layer #.
             RectTransform canvasRectTransform = popupManager.GetRectTransform();
             Vector2 localPos;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTransform, Input.mousePosition, null, out localPos);
@@ -131,7 +135,7 @@ public class EditPopupController : MonoBehaviour, IPopup
         GameObject hitObject = RaycastHelper.RaycastAtMousePosition(camera);
 
         // Object selected -> Save selected Object
-        if (hitObject && hitObject.CompareTag("SeaObject"))
+        if (hitObject && (hitObject.CompareTag("SeaObject") || hitObject.CompareTag("CoralPlant")))
         {
             selectedSeaObject = hitObject;
         }
