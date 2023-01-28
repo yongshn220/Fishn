@@ -33,6 +33,14 @@ public class BagItemController : MonoBehaviour
         this.amountText.text = amount.ToString();
     }
 
+    public void Setup(BagPopupController popupController, CoralScriptableObjectStructure coralPlantSO, int amount)
+    {
+        this.popupController = popupController;
+        this.type_id = coralPlantSO.id;
+        this.nameText.text = coralPlantSO.name;
+        this.amountText.text = amount.ToString();
+    }
+
     private void OnUseButtonClick()
     {
         popupController.OnUseButtonClick(type_id);

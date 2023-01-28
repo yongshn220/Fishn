@@ -14,7 +14,7 @@ public class StorePopupController : MonoBehaviour, IPopup
     private Button entityButton;
     private Button plantButton;
     private Button rockButton;
-    private Button coralButton;
+    private Button coralPlantButton;
     private StoreContent storeContent;
 
     private List<EntityScriptableObjectStructure> entitySOList;
@@ -28,7 +28,7 @@ public class StorePopupController : MonoBehaviour, IPopup
         entityButton = transform.GetComponentInChildren<EntityButton>()?.GetComponent<Button>();
         plantButton = transform.GetComponentInChildren<PlantButton>()?.GetComponent<Button>();
         rockButton = transform.GetComponentInChildren<RockButton>()?.GetComponent<Button>();
-        coralButton = transform.GetComponentInChildren<CoralButton>()?.GetComponent<Button>();
+        coralPlantButton = transform.GetComponentInChildren<CoralPlantButton>()?.GetComponent<Button>();
     }
 
     void Start()
@@ -37,7 +37,7 @@ public class StorePopupController : MonoBehaviour, IPopup
         entityButton.onClick.AddListener(OnEntityButtonClick);
         plantButton.onClick.AddListener(OnPlantButtonClick);
         rockButton.onClick.AddListener(OnRockButtonClick);
-        coralButton.onClick.AddListener(OnCoralButtonClick);
+        coralPlantButton.onClick.AddListener(OnCoralPlantButtonClick);
     }
 
 #region IPopup
@@ -133,7 +133,7 @@ public class StorePopupController : MonoBehaviour, IPopup
         }
     }
 
-    private void OnCoralButtonClick()
+    private void OnCoralPlantButtonClick()
     {
         ClearItemsInContent();
         foreach (var coralSO in coralSOList)

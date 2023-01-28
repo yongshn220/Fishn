@@ -14,6 +14,7 @@ public class BagPopupController : MonoBehaviour, IPopup
     private Button blockingButton; 
     private Button plantMenuButton;
     private Button rockMenuButton;
+    private Button coralPlantMenuButton;
 
     private List<SeaObjectData> disabledSeaObjectDataList = new List<SeaObjectData>();
     private List<CoralPlantData> disabledCoralPlantDataList = new List<CoralPlantData>();
@@ -24,6 +25,7 @@ public class BagPopupController : MonoBehaviour, IPopup
         blockingButton = GetComponentInChildren<BlockingPanel>()?.GetComponent<Button>();
         plantMenuButton = GetComponentInChildren<PlantButton>()?.GetComponent<Button>();
         rockMenuButton = GetComponentInChildren<RockButton>()?.GetComponent<Button>();
+        coralPlantMenuButton = GetComponentInChildren<CoralPlantButton>()?.GetComponent<Button>();
     }
 
     void Start()
@@ -31,6 +33,7 @@ public class BagPopupController : MonoBehaviour, IPopup
         blockingButton.onClick.AddListener(OnBlockingPanelClick);
         plantMenuButton.onClick.AddListener(OnPlantButtonClick);
         rockMenuButton.onClick.AddListener(OnRockButtonClick);
+        coralPlantMenuButton.onClick.AddListener(OnCoralPlantClick);
     }
 
 #region IPopup
@@ -143,6 +146,28 @@ public class BagPopupController : MonoBehaviour, IPopup
         currentMenuType = ItemType.Rock;
     }
 
+    private void OnCoralPlantClick()
+    {
+        ClearItemsInContent();
+        
+        // Count each data into dictionary.
+        Dictionary<CoralPlantData, int> coralPlantDataDict = GetCountCoralPlantDict(disabledCoralPlantDataList);
+
+        // Instantiate Item.
+        foreach (var coralPlantPair in coralPlantDataDict)
+        {
+            if (coralPlantPair.Key.id == -1) return;
+
+            BagItemController itemCtrl = Instantiate(itemPrefab, bagContent.transform);
+            var coralPlantSO = GameManager.instance.scriptableObjectManager.TryGetCoralPlantSOById(coralPlantPair.Key.type_id);
+            if (coralPlantSO != null)
+            {
+                itemCtrl.Setup(this, coralPlantSO, coralPlantPair.Value);
+            }
+        }
+        currentMenuType = ItemType.Rock;
+    }
+
     // Count each data into dictionary.
     private Dictionary<SeaObjectData, int> GetCountSeaObjectDataDict(List<SeaObjectData> seaObjectDataList)
     {
@@ -156,6 +181,23 @@ public class BagPopupController : MonoBehaviour, IPopup
             else
             {
                 resultDict[seaPlantData] = 1;
+            }
+        }
+        return resultDict;
+    }
+
+    private Dictionary<CoralPlantData, int> GetCountCoralPlantDict(List<CoralPlantData> coralPlantDataList)
+    {
+        Dictionary<CoralPlantData, int> resultDict = new Dictionary<CoralPlantData, int>();
+        foreach (var coralPlantData in coralPlantDataList)
+        {
+            if (resultDict.ContainsKey(coralPlantData))
+            {
+                resultDict[coralPlantData] += 1;
+            }
+            else
+            {
+                resultDict.Add(coralPlantData, 1);
             }
         }
         return resultDict;
