@@ -67,15 +67,18 @@ public class BagPopupController : MonoBehaviour, IPopup
     private void OnDisabledCoralPlantDataListUpdate(List<CoralPlantData> coralPlantDataList)
     {
         this.disabledCoralPlantDataList = coralPlantDataList;
-        if (currentMenuType == ItemType.Plant) OnPlantButtonClick(); // Load Plant content
-        if (currentMenuType == ItemType.Rock) OnRockButtonClick(); // Load Rock content
+        OnCoralPlantClick(); // Load Rock content
     }
 #endregion
 
 #region Button Event
-    public void OnUseButtonClick(int type_id)
+    public void OnUseButtonClick(int type_id, ItemType itemType)
     {
-        popupManager.LoadSeaObjectFromBag(type_id);
+        if (itemType == ItemType.Plant || itemType == ItemType.Rock)
+            popupManager.LoadSeaObjectFromBag(type_id);
+
+        if (itemType == ItemType.Coral)
+            popupManager.LoadCoralPlantFromBag(type_id);
     }
 
     // Outside of the current UI is clicked -> Close the current UI.
@@ -149,7 +152,7 @@ public class BagPopupController : MonoBehaviour, IPopup
     private void OnCoralPlantClick()
     {
         ClearItemsInContent();
-        
+
         // Count each data into dictionary.
         Dictionary<CoralPlantData, int> coralPlantDataDict = GetCountCoralPlantDict(disabledCoralPlantDataList);
 

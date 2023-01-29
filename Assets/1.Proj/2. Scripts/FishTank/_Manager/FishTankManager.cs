@@ -75,6 +75,11 @@ public class FishTankManager : MonoBehaviour
         fishTankController.LoadSeaObjectFromBag(type_id);
     }
 
+    public void LoadCoralPlantFromBag(int type_id)
+    {
+        fishTankController.LoadCoralPlantFromBag(type_id);
+    }
+
     // Called when a new fish added.
     public void InstantiateSeaObject(SeaObjectData seaObjectData)
     {

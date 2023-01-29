@@ -179,5 +179,10 @@ public class PopupManager : MonoBehaviour
     {
         sceneManager.fishTankManager.LoadSeaObjectFromBag(type_id);
     }
+
+    public void LoadCoralPlantFromBag(int type_id)
+    {
+        sceneManager.fishTankManager.LoadCoralPlantFromBag(type_id);
+    }
 #endregion
 }
