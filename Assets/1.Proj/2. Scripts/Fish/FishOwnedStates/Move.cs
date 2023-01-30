@@ -36,6 +36,7 @@ namespace FishOwnedStates
 
         private GameObject testObject;
 
+        private bool isTransitToEat;
 #region Main
         public override void Enter(FishMovement fishMovement)
         {
@@ -50,6 +51,11 @@ namespace FishOwnedStates
             UpdateDeltaDynamics();
             MoveFish();
             testObject.transform.position = target;
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                fishMovement.ChangeState(FishState.Eat);
+            }
         }
 
         public override void Exit(FishMovement fishMovement)
@@ -257,6 +263,6 @@ namespace FishOwnedStates
         {
             currentFishMovement.ChangeState(newState);
         }
-    }
 #endregion
+    }
 }

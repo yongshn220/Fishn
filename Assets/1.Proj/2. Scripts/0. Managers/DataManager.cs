@@ -13,11 +13,25 @@ public class DataManager : MonoBehaviour
 {
     public bool isDataReady = false;
 
+    // Raw Data
     private UserData userData;
     private GameData gameData = null;
     public List<EntityData> entityDataList = new List<EntityData>();
     public List<SeaObjectData> seaObjectDataList = new List<SeaObjectData>();
     public List<CoralPlantData> coralPlantDataList = new List<CoralPlantData>();
+
+    // Sea Object Lists
+    private List<SeaObjectMono> enabledSeaObjectMonoList = new List<SeaObjectMono>(); // Instantiated
+    private List<SeaObjectData> disabledSeaObjectDataList = new List<SeaObjectData>(); // Uninstantiated 
+    public List<SeaObjectData> disabledSeaObjectDataListDeepCopy { get {return disabledSeaObjectDataList.DeepCopy();}}
+
+    // Coral Plant Lists
+    private List<CoralPlantMono> enabledCoralPlantMonoList = new List<CoralPlantMono>(); // Instantiated
+    private List<CoralPlantData> disabledCoralPlantDataList = new List<CoralPlantData>(); // Uninstantiated 
+    public List<CoralPlantData> disabledCoralPlantDataListDeepCopy { get {return disabledCoralPlantDataList.DeepCopy();}}
+    
+    public static event Action<List<SeaObjectData>> OnDisabledSeaObjectUpdate;
+    public static event Action<List<CoralPlantData>> OnDisabledCoralPlantUpdate;
 
 
 #region Load

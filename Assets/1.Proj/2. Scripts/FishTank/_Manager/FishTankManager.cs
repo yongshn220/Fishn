@@ -42,6 +42,16 @@ public class FishTankManager : MonoBehaviour
     {
         return fishTankController.GetCameraContainer();
     }
+    
+    public List<SeaObjectMono> GetEnabledSeaObjectMonoList()
+    {
+        return fishTankController.enabledSeaObjectMonoList;
+    }
+
+    public List<CoralPlantMono> GetEnabledCoralPlantMonoList()
+    {
+        return fishTankController.enabledCoralPlantMonoList;
+    }
 
     public List<SeaObjectData> GetDisabledSeaObjectDataList()
     {

@@ -52,4 +52,16 @@ public class ViewSceneManager : MonoBehaviour
         return new List<EntityData>(); // TO DO : need to handle the error situation.
     }
 #endregion
+
+#region FishTank
+    public List<SeaObjectMono> GetEnabledSeaObjectMonoList()
+    {
+        return fishTankManager.GetEnabledSeaObjectMonoList();
+    }
+
+    public List<CoralPlantMono> GetEnabledCoralPlantMonoList()
+    {
+        return fishTankManager.GetEnabledCoralPlantMonoList();
+    }
+#endregion
 }
