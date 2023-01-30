@@ -9,7 +9,7 @@ namespace FishOwnedStates
         private FishManager fishManager;
 
         private CoralPlantMono targetCoralPlantMono;
-        private FishMovement curFishMovement;
+        private FishMovement fishMovement;
 
         private Vector3 currentVelocity;
         private float speed;
@@ -22,7 +22,7 @@ namespace FishOwnedStates
         public override void Enter(FishMovement fishMovement)
         {
             this.fishManager = fishMovement.fishManager;
-            this.curFishMovement = fishMovement;
+            this.fishMovement = fishMovement;
             this.speed = UnityEngine.Random.Range(fishManager.minSpeed, fishManager.maxSpeed);
             
             var coralPlantMonoList = GameManager.instance.viewSceneManager.GetEnabledCoralPlantMonoList();
@@ -36,6 +36,7 @@ namespace FishOwnedStates
 
         public override void Exit(FishMovement fishMovement)
         {
+            Reset();
         }
 
         private CoralPlantMono SelectNearestCoral(List<CoralPlantMono> coralPlantMonoList)
@@ -45,7 +46,7 @@ namespace FishOwnedStates
             float minDistance = float.MaxValue;
             foreach (CoralPlantMono mono in coralPlantMonoList)
             {
-                float distance = Vector3.Distance(curFishMovement.transform.position, mono.transform.position);
+                float distance = Vector3.Distance(fishMovement.transform.position, mono.transform.position);
                 if (distance < minDistance)
                 {
                     minDistance = distance;
@@ -58,26 +59,38 @@ namespace FishOwnedStates
         private void TryEatCoral()
         {
             if (!isReachCoral) MoveTowardCoral(); return;
-
-
         }
 
         private void MoveTowardCoral()
         {
             if (targetCoralPlantMono == null) return;
 
-            Vector3 moveVector = targetCoralPlantMono.transform.position - curFishMovement.transform.position;
+            Vector3 moveVector = targetCoralPlantMono.transform.position - fishMovement.transform.position;
 
-            Vector3.SmoothDamp(curFishMovement.transform.position, targetCoralPlantMono.transform.position, ref currentVelocity, SmoothTime, 3);
+            moveVector = Vector3.SmoothDamp(fishMovement.transform.forward, moveVector, ref currentVelocity, SmoothTime, 1);
 
-            curFishMovement.transform.position += moveVector * speed * Time.deltaTime;
+            fishMovement.transform.forward = moveVector;
+            fishMovement.transform.position += moveVector * speed * Time.deltaTime;
 
-            float distSqr = Mathf.Pow(Vector3.Distance(curFishMovement.transform.position, targetCoralPlantMono.transform.position), 2);
+            CheckIfReachCoral();
+        }
+
+        private void CheckIfReachCoral()
+        {
+            float distSqr = Mathf.Pow(Vector3.Distance(fishMovement.transform.position, targetCoralPlantMono.transform.position), 2);
 
             if (distSqr < reachDistanceSqr)
             {
                 isReachCoral = true;
-            }
+                fishMovement.ChangeState(FishState.Move);
+            }   
+        }
+
+        private void Reset()
+        {
+            fishMovement = null;
+            targetCoralPlantMono = null;
+            isReachCoral = false;
         }
     }
 }
