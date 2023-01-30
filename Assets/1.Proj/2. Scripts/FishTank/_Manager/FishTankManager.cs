@@ -68,6 +68,11 @@ public class FishTankManager : MonoBehaviour
         fishTankController.UpdateAllSeaObjectMonoPosition();
     }
 
+    public void UpdateAllCoralPlantPosition()
+    {
+        fishTankController.UpdateAllCoralPlantPosition();
+    }
+
     // Take seaObject out from the bag to tank.
     public void RemoveSeaObjectFromTank(SeaObjectMono seaObjectMono)
     {

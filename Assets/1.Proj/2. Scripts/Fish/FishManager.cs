@@ -79,8 +79,8 @@ public class FishManager : MonoBehaviour
         if (entityData == null) return;
 
         GameObject entity = InstantiateFish(entityData);
-        EntityMono mono = entity.AddComponent<EntityMono>();
-        mono.Setup(entityData);
+        SetupEntityMono(entity, entityData);
+        SetupEntityAnimator(entity);
         SetupFishController(entity, entityData);
         SetupFishMovement(entity);
         entityList.Add(entity);
@@ -110,6 +110,18 @@ public class FishManager : MonoBehaviour
             return Instantiate(entityPrefab, spawnPosition, rotation);
         }
         return null;
+    }
+
+    private void SetupEntityAnimator(GameObject entity)
+    {
+        EntityAnimatorController animator = entity.AddComponent<EntityAnimatorController>();
+        animator.Setup();
+    }
+
+    private void SetupEntityMono(GameObject entity, EntityData entityData)
+    {
+        EntityMono mono = entity.AddComponent<EntityMono>();
+        mono.Setup(entityData);
     }
 
     private void SetupFishController(GameObject entity, EntityData entityData)

@@ -150,6 +150,7 @@ public class EditPopupController : MonoBehaviour, IPopup
         if (hitObject == null && results.Count == 0)
         {
             UpdateAllSeaObjectPosition();
+            
             ClosePopup();
         }
     }
@@ -176,6 +177,7 @@ public class EditPopupController : MonoBehaviour, IPopup
     private void UpdateAllSeaObjectPosition()
     {
         popupManager.UpdateAllSeaObjectPosition();
+        popupManager.UpdateAllCoralPlantPosition();
     }
 #endregion
 

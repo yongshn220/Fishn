@@ -123,6 +123,15 @@ public class FishTankController : MonoBehaviour
         SaveSeaObjectData();
     }
 
+    public void UpdateAllCoralPlantPosition()
+    {
+        foreach (CoralPlantMono data in enabledCoralPlantMonoList)
+        {
+            data.position = data.transform.position;
+        }
+        SaveCoralPlantData();
+    }
+
     public void RemoveSeaObjectFromTank(SeaObjectMono targetMono)
     {
         targetMono.instantiated = false;

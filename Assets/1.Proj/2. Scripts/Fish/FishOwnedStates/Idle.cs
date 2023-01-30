@@ -7,26 +7,30 @@ namespace FishOwnedStates
 {
     public class Idle : State<FishMovement>
     {
-        FishMovement currentEntity;
+        private FishMovement fishMovement;
 
-        bool isTransitToMoveReady = false;
+        private bool isTransitToMoveReady = false;
 
-        public override void Enter(FishMovement entity)
+        private float stateTime;
+        private float curStateTime = 0;
+
+        public override void Enter(FishMovement fishMovement)
         {
-            ResetState();
-            currentEntity = entity;
-            DoIdleAction();
+            this.fishMovement = fishMovement;
+            stateTime = UnityEngine.Random.Range(0, 3);
         }
 
-        public override void Execute(FishMovement entity)
+        public override void Execute(FishMovement fishMovement)
         {
-            if (isTransitToMoveReady)
+            if (curStateTime >= stateTime)
             {
-                entity.ChangeState(FishState.Move);
+                ChangeState();
             }
+
+            curStateTime += Time.deltaTime;
         }  
 
-        public override void Exit(FishMovement entity)
+        public override void Exit(FishMovement fishMovement)
         {
             ResetState();
         }
@@ -42,7 +46,17 @@ namespace FishOwnedStates
         private void ResetState()
         {
             isTransitToMoveReady = false;
-            currentEntity = null;
+            fishMovement = null;
+            curStateTime = 0;
+        }
+
+        private void ChangeState()
+        {
+            int rnum = UnityEngine.Random.Range(1,3);
+            
+            if (rnum == 1) { fishMovement.ChangeState(FishState.Move); return; }
+            
+            if (rnum == 2) { fishMovement.ChangeState(FishState.Eat); return; }
         }
     }
 }

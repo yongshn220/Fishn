@@ -126,6 +126,11 @@ public class PopupManager : MonoBehaviour
         sceneManager.fishTankManager.UpdateAllSeaObjectMonoPosition();
     }
 
+    public void UpdateAllCoralPlantPosition()
+    {
+        sceneManager.fishTankManager.UpdateAllCoralPlantPosition();
+    }
+
     public RectTransform GetRectTransform()
     {
         return transform.GetComponent<RectTransform>();

@@ -37,6 +37,10 @@ namespace FishOwnedStates
         private GameObject testObject;
 
         private bool isTransitToEat;
+
+        private float stateTime; // How long the entity will 'Move.'
+        private float curStateTime;
+
 #region Main
         public override void Enter(FishMovement fishMovement)
         {
@@ -51,15 +55,11 @@ namespace FishOwnedStates
             UpdateDeltaDynamics();
             MoveFish();
             testObject.transform.position = target;
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                fishMovement.ChangeState(FishState.Eat);
-            }
         }
 
         public override void Exit(FishMovement fishMovement)
         {
+            Reset();
         }
 #endregion
 
@@ -71,10 +71,18 @@ namespace FishOwnedStates
             SetupMovePoint();
             SetMovePointCenter();
             SetMovePointArea();
+            SetAnimatorSwim(true);
+        }
+
+        private void SetAnimatorSwim(bool state)
+        {
+            currentFishMovement.GetComponent<EntityAnimatorController>()?.SetBoolAnimator(AnimatorType.IsSwim, state);
         }
 
         private void SetupTime()
         {
+            stateTime = UnityEngine.Random.Range(5, 10);
+
             movePointTime = UnityEngine.Random.Range(fishManager.minMovePointTime, fishManager.maxMovePointTime);
             targetTimeX = UnityEngine.Random.Range(fishManager.minMovePointTargetTime, fishManager.maxMovePointTargetTime);
             targetTimeY = UnityEngine.Random.Range(fishManager.minMovePointTargetTime, fishManager.maxMovePointTargetTime);
@@ -102,6 +110,12 @@ namespace FishOwnedStates
                 TestSetIcon(unSelectedMovePointList[i].gameObject);
                 unSelectedMovePointList.RemoveAt(i);
             }
+        }
+
+        private void Reset()
+        {
+            SetAnimatorSwim(false);
+            curStateTime = 0;
         }
         
         private void TestSetIcon(GameObject gameObject)
@@ -179,6 +193,17 @@ namespace FishOwnedStates
             UpdateCurrentTargetAreaY();
             UpdateSmoothDampTime();
             UpdateCurrentSpeed();
+            UpdateStateTime();
+        }
+
+        private void UpdateStateTime()
+        {
+            if (curStateTime >= stateTime)
+            {
+                currentFishMovement.ChangeState(FishState.Idle); return;
+            }
+
+            curStateTime += Time.deltaTime;
         }
 
         // Update move point target (dynamic x position)

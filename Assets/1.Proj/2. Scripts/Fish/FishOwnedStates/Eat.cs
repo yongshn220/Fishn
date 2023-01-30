@@ -18,6 +18,8 @@ namespace FishOwnedStates
         private float reachDistanceSqr = 3.0f;
         private bool isReachCoral = false;
         
+        private float eatTime = 3.0f;
+        private float curEatTime = 0;
 
         public override void Enter(FishMovement fishMovement)
         {
@@ -36,12 +38,18 @@ namespace FishOwnedStates
 
         public override void Exit(FishMovement fishMovement)
         {
+            SetAnimatorEat(false);
             Reset();
+        }
+
+#region Setup
+        private void SetAnimatorEat(bool state)
+        {
+            fishMovement.GetComponent<EntityAnimatorController>()?.SetBoolAnimator(AnimatorType.IsEat, state);
         }
 
         private CoralPlantMono SelectNearestCoral(List<CoralPlantMono> coralPlantMonoList)
         {
-            Debug.Log("a");
             CoralPlantMono selectedCoralPlantMono = coralPlantMonoList[0];
             float minDistance = float.MaxValue;
             foreach (CoralPlantMono mono in coralPlantMonoList)
@@ -55,10 +63,22 @@ namespace FishOwnedStates
             }
             return selectedCoralPlantMono;
         }
+#endregion
 
         private void TryEatCoral()
         {
-            if (!isReachCoral) MoveTowardCoral(); return;
+            if (!isReachCoral) 
+            { 
+                MoveTowardCoral(); 
+                return; 
+            }
+
+            if (curEatTime < eatTime)
+            {
+                curEatTime += Time.deltaTime;
+                return;
+            }
+            fishMovement.ChangeState(FishState.Move);
         }
 
         private void MoveTowardCoral()
@@ -82,7 +102,7 @@ namespace FishOwnedStates
             if (distSqr < reachDistanceSqr)
             {
                 isReachCoral = true;
-                fishMovement.ChangeState(FishState.Move);
+                SetAnimatorEat(true);
             }   
         }
 
@@ -90,6 +110,7 @@ namespace FishOwnedStates
         {
             fishMovement = null;
             targetCoralPlantMono = null;
+            curEatTime = 0;
             isReachCoral = false;
         }
     }
