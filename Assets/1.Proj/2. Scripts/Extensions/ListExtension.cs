@@ -65,7 +65,7 @@ public static class ListExtension
         List<EntityData> newList = new List<EntityData>();
         foreach (var data in dataList)
         {
-            newList.Add(new EntityData(data.id, data.type_id, data.born_datetime, data.feed_datetime));
+            newList.Add(new EntityData(data.id, data.type_id, data.born_datetime, data.feed_datetime, data.feed));
         }
         return newList;
     }
@@ -120,7 +120,7 @@ public static class ListExtension
 
         foreach(var mono in monoList)
         {
-            EntityData data = new EntityData(mono.id, mono.type_id, mono.born_datetime, mono.feed_datetime);
+            EntityData data = new EntityData(mono.id, mono.type_id, mono.born_datetime, mono.feed_datetime, mono.feed);
             dataList.Add(data);
         }
         return dataList;

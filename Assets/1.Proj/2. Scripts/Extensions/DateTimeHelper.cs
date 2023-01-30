@@ -26,13 +26,13 @@ public static class DateTimeExtension
 
     public static int GetDayPassedFromNow(this DateTime dateTime)
     {
-        TimeSpan delta = dateTime - DateTime.Now;
+        TimeSpan delta = DateTime.Now - dateTime;
         return (int) delta.TotalDays;
     }
 
     public static int GetHourPassedFromNow(this DateTime dateTime)
     {
-        TimeSpan delta = dateTime - DateTime.Now;
+        TimeSpan delta = DateTime.Now - dateTime;
         return (int) delta.TotalHours;
     }
 }

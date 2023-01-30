@@ -88,6 +88,7 @@ public static class DatabaseHelper
         Debug.Log(entityData.born_datetime.ToFormatString());
         jObject[DBstr.BORN_DATETIME] = entityData.born_datetime.ToFormatString();
         jObject[DBstr.FEED_DATETIME] = entityData.feed_datetime.ToFormatString();
+        jObject[DBstr.FEED] = entityData.feed;
         return jObject;
     }
 
@@ -136,6 +137,23 @@ public static class DatabaseHelper
         return new GameData(id, tank_id, coral);
     }
 
+    private static List<EntityData> GetEntityDataListFromJson(JToken fishDataJson)
+    {
+        List<EntityData> entityDataList = new List<EntityData>();
+
+        foreach(var fish in fishDataJson)
+        {
+            int id = (int) fish[DBstr.ID];
+            int type_id = (int) fish[DBstr.TYPE_ID];
+            DateTime born_datetime = DateTime.Parse((string) fish[DBstr.BORN_DATETIME]); // TO DO : handling parse fail.
+            DateTime feed_datetime = DateTime.Parse((string) fish[DBstr.FEED_DATETIME]); // TO DO : handling parse fail.
+            int feed = (int) fish[DBstr.FEED];
+            EntityData entityData = new EntityData(id, type_id, born_datetime, feed_datetime, feed);
+            entityDataList.Add(entityData);
+        }
+        return entityDataList;
+    }
+
     private static List<SeaObjectData> GetSeaObjectDataListFromJson(JToken seaObjectDataJson)
     {
         List<SeaObjectData> seaObjectDataList = new List<SeaObjectData>();
@@ -174,22 +192,6 @@ public static class DatabaseHelper
         return coralPlantDataList;
     }
 
-    private static List<EntityData> GetEntityDataListFromJson(JToken fishDataJson)
-    {
-        List<EntityData> entityDataList = new List<EntityData>();
-
-        foreach(var fish in fishDataJson)
-        {
-            int id = (int) fish[DBstr.ID];
-            int type_id = (int) fish[DBstr.TYPE_ID];
-            DateTime born_datetime = DateTime.Parse((string) fish[DBstr.BORN_DATETIME]); // TO DO : handling parse fail.
-            DateTime feed_datetime = DateTime.Parse((string) fish[DBstr.FEED_DATETIME]); // TO DO : handling parse fail.
-
-            EntityData entityData = new EntityData(id, type_id, born_datetime, feed_datetime);
-            entityDataList.Add(entityData);
-        }
-        return entityDataList;
-    }
 #endregion
     private static void PrintUserData()
     {

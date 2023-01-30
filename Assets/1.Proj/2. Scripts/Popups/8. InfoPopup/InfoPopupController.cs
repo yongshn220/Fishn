@@ -115,7 +115,7 @@ public class InfoPopupController : MonoBehaviour, IPopup
         var entitySO = GameManager.instance.scriptableObjectManager.TryGetEntitySOById(mono.type_id);
         nameText.text = entitySO.name;
         ageText.text = $"{mono.born_datetime.GetDayPassedFromNow()}";
-        feedText.text = $"{mono.feed_datetime.GetHourPassedFromNow()} hrs ago.";
+        feedText.text = $"{100 - (mono.feed_datetime.GetHourPassedFromNow() * 2) } %";
 
         // Pointing activate
         selectPointTr.gameObject.SetActive(true);

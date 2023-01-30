@@ -13,7 +13,7 @@ public class PurchaseManager : MonoBehaviour
 
         if (type == ItemType.Entity)
         {
-            EntityData newData = new EntityData(-1, type_id, DateTime.Now, DateTime.Now);
+            EntityData newData = new EntityData(-1, type_id, DateTime.Now, DateTime.Now, 0);
             newData.id = await GameManager.instance.dataManager.AddEntity(newData);
             GameManager.instance.viewSceneManager.fishManager.GenerateEntity(newData);
         }

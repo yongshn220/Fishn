@@ -24,6 +24,7 @@ public static class DBstr
     // Data Struct
     public const string ID = "id";
     public const string TYPE_ID = "type_id";
+    public const string FEED = "feed";
     public const string POSX = "posx";
     public const string POSY = "posy";
     public const string POSZ = "posz";
