@@ -7,7 +7,7 @@ public class CoralPlantMono : MonoBehaviour
     public int id;
     public int type_id;
     public new string name;
-    public int unitPrice;
+    public int unitCoral;
     public Vector3 position;
     public bool instantiated = false;
 
@@ -19,7 +19,7 @@ public class CoralPlantMono : MonoBehaviour
         this.instantiated = data.instantiated;
 
         this.name = coralSO.name;
-        this.unitPrice = coralSO.unitPrice;
+        this.unitCoral = coralSO.unitCoral;
     }
 
     public CoralPlantData ToData()

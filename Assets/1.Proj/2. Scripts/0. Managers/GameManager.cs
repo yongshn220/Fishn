@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public ScriptableObjectManager scriptableObjectManager;
     [HideInInspector] public ViewSceneManager viewSceneManager;
     [HideInInspector] public PurchaseManager purchaseManager;
+    [HideInInspector] public DelegateManager delegateManager;
 
     void Awake()
     {
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
         dataManager = GetComponentInChildren<DataManager>();
         scriptableObjectManager = GetComponentInChildren<ScriptableObjectManager>();
         purchaseManager = GetComponentInChildren<PurchaseManager>();
+        delegateManager = GetComponentInChildren<DelegateManager>();
     }
 
     void Start()

@@ -8,5 +8,6 @@ public class EntityScriptableObjectStructure
     public string name;
     public int coral;
     public ItemType type;
+    public int maxFeed;
     public GameObject prefab;
 }

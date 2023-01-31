@@ -49,6 +49,13 @@ public static class DatabaseHelper
         }
         string res = await database.AsyncSaveCoralPlantData(UID, jArray);
     }
+
+    public static async UniTaskVoid SaveEntityData(EntityData entityData)
+    {
+        JObject jObject = new JObject();
+        jObject = ConvertEntityToJson(entityData);
+        string res = await database.AsyncSaveEntityData(UID, jObject);
+    }
 #endregion
 
 #region Add
@@ -85,7 +92,6 @@ public static class DatabaseHelper
         JObject jObject = new JObject();
         jObject[DBstr.ID] = entityData.id;
         jObject[DBstr.TYPE_ID] = entityData.type_id;
-        Debug.Log(entityData.born_datetime.ToFormatString());
         jObject[DBstr.BORN_DATETIME] = entityData.born_datetime.ToFormatString();
         jObject[DBstr.FEED_DATETIME] = entityData.feed_datetime.ToFormatString();
         jObject[DBstr.FEED] = entityData.feed;

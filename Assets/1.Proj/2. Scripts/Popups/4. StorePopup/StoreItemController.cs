@@ -50,7 +50,7 @@ public class StoreItemController : MonoBehaviour
         this.type = coralPlant.type;
         this.coral = coralPlant.coral;
         this.coralValue.text = this.coral.ToString();
-        this.itemName.text = coralPlant.name + $" [{coralPlant.unitPrice}]";
+        this.itemName.text = coralPlant.name + $" [{coralPlant.unitCoral}]";
     }
 
     private void OnBuyButtonClick()

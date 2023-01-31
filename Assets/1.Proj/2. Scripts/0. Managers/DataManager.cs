@@ -20,20 +20,6 @@ public class DataManager : MonoBehaviour
     public List<SeaObjectData> seaObjectDataList = new List<SeaObjectData>();
     public List<CoralPlantData> coralPlantDataList = new List<CoralPlantData>();
 
-    // Sea Object Lists
-    private List<SeaObjectMono> enabledSeaObjectMonoList = new List<SeaObjectMono>(); // Instantiated
-    private List<SeaObjectData> disabledSeaObjectDataList = new List<SeaObjectData>(); // Uninstantiated 
-    public List<SeaObjectData> disabledSeaObjectDataListDeepCopy { get {return disabledSeaObjectDataList.DeepCopy();}}
-
-    // Coral Plant Lists
-    private List<CoralPlantMono> enabledCoralPlantMonoList = new List<CoralPlantMono>(); // Instantiated
-    private List<CoralPlantData> disabledCoralPlantDataList = new List<CoralPlantData>(); // Uninstantiated 
-    public List<CoralPlantData> disabledCoralPlantDataListDeepCopy { get {return disabledCoralPlantDataList.DeepCopy();}}
-    
-    public static event Action<List<SeaObjectData>> OnDisabledSeaObjectUpdate;
-    public static event Action<List<CoralPlantData>> OnDisabledCoralPlantUpdate;
-
-
 #region Load
 
     public void LoadUserData() => AsyncLoadUserData().Forget();
@@ -55,14 +41,19 @@ public class DataManager : MonoBehaviour
 #region Save
     public void SaveSeaObjectData(List<SeaObjectData> seaObjectDataList)
     {
-        this.seaObjectDataList = seaObjectDataList;
+        this.seaObjectDataList = seaObjectDataList; // Sync Data
         DatabaseHelper.SaveSeaObjectData(seaObjectDataList).Forget();
     }
 
     public void SaveCoralPlantData(List<CoralPlantData> coralPlantDataList)
     {
-        this.coralPlantDataList = coralPlantDataList;
+        this.coralPlantDataList = coralPlantDataList; // Sync Data
         DatabaseHelper.SaveCoralPlantData(coralPlantDataList).Forget();
+    }
+
+    public void SaveEntityData(EntityData entityData)
+    {
+        DatabaseHelper.SaveEntityData(entityData).Forget();
     }
 #endregion
 
@@ -84,6 +75,7 @@ public class DataManager : MonoBehaviour
         int id = await DatabaseHelper.AddCoralPlant(newData);
         return id;
     }
+
 #endregion
 
     public int GetUserTankId()
