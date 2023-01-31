@@ -16,7 +16,7 @@ public class InfoPopupController : MonoBehaviour, IPopup
     private Transform selectPointTr;
     private bool isSetup = false;
 
-    private GameObject selectedEntity;
+    private EntityMono selectedEntity;
 
     void Awake()
     {
@@ -55,16 +55,28 @@ public class InfoPopupController : MonoBehaviour, IPopup
     {
         this.popupManager = popupManager;
         this.camera = GameManager.instance.viewSceneManager?.cameraManager.GetBrainCamera();
+        DelegateManager.OnEntityMonoUpdate += OnEntityMonoUpdate;
         this.isSetup = true;
     }
 #endregion
 
-#region Update / Action Callback
+#region Update
     private void UpdateSelectPointPosition()
     {
         // set SelectPoint points the selected Entity.
         Vector3 worldPosition = selectedEntity.transform.position + (Vector3.up * selectedEntity.GetComponent<CapsuleCollider>().radius);
         selectPointTr.position = camera.WorldToScreenPoint(worldPosition);
+    }
+#endregion
+
+#region Delegate Callback
+    private void OnEntityMonoUpdate(EntityMono mono)
+    {
+
+        if (!selectedEntity) return;
+        if (selectedEntity != mono) return;
+
+        OpenSelectedEntityInfo();
     }
 #endregion
 
@@ -92,7 +104,7 @@ public class InfoPopupController : MonoBehaviour, IPopup
         // Object selected -> Save selected Object
         if (hitEntity)
         {
-            selectedEntity = hitEntity;
+            selectedEntity = hitEntity.GetComponent<EntityMono>();
             OpenSelectedEntityInfo();
         }
     }
@@ -119,7 +131,7 @@ public class InfoPopupController : MonoBehaviour, IPopup
         var entitySO = GameManager.instance.scriptableObjectManager.TryGetEntitySOById(mono.type_id);
         nameText.text = entitySO.name;
         ageText.text = $"{mono.born_datetime.GetDayPassedFromNow()}";
-        feedText.text = $"{(int)(mono.feed / mono.maxFeed) * 100} %";
+        feedText.text = $"{ (float)mono.feed / (float)mono.maxFeed * 100 } %";
 
         // Pointing activate
         selectPointTr.gameObject.SetActive(true);

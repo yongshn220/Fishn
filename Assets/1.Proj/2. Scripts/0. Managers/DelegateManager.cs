@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class DelegateManager : MonoBehaviour
 {
-    
-    public static event Action<List<EntityMono>> OnEntityMonoUpdate;
+    public static event Action<EntityMono> OnEntityMonoUpdate;
+
     public static event Action<List<SeaObjectData>> OnDisabledSeaObjectUpdate;
     public static event Action<List<CoralPlantData>> OnDisabledCoralPlantUpdate;
 
-    public static void InvokeOnEntityMonoUpdate(List<EntityMono> monoList)
+    public static void InvokeOnEntityMonoUpdate(EntityMono mono)
     {
-        OnEntityMonoUpdate.Invoke(monoList);
+        OnEntityMonoUpdate.Invoke(mono);
     }
 
     public static void InvokeOnDisabledSeaObjectUpdate(List<SeaObjectData> dataList)

@@ -46,7 +46,7 @@ namespace FishOwnedStates
         {
             currentFishMovement = fishMovement;
             fishManager = fishMovement.fishManager;
-            testObject = Transform.Instantiate(fishManager.testObject);
+            // testObject = Transform.Instantiate(fishManager.testObject);
             Setup();
         }
 
@@ -54,7 +54,7 @@ namespace FishOwnedStates
         {
             UpdateDeltaDynamics();
             MoveFish();
-            testObject.transform.position = target;
+            // testObject.transform.position = target;
         }
 
         public override void Exit(FishMovement fishMovement)

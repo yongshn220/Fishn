@@ -36,9 +36,10 @@ public class EntityMono : MonoBehaviour
         feed += amount;
         if (feed > maxFeed) feed = maxFeed;
     }
-
+    
     public void SaveData()
     {
+        DelegateManager.InvokeOnEntityMonoUpdate(this);
         GameManager.instance.dataManager.SaveEntityData(ToData());
     }
 }

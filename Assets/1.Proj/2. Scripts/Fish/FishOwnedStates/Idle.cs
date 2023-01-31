@@ -9,8 +9,6 @@ namespace FishOwnedStates
     {
         private FishMovement fishMovement;
 
-        private bool isTransitToMoveReady = false;
-
         private float stateTime;
         private float curStateTime = 0;
 
@@ -35,17 +33,8 @@ namespace FishOwnedStates
             ResetState();
         }
 
-        private void DoIdleAction()
-        {   
-            int randomTime = UnityEngine.Random.Range(1, 4) * 1000;
-            Task.Delay(randomTime).ContinueWith((task) => {
-                isTransitToMoveReady = true;
-            });
-        }
-
         private void ResetState()
         {
-            isTransitToMoveReady = false;
             fishMovement = null;
             curStateTime = 0;
         }
@@ -56,7 +45,12 @@ namespace FishOwnedStates
             
             if (rnum == 1) { fishMovement.ChangeState(FishState.Move); return; }
             
-            if (rnum == 2) { fishMovement.ChangeState(FishState.Eat); return; }
+            if (rnum == 2) 
+            { 
+                EntityMono mono = fishMovement.GetComponent<EntityMono>();
+                if (mono.feed < mono.maxFeed)
+                    fishMovement.ChangeState(FishState.Eat); return; 
+            }
         }
     }
 }

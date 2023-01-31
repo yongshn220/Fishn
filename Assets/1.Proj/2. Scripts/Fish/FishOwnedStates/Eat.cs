@@ -33,7 +33,8 @@ namespace FishOwnedStates
 
         public override void Execute(FishMovement fishMovement)
         {
-            EatAction();
+            if (!TryMoveTowardCoral()) return; 
+            EatCoral();
         }
 
         public override void Exit(FishMovement fishMovement)
@@ -64,15 +65,6 @@ namespace FishOwnedStates
             return selectedCoralPlantMono;
         }
 #endregion
-
-        private void EatAction()
-        {
-            TryMoveTowardCoral(); 
-            EatCoral();
-
-            fishMovement.ChangeState(FishState.Move);
-        }
-
         private void EatCoral()
         {
             if (curEatTime < eatTime)
@@ -84,12 +76,13 @@ namespace FishOwnedStates
             EntityMono mono = fishMovement.GetComponent<EntityMono>();
             mono.Feed(targetCoralPlantMono.unitCoral);
             mono.SaveData();
+            fishMovement.ChangeState(FishState.Move);
         }
 
-        private void TryMoveTowardCoral()
+        private bool TryMoveTowardCoral()
         {
-            if (isReachCoral) return;
-            if (targetCoralPlantMono == null) return;
+            if (isReachCoral) return true;
+            if (targetCoralPlantMono == null) return false;
 
             Vector3 moveVector = targetCoralPlantMono.transform.position - fishMovement.transform.position;
 
@@ -99,6 +92,7 @@ namespace FishOwnedStates
             fishMovement.transform.position += moveVector * speed * Time.deltaTime;
 
             CheckIfReachCoral();
+            return false;
         }
 
         private void CheckIfReachCoral()
