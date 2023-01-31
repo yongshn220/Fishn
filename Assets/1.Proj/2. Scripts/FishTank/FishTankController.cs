@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-
-
 public class FishTankController : MonoBehaviour
 {
     [SerializeField]
@@ -23,9 +21,6 @@ public class FishTankController : MonoBehaviour
     public List<CoralPlantMono> enabledCoralPlantMonoList = new List<CoralPlantMono>(); // Instantiated
     private List<CoralPlantData> disabledCoralPlantDataList = new List<CoralPlantData>(); // Uninstantiated 
     public List<CoralPlantData> disabledCoralPlantDataListDeepCopy { get {return disabledCoralPlantDataList.DeepCopy();}}
-    
-    public static event Action<List<SeaObjectData>> OnDisabledSeaObjectUpdate;
-    public static event Action<List<CoralPlantData>> OnDisabledCoralPlantUpdate;
     
     void Awake()
     {
@@ -138,7 +133,7 @@ public class FishTankController : MonoBehaviour
         enabledSeaObjectMonoList.Remove(targetMono);
         disabledSeaObjectDataList.Add(targetMono.ToData());
         Destroy(targetMono.gameObject);
-        OnDisabledSeaObjectUpdate?.Invoke(disabledSeaObjectDataListDeepCopy); // Event Invoke.
+        DelegateManager.InvokeOnDisabledSeaObjectUpdate(disabledSeaObjectDataListDeepCopy);
         SaveSeaObjectData();
     }
 
@@ -148,7 +143,7 @@ public class FishTankController : MonoBehaviour
         enabledCoralPlantMonoList.Remove(targetMono);
         disabledCoralPlantDataList.Add(targetMono.ToData());
         Destroy(targetMono.gameObject);
-        OnDisabledCoralPlantUpdate?.Invoke(disabledCoralPlantDataListDeepCopy); // Event Invoke.
+        DelegateManager.InvokeOnDisabledCoralPlantUpdate(disabledCoralPlantDataListDeepCopy);
         SaveCoralPlantData();
     }
 
@@ -165,7 +160,7 @@ public class FishTankController : MonoBehaviour
                 break;
             }
         }
-        OnDisabledSeaObjectUpdate?.Invoke(disabledSeaObjectDataListDeepCopy); // Delegate Invoke.
+        DelegateManager.InvokeOnDisabledSeaObjectUpdate(disabledSeaObjectDataListDeepCopy);
         SaveSeaObjectData();
     }
 
@@ -182,7 +177,7 @@ public class FishTankController : MonoBehaviour
                 break;
             }
         }
-        OnDisabledCoralPlantUpdate?.Invoke(disabledCoralPlantDataListDeepCopy); // Delegate Invoke.
+        DelegateManager.InvokeOnDisabledCoralPlantUpdate(disabledCoralPlantDataListDeepCopy);
         SaveCoralPlantData();
     }
 #endregion

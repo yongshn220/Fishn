@@ -41,9 +41,9 @@ public class BagPopupController : MonoBehaviour, IPopup
     {
         this.popupManager = popupManager;
         this.disabledSeaObjectDataList = popupManager.GetDisabledSeaObjectDataList();         // disabledObject -> put in Bag.
-        this.disabledCoralPlantDataList = popupManager.GetDisabledCoralPlantDataList();        
-        FishTankController.OnDisabledSeaObjectUpdate += OnDisabledSeaObjectDataListUpdate;    // Add Listener to Event.
-        FishTankController.OnDisabledCoralPlantUpdate += OnDisabledCoralPlantDataListUpdate;
+        this.disabledCoralPlantDataList = popupManager.GetDisabledCoralPlantDataList();
+        DelegateManager.OnDisabledSeaObjectUpdate += OnDisabledSeaObjectDataListUpdate;  
+        DelegateManager.OnDisabledCoralPlantUpdate += OnDisabledCoralPlantDataListUpdate;
         OnPlantButtonClick();
     }
 
