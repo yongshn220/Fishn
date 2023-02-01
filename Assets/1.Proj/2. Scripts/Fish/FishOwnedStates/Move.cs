@@ -59,7 +59,14 @@ namespace FishOwnedStates
 
         public override void Exit(FishMovement fishMovement)
         {
+            UseEnerge();
             Reset();
+        }
+
+        private void UseEnerge()
+        {
+            // 1 sec -> 1 feed decreased.
+            currentFishMovement.GetComponent<EntityMono>()?.UseFeed((int)stateTime);
         }
 #endregion
 

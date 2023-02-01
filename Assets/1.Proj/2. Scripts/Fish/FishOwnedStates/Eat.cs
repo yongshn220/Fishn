@@ -28,6 +28,7 @@ namespace FishOwnedStates
             this.speed = UnityEngine.Random.Range(fishManager.minSpeed, fishManager.maxSpeed);
             
             var coralPlantMonoList = GameManager.instance.viewSceneManager.GetEnabledCoralPlantMonoList();
+            if (coralPlantMonoList.Count == 0) fishMovement.ChangeState(FishState.Idle);
             this.targetCoralPlantMono = SelectNearestCoral(coralPlantMonoList);
         }
 
@@ -74,8 +75,7 @@ namespace FishOwnedStates
             }
 
             EntityMono mono = fishMovement.GetComponent<EntityMono>();
-            mono.Feed(targetCoralPlantMono.unitCoral);
-            mono.SaveData();
+            mono.GetFeed(targetCoralPlantMono.unitCoral);
             fishMovement.ChangeState(FishState.Move);
         }
 
