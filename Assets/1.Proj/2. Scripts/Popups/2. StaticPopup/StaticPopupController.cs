@@ -14,7 +14,9 @@ public class StaticPopupController : MonoBehaviour, IPopup
     public void Setup(PopupManager popupManager)
     {
         this.popupManager = popupManager;
-        coralText.text = Fishn.Wallet.coral.ToString();
+        DelegateManager.OnCoralUpdate += OnCoralUpdate;
+        
+        coralText.text = Wallet.coral.ToString();
     }
 
     public void Enable()
@@ -25,6 +27,13 @@ public class StaticPopupController : MonoBehaviour, IPopup
     public void Disable()
     {
         
+    }
+#endregion
+
+#region Action Callback
+    private void OnCoralUpdate()
+    {
+        coralText.text = Wallet.coral.ToString();
     }
 #endregion
 }

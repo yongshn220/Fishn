@@ -23,14 +23,14 @@ MonoBehaviour:
   - id: 1
     name: '[S] Batched Coral 1'
     coral: 10
-    unitCoral: 10
+    unitCoral: 20
     type: 4
     size: 0
     prefab: {fileID: 3746585628959446744, guid: a03c61d2973024254bbb2c2add088fde, type: 3}
   - id: 2
     name: '[S] Bulbous Coral 1'
     coral: 10
-    unitCoral: 10
+    unitCoral: 30
     type: 4
     size: 0
     prefab: {fileID: 1055494117270305969, guid: 3859bc3106563449d8da6c41a43b25fa, type: 3}

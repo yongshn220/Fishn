@@ -32,13 +32,18 @@ public class DataManager : MonoBehaviour
         seaObjectDataList = userData.seaObjectDataList;
         coralPlantDataList = userData.coralPlantDataList;
 
-        Fishn.Wallet.SetCoral(gameData.coral); 
+        Wallet.SetCoral(gameData.coral); 
         isDataReady = true;
     }
 
 #endregion
 
 #region Save
+    public void SaveCoral(int coral)
+    {
+        DatabaseHelper.SaveCoral(coral).Forget();
+    }
+
     public void SaveSeaObjectData(List<SeaObjectData> seaObjectDataList)
     {
         this.seaObjectDataList = seaObjectDataList; // Sync Data

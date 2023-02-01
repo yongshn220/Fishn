@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
-using Fishn;
 using Cysharp.Threading.Tasks;
 
-public class PurchaseManager : MonoBehaviour
+public class PurchaseManager : MonoBehaviour // to do: change class name -> TransactionManager
 {
     public async UniTask<bool> TryPurchase(int type_id, ItemType type, int coral)
     {
-        if (!Fishn.Wallet.HasEnough(coral)) return false;
+        if (!Wallet.HasEnough(coral)) return false;
 
         if (type == ItemType.Entity)
         {

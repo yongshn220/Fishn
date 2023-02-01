@@ -28,6 +28,13 @@ public static class DatabaseHelper
 #endregion
 
 #region Save
+    public static async UniTaskVoid SaveCoral(int coral)
+    {
+        JObject jObject = new JObject();
+        jObject[DBstr.CORAL] = coral;
+        string res = await database.AsyncSaveCoral(UID, jObject);
+    }
+
     public static async UniTaskVoid SaveSeaObjectData(List<SeaObjectData> seaObjectDataList)
     {
         JArray jArray = new JArray();

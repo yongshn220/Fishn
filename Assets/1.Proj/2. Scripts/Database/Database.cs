@@ -22,6 +22,14 @@ public class Database
 #endregion
 
 #region Save
+    public async UniTask<string> AsyncSaveCoral(string uid, JObject jObject)
+    {
+        JObject json = new JObject();
+        json["uid"] = uid;
+        json["data"] = jObject;
+        return await AsyncPostWebRequest(json, "save/coral");
+    }
+
     public async UniTask<string> AsyncSaveSeaObjectData(string uid, JArray jArray)
     {
         JObject json = new JObject();

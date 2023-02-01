@@ -76,6 +76,7 @@ namespace FishOwnedStates
 
             EntityMono mono = fishMovement.GetComponent<EntityMono>();
             mono.GetFeed(targetCoralPlantMono.unitCoral);
+            Wallet.Earn((int) (targetCoralPlantMono.unitCoral / 10));
             fishMovement.ChangeState(FishState.Move);
         }
 
