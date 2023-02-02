@@ -31,7 +31,7 @@ public class PurchaseManager : MonoBehaviour // to do: change class name -> Tran
             GameManager.instance.viewSceneManager.fishTankManager.InstantiateCoralPlant(newData);
         }
 
-        // Fishn.Wallet.Use(coral);
+        Wallet.Use(coral);
 
 
         return true;

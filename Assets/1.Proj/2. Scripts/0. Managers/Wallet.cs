@@ -29,6 +29,7 @@ public static class Wallet
         if (HasEnough(amount))
         {
             _coral = _coral - amount;
+            Save();
             return true;
         }
         return false;
