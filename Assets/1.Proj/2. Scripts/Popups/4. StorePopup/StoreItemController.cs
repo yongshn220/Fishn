@@ -53,6 +53,16 @@ public class StoreItemController : MonoBehaviour
         this.itemName.text = coralPlant.name + $" [{coralPlant.unitCoral}]";
     }
 
+    public void Setup(StorePopupController popupController, FishTankScriptableObjectStructure fishTank)
+    {
+        this.popupController = popupController;
+        this.id = fishTank.id;
+        this.type = fishTank.type;
+        this.coral = fishTank.coral;
+        this.coralValue.text = this.coral.ToString();
+        this.itemName.text = fishTank.name;
+    }
+
     private void OnBuyButtonClick()
     {
         popupController.OnBuyButtonClick(id, type, coral);

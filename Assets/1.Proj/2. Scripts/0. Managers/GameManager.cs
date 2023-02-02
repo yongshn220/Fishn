@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public ViewSceneManager viewSceneManager;
     [HideInInspector] public PurchaseManager purchaseManager;
     [HideInInspector] public DelegateManager delegateManager;
+    [HideInInspector] public ScreenResolutionManager screenResolutionManager;
 
     void Awake()
     {
@@ -29,11 +30,17 @@ public class GameManager : MonoBehaviour
         scriptableObjectManager = GetComponentInChildren<ScriptableObjectManager>();
         purchaseManager = GetComponentInChildren<PurchaseManager>();
         delegateManager = GetComponentInChildren<DelegateManager>();
+        screenResolutionManager = GetComponentInChildren<ScreenResolutionManager>();
     }
 
     void Start()
     {
         dataManager.LoadUserData();
+    }
+
+    public void OnDataReady()
+    {
+        screenResolutionManager.Setup();
     }
 
     public void SetViewSceneManager(ViewSceneManager viewSceneManager)

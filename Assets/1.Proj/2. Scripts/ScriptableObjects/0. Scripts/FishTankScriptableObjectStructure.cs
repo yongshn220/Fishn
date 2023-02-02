@@ -5,5 +5,8 @@ using UnityEngine;
 public class FishTankScriptableObjectStructure
 {
     public int id;
+    public string name;
     public GameObject prefab;
+    public ItemType type;
+    public int coral;
 }

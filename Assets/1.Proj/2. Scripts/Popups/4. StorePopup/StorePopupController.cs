@@ -15,11 +15,13 @@ public class StorePopupController : MonoBehaviour, IPopup
     private Button plantButton;
     private Button rockButton;
     private Button coralPlantButton;
+    private Button fishTankButton;
     private StoreContent storeContent;
 
     private List<EntityScriptableObjectStructure> entitySOList;
     private List<SeaObjectScriptableObjectStructure> seaObjectSOList;
     private List<CoralScriptableObjectStructure> coralSOList;
+    private List<FishTankScriptableObjectStructure> fishTankSOList;
 
     void Awake()
     {
@@ -29,6 +31,7 @@ public class StorePopupController : MonoBehaviour, IPopup
         plantButton = transform.GetComponentInChildren<PlantButton>()?.GetComponent<Button>();
         rockButton = transform.GetComponentInChildren<RockButton>()?.GetComponent<Button>();
         coralPlantButton = transform.GetComponentInChildren<CoralPlantButton>()?.GetComponent<Button>();
+        fishTankButton = transform.GetComponentInChildren<FishTankButton>()?.GetComponent<Button>();
     }
 
     void Start()
@@ -38,6 +41,7 @@ public class StorePopupController : MonoBehaviour, IPopup
         plantButton.onClick.AddListener(OnPlantButtonClick);
         rockButton.onClick.AddListener(OnRockButtonClick);
         coralPlantButton.onClick.AddListener(OnCoralPlantButtonClick);
+        fishTankButton.onClick.AddListener(OnFishTankButtonClick);
     }
 
 #region IPopup
@@ -47,6 +51,7 @@ public class StorePopupController : MonoBehaviour, IPopup
         this.entitySOList = GameManager.instance.scriptableObjectManager.GetEntityList();
         this.seaObjectSOList = GameManager.instance.scriptableObjectManager.GetSeaObjectList();
         this.coralSOList = GameManager.instance.scriptableObjectManager.GetCoralPlantList();
+        this.fishTankSOList = GameManager.instance.scriptableObjectManager.GetFishTankList();
         SetupItems();
     }
 
@@ -142,6 +147,21 @@ public class StorePopupController : MonoBehaviour, IPopup
             {
                 StoreItemController itemCtrl = Instantiate(itemPrefab, Vector3.zero, Quaternion.identity, storeContent.transform);
                 itemCtrl.Setup(this, coralSO);
+            }
+        }
+    }
+
+    private void OnFishTankButtonClick()
+    {
+        ClearItemsInContent();
+        // To do : filter tank that user already has.
+
+        foreach (var fishTankSO in fishTankSOList)
+        {
+            if (fishTankSO.id != -1)
+            {
+                StoreItemController itemCtrl = Instantiate(itemPrefab, Vector3.zero, Quaternion.identity, storeContent.transform);
+                itemCtrl.Setup(this, fishTankSO);
             }
         }
     }

@@ -113,6 +113,11 @@ public class ScriptableObjectManager : MonoBehaviour
         return CoralPlantList.corals.ToList();
     }
 
+    public List<FishTankScriptableObjectStructure> GetFishTankList()
+    {
+        return FishTankList.fishTanks.ToList();
+    }
+
     public List<GameObject> GetSeaObjectPrefabList()
     {
         return SeaObjectList.seaObjects.ToList().ConvertAll(s => s.prefab);

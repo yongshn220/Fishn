@@ -141,7 +141,7 @@ public class InfoPopupController : MonoBehaviour, IPopup
 
     private void CloseSelectedEntityInfo()
     {
-        print("Close");
+        selectedEntity = null;
         selectPointTr.gameObject.SetActive(false);
         popupManager.ClosePopup(PopupType.InfoPopup);
     }

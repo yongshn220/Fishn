@@ -16,6 +16,7 @@ public enum ItemType
     Plant,
     Rock,
     Coral,
+    FishTank,
 }
 
 [Serializable]

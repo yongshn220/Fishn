@@ -16,6 +16,7 @@ public class LobbySceneManager : MonoBehaviour
     {
         if (GameManager.instance.dataManager.isDataReady)
         {
+            GameManager.instance.OnDataReady();
             SceneManager.LoadScene("View");
         }
     }
