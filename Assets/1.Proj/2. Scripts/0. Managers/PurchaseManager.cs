@@ -10,6 +10,8 @@ public class PurchaseManager : MonoBehaviour // to do: change class name -> Tran
     {
         if (!Wallet.HasEnough(coral)) return false;
 
+        Wallet.Use(coral);
+
         if (type == ItemType.Entity)
         {
             EntityData newData = new EntityData(-1, type_id, DateTime.Now, DateTime.Now, 0);
@@ -31,8 +33,12 @@ public class PurchaseManager : MonoBehaviour // to do: change class name -> Tran
             GameManager.instance.viewSceneManager.fishTankManager.InstantiateCoralPlant(newData);
         }
 
-        Wallet.Use(coral);
-
+        if (type == ItemType.FishTank)
+        {
+            await GameManager.instance.dataManager.AsyncSaveFishTankID(type_id);
+            GameManager.instance.AsyncReload(); 
+            // TODO: reloading animation 
+        }
 
         return true;
     }

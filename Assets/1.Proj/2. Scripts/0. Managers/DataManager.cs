@@ -24,7 +24,7 @@ public class DataManager : MonoBehaviour
 
     public void LoadUserData() => AsyncLoadUserData().Forget();
 
-    public async UniTaskVoid AsyncLoadUserData()
+    public async UniTask<bool> AsyncLoadUserData()
     {
         userData = await DatabaseHelper.AsyncLoadUserData();
         gameData = userData.gameData;
@@ -34,6 +34,8 @@ public class DataManager : MonoBehaviour
 
         Wallet.SetCoral(gameData.coral); 
         isDataReady = true;
+        DelegateManager.InvokeOnUserDataLoad();
+        return true;
     }
 
 #endregion
@@ -59,6 +61,17 @@ public class DataManager : MonoBehaviour
     public void SaveEntityData(EntityData entityData)
     {
         DatabaseHelper.SaveEntityData(entityData).Forget();
+    }
+
+    public void SaveFishTankID(int tank_id)
+    {
+        DatabaseHelper.SaveFishTankID(tank_id).Forget();
+    }
+
+    public async UniTask<bool> AsyncSaveFishTankID(int tank_id)
+    {
+        await DatabaseHelper.SaveFishTankID(tank_id);
+        return true;
     }
 #endregion
 

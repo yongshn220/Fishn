@@ -9,8 +9,6 @@ public class ViewSceneManager : MonoBehaviour
     public FishManager fishManager;
     public PopupManager popupManager;
 
-    List<EntityData> entityDataList;
-
     void Awake()
     {
         cameraManager = GetComponentInChildren<CameraManager>();
@@ -27,8 +25,11 @@ public class ViewSceneManager : MonoBehaviour
             yield return new WaitForSeconds(1);
             //Wait and Try again
         }
-        entityDataList = LoadEntityDataList();
+        Setup();
+    }
 
+    public void Reload()
+    {
         Setup();
     }
 
@@ -40,16 +41,6 @@ public class ViewSceneManager : MonoBehaviour
         cameraManager.Setup(this);               // Setup Order 2 : require fishTankMgr setup 
         fishManager.Setup(this);                 // Setup Order 3 : require fishTankMgr setup
         popupManager.Setup(this);                // Setup Order 4 : require fishTankMgr setup
-    }
-
-    // Load Fish Data from DataManager.
-    private List<EntityData> LoadEntityDataList()
-    {
-        if (GameManager.instance.dataManager.entityDataList != null)
-        {
-            return GameManager.instance.dataManager.entityDataList;
-        }
-        return new List<EntityData>(); // TO DO : need to handle the error situation.
     }
 #endregion
 

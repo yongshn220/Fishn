@@ -24,59 +24,51 @@ public class Database
 #region Save
     public async UniTask<string> AsyncSaveCoral(string uid, JObject jObject)
     {
-        JObject json = new JObject();
-        json["uid"] = uid;
-        json["data"] = jObject;
+        JObject json = CreateRequestJObject(uid, jObject);
         return await AsyncPostWebRequest(json, "save/coral");
     }
 
     public async UniTask<string> AsyncSaveSeaObjectData(string uid, JArray jArray)
     {
-        JObject json = new JObject();
-        json["uid"] = uid;
-        json["data"] = jArray;
+        JObject json = CreateRequestJArray(uid, jArray);
         return await AsyncPostWebRequest(json, "save/seaobjects");
     }
 
     public async UniTask<string> AsyncSaveCoralPlantData(string uid, JArray jArray)
     {
-        JObject json = new JObject();
-        json["uid"] = uid;
-        json["data"] = jArray;
+        JObject json = CreateRequestJArray(uid, jArray);
         return await AsyncPostWebRequest(json, "save/coralplants");
     }
 
     public async UniTask<string> AsyncSaveEntityData(string uid, JObject jObject)
     {
-        JObject json = new JObject();
-        json["uid"] = uid;
-        json["data"] = jObject;
+        JObject json = CreateRequestJObject(uid, jObject);
         return await AsyncPostWebRequest(json, "save/entity");
+    }
+
+    public async UniTask<string> AsyncSaveFishTankID(string uid, JObject jObject)
+    {
+        JObject json = CreateRequestJObject(uid, jObject);
+        return await AsyncPostWebRequest(json, "save/tank_id");
     }
 #endregion
 
 #region Add
     public async UniTask<string> AsyncAddSeaObjectData(string uid, JObject jObject)
     {
-        JObject json = new JObject();
-        json["uid"] = uid;
-        json["data"] = jObject;
+        JObject json = CreateRequestJObject(uid, jObject);
         return await AsyncPostWebRequest(json, "add/seaobject");
     }
 
     public async UniTask<string> AsyncAddEntityData(string uid, JObject jObject)
     {
-        JObject json = new JObject();
-        json["uid"] = uid;
-        json["data"] = jObject;
+        JObject json = CreateRequestJObject(uid, jObject);
         return await AsyncPostWebRequest(json, "add/entity");
     }
 
     public async UniTask<string> AsyncAddCoralPlantData(string uid, JObject jObject)
     {
-        JObject json = new JObject();
-        json["uid"] = uid;
-        json["data"] = jObject;
+        JObject json = CreateRequestJObject(uid, jObject);
         return await AsyncPostWebRequest(json, "add/coralplant");
     }
 #endregion
@@ -93,6 +85,22 @@ public class Database
         string result = request.downloadHandler.text;
         request.Dispose();
         return result;
+    }
+
+    private JObject CreateRequestJObject(string uid, JObject jObject)
+    {
+        JObject json = new JObject();
+        json["uid"] = uid;
+        json["data"] = jObject;
+        return json;
+    }
+
+    private JObject CreateRequestJArray(string uid, JArray jArray)
+    {
+        JObject json = new JObject();
+        json["uid"] = uid;
+        json["data"] = jArray;
+        return json;
     }
 }
 

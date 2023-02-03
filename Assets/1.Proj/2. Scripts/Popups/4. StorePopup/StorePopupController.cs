@@ -85,6 +85,8 @@ public class StorePopupController : MonoBehaviour, IPopup
     // Called from Item Controller.
     public void OnBuyButtonClick(int id, ItemType type, int coral)
     {
+        print(id);
+        print(type);
         popupManager.TryBuyItem(id, type, coral).Forget();
     }
 

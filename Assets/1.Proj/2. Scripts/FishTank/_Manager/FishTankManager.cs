@@ -38,6 +38,11 @@ public class FishTankManager : MonoBehaviour
         }
     }
 
+    public void ChangeFishTank(int tank_id)
+    {
+        
+    }
+
     public CameraContainer GetCameraContainer()
     {
         return fishTankController.GetCameraContainer();

@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class DelegateManager : MonoBehaviour
 {
+    public static event Action OnUserDataLoad;
     public static event Action OnCoralUpdate;
     public static event Action<EntityMono> OnEntityMonoUpdate;
     public static event Action<List<SeaObjectData>> OnDisabledSeaObjectUpdate;
     public static event Action<List<CoralPlantData>> OnDisabledCoralPlantUpdate;
 
+    public static void InvokeOnUserDataLoad() => OnUserDataLoad.Invoke();
     public static void InvokeOnCoralUpdate() => OnCoralUpdate.Invoke();
     public static void InvokeOnEntityMonoUpdate(EntityMono mono) => OnEntityMonoUpdate.Invoke(mono);
     public static void InvokeOnDisabledSeaObjectUpdate(List<SeaObjectData> dataList) => OnDisabledSeaObjectUpdate.Invoke(dataList);

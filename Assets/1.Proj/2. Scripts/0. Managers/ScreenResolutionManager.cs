@@ -15,8 +15,8 @@ public enum ScreenType
     Size1x1 = 1,
     Size2x1 = 2,
     Size3x1 = 3,
-    Size2x2 = 4,
-    Size3x2 = 5,
+    Size3x2 = 4,
+    Size4x2 = 5,
 }
 
 public class ScreenResolutionManager : MonoBehaviour
@@ -27,17 +27,18 @@ public class ScreenResolutionManager : MonoBehaviour
     public void Setup()
     {
         int tank_id = GameManager.instance.dataManager.GetUserTankId();
-        currScreenType = (ScreenType)Enum.ToObject(typeof(ScreenType), tank_id); // tank_id into corresponding screenType
-        ChangeResolution(currScreenType);
+        ChangeResolution(tank_id);
     }
 
-    public void ChangeResolution(ScreenType type)
+    public void ChangeResolution(int tank_id)
     {   
+        ScreenType type = (ScreenType)Enum.ToObject(typeof(ScreenType), tank_id); 
         if (type == currScreenType) return;
-
+        
         currScreenType = type;
         Resolution resolution = GetResolution(currScreenType); // Convert ScreenType(enum) -> Resolution(struct)
         Screen.SetResolution(resolution.x, resolution.y, false);
+        Debug.Log("Screen Resolution Updated : " + currScreenType);
     }
 
     private Resolution GetResolution(ScreenType type)
@@ -46,9 +47,9 @@ public class ScreenResolutionManager : MonoBehaviour
         {
             case ScreenType.Size1x1 : return new Resolution {x = unitInPixel, y = unitInPixel};
             case ScreenType.Size2x1 : return new Resolution {x = unitInPixel * 2, y = unitInPixel};
-            case ScreenType.Size2x2 : return new Resolution {x = unitInPixel * 2, y = unitInPixel * 2};
-            case ScreenType.Size3x1 : return new Resolution {x = unitInPixel * 3, y = unitInPixel};
+            case ScreenType.Size3x1 : return new Resolution {x = unitInPixel * 3, y = unitInPixel * 1};
             case ScreenType.Size3x2 : return new Resolution {x = unitInPixel * 3, y = unitInPixel * 2};
+            case ScreenType.Size4x2 : return new Resolution {x = unitInPixel * 4, y = unitInPixel * 2};
             default : return new Resolution {x = unitInPixel, y = unitInPixel};
         }
     }

@@ -63,6 +63,14 @@ public static class DatabaseHelper
         jObject = ConvertEntityToJson(entityData);
         string res = await database.AsyncSaveEntityData(UID, jObject);
     }
+
+    public static async UniTask<string> SaveFishTankID(int tank_id)
+    {
+        JObject jObject = new JObject();
+        jObject[DBstr.TANK_ID] = tank_id;
+        string res = await database.AsyncSaveFishTankID(UID, jObject);
+        return res;
+    }
 #endregion
 
 #region Add

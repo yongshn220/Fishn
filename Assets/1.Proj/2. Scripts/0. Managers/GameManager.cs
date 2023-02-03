@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,10 +11,11 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public DataManager dataManager;
     [HideInInspector] public ScriptableObjectManager scriptableObjectManager;
-    [HideInInspector] public ViewSceneManager viewSceneManager;
     [HideInInspector] public PurchaseManager purchaseManager;
     [HideInInspector] public DelegateManager delegateManager;
     [HideInInspector] public ScreenResolutionManager screenResolutionManager;
+
+    [HideInInspector] public ViewSceneManager viewSceneManager;
 
     void Awake()
     {
@@ -35,12 +37,19 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        DelegateManager.OnUserDataLoad += OnUserDataLoad;
         dataManager.LoadUserData();
     }
 
-    public void OnDataReady()
+    public void OnUserDataLoad()
     {
         screenResolutionManager.Setup();
+    }
+
+    public async void AsyncReload()
+    {
+        await dataManager.AsyncLoadUserData();
+        SceneManager.LoadScene("View");
     }
 
     public void SetViewSceneManager(ViewSceneManager viewSceneManager)

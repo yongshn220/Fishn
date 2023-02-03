@@ -8,16 +8,12 @@ public class LobbySceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        DelegateManager.OnUserDataLoad += OnUserDataLoad;
     }
 
     // Update is called once per frame
-    void Update()
+    private void OnUserDataLoad()
     {
-        if (GameManager.instance.dataManager.isDataReady)
-        {
-            GameManager.instance.OnDataReady();
-            SceneManager.LoadScene("View");
-        }
+        SceneManager.LoadScene("View");
     }
 }
