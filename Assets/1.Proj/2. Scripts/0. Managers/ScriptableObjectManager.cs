@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-
+using System;
 
 public class ScriptableObjectManager : MonoBehaviour
 {
-    public EntityScriptableObject EntityList;
-    public SeaObjectScriptableObject SeaObjectList;
-    public FishTankScriptableObject FishTankList;
-    public CoralScriptableObject CoralPlantList;
+    public EntityScriptableObject EntitySOList;
+    public EntityGrowthScriptableObject EntityGrowthSOList;
+    public SeaObjectScriptableObject SeaObjectSOList;
+    public FishTankScriptableObject FishTankSOList;
+    public CoralScriptableObject CoralPlantSOList;
 
     private Dictionary<int, ItemType> seaObjectIdAndTypeDict = new Dictionary<int, ItemType>(); // USAGE: To easily get the item_type with type_id of <SeaObjectData> class.
 
@@ -17,7 +18,7 @@ public class ScriptableObjectManager : MonoBehaviour
     void Start()
     {
         // Init seaObjectIdAndTypeDict.
-        foreach (var seaObjectSO in SeaObjectList.seaObjects)
+        foreach (var seaObjectSO in SeaObjectSOList.seaObjects)
         {
             seaObjectIdAndTypeDict[seaObjectSO.id] = seaObjectSO.type;
         }
@@ -26,7 +27,7 @@ public class ScriptableObjectManager : MonoBehaviour
 #region Get One
     public GameObject TryGetEntityPrefabById(int id)
     {
-        foreach (var entity in EntityList.entities)
+        foreach (var entity in EntitySOList.entities)
         {
             if (entity.id == id)
             {
@@ -38,7 +39,7 @@ public class ScriptableObjectManager : MonoBehaviour
 
     public EntityScriptableObjectStructure TryGetEntitySOById(int id)
     {
-        foreach (var entity in EntityList.entities)
+        foreach (var entity in EntitySOList.entities)
         {
             if (entity.id == id)
             {
@@ -48,9 +49,21 @@ public class ScriptableObjectManager : MonoBehaviour
         return null;
     }
 
+    public EntityGrowthScriptableObjectStructure TryGetEntityGrowthSOByData(EntityData data)
+    {
+        foreach (var entityGrowth in EntityGrowthSOList.entities)
+        {
+            if (entityGrowth.type == (EntityType) Enum.ToObject(typeof(EntityType), data.type_id) && entityGrowth.age >= data.born_datetime.GetDayPassedFromNow()) 
+            {
+                return entityGrowth;
+            }
+        }
+        return null;
+    }
+
     public CoralScriptableObjectStructure TryGetCoralPlantSOById(int id)
     {
-        foreach (var coralSO in CoralPlantList.corals)
+        foreach (var coralSO in CoralPlantSOList.corals)
         {
             if (coralSO.id == id)
             {
@@ -62,7 +75,7 @@ public class ScriptableObjectManager : MonoBehaviour
 
     public GameObject TryGetFishTankPrefabById(int id)
     {
-        foreach (var tank in FishTankList.fishTanks)
+        foreach (var tank in FishTankSOList.fishTanks)
         {
             if (tank.id == id)
             {
@@ -74,17 +87,17 @@ public class ScriptableObjectManager : MonoBehaviour
 
     public GameObject TryGetSeaObjectPrefabById(int id)
     {
-        return SeaObjectList.seaObjects.ToList().Find(s => s.id == id)?.prefab;
+        return SeaObjectSOList.seaObjects.ToList().Find(s => s.id == id)?.prefab;
     }
 
     public GameObject TryGetCoralPlantPrefabById(int id)
     {
-        return CoralPlantList.corals.ToList().Find(s => s.id == id)?.prefab;
+        return CoralPlantSOList.corals.ToList().Find(s => s.id == id)?.prefab;
     }
 
     public SeaObjectScriptableObjectStructure TryGetSeaObjectSOById(int id)
     {
-        foreach (var seaObjectSO in SeaObjectList.seaObjects)
+        foreach (var seaObjectSO in SeaObjectSOList.seaObjects)
         {
             if (seaObjectSO.id == id)
             {
@@ -98,29 +111,29 @@ public class ScriptableObjectManager : MonoBehaviour
 
 #region Get All
 
-    public List<EntityScriptableObjectStructure> GetEntityList()
+    public List<EntityScriptableObjectStructure> GetEntitySOList()
     {
-        return EntityList.entities.ToList();
+        return EntitySOList.entities.ToList();
     }
     
-    public List<SeaObjectScriptableObjectStructure> GetSeaObjectList()
+    public List<SeaObjectScriptableObjectStructure> GetSeaObjectSOList()
     {
-        return SeaObjectList.seaObjects.ToList();
+        return SeaObjectSOList.seaObjects.ToList();
     }
 
-    public List<CoralScriptableObjectStructure> GetCoralPlantList()
+    public List<CoralScriptableObjectStructure> GetCoralPlantSOList()
     {
-        return CoralPlantList.corals.ToList();
+        return CoralPlantSOList.corals.ToList();
     }
 
-    public List<FishTankScriptableObjectStructure> GetFishTankList()
+    public List<FishTankScriptableObjectStructure> GetFishTankSOList()
     {
-        return FishTankList.fishTanks.ToList();
+        return FishTankSOList.fishTanks.ToList();
     }
 
     public List<GameObject> GetSeaObjectPrefabList()
     {
-        return SeaObjectList.seaObjects.ToList().ConvertAll(s => s.prefab);
+        return SeaObjectSOList.seaObjects.ToList().ConvertAll(s => s.prefab);
     }
 
 #endregion

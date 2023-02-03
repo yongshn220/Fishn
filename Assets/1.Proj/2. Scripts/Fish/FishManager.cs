@@ -81,7 +81,7 @@ public class FishManager : MonoBehaviour
         GameObject entity = InstantiateFish(entityData);
         SetupEntityMono(entity, entityData);
         SetupEntityAnimator(entity);
-        SetupFishController(entity, entityData);
+        SetupFishController(entity, entityData); // todo : remove.
         SetupFishMovement(entity);
         entityList.Add(entity);
     }

@@ -48,10 +48,10 @@ public class StorePopupController : MonoBehaviour, IPopup
     public void Setup(PopupManager popupManager)
     {
         this.popupManager = popupManager;
-        this.entitySOList = GameManager.instance.scriptableObjectManager.GetEntityList();
-        this.seaObjectSOList = GameManager.instance.scriptableObjectManager.GetSeaObjectList();
-        this.coralSOList = GameManager.instance.scriptableObjectManager.GetCoralPlantList();
-        this.fishTankSOList = GameManager.instance.scriptableObjectManager.GetFishTankList();
+        this.entitySOList = GameManager.instance.scriptableObjectManager.GetEntitySOList();
+        this.seaObjectSOList = GameManager.instance.scriptableObjectManager.GetSeaObjectSOList();
+        this.coralSOList = GameManager.instance.scriptableObjectManager.GetCoralPlantSOList();
+        this.fishTankSOList = GameManager.instance.scriptableObjectManager.GetFishTankSOList();
         SetupItems();
     }
 

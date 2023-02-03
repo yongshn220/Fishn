@@ -128,7 +128,7 @@ public class InfoPopupController : MonoBehaviour, IPopup
         
         // Info popup setting.
         EntityMono mono = selectedEntity.GetComponent<EntityMono>();
-        var entitySO = GameManager.instance.scriptableObjectManager.TryGetEntitySOById(mono.type_id);
+        var entitySO = GameManager.instance.scriptableObjectManager.TryGetEntitySOById(mono.type_id); if (entitySO == null) return;
         nameText.text = entitySO.name;
         ageText.text = $"{mono.born_datetime.GetDayPassedFromNow()}";
         feedText.text = $"{ (float)mono.feed / (float)mono.maxFeed * 100 } %";

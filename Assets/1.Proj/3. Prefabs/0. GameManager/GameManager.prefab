@@ -51,10 +51,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataManager: {fileID: 0}
   scriptableObjectManager: {fileID: 0}
-  viewSceneManager: {fileID: 0}
   purchaseManager: {fileID: 0}
   delegateManager: {fileID: 0}
   screenResolutionManager: {fileID: 0}
+  viewSceneManager: {fileID: 0}
 --- !u!114 &4422291669023719151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,10 +80,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fadf0756de77464e8ec0876181a730a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EntityList: {fileID: 11400000, guid: 36435afaddcdc49ac90acbda3b3d6385, type: 2}
-  SeaObjectList: {fileID: 11400000, guid: 12385c07706074e419cd2a6ee24effde, type: 2}
-  FishTankList: {fileID: 11400000, guid: 68023b3c635374b7996cf65b1328584d, type: 2}
-  CoralPlantList: {fileID: 11400000, guid: 3057a32e091e341e6a744e1ce1226c8b, type: 2}
+  EntitySOList: {fileID: 11400000, guid: 36435afaddcdc49ac90acbda3b3d6385, type: 2}
+  EntityGrowthSOList: {fileID: 11400000, guid: df0823fa336014be4ae6573a0ad6c579, type: 2}
+  SeaObjectSOList: {fileID: 11400000, guid: 12385c07706074e419cd2a6ee24effde, type: 2}
+  FishTankSOList: {fileID: 11400000, guid: 68023b3c635374b7996cf65b1328584d, type: 2}
+  CoralPlantSOList: {fileID: 11400000, guid: 3057a32e091e341e6a744e1ce1226c8b, type: 2}
 --- !u!114 &4422291669023719146
 MonoBehaviour:
   m_ObjectHideFlags: 0

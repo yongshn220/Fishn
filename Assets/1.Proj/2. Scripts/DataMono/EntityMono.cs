@@ -26,15 +26,17 @@ public class EntityMono : MonoBehaviour
 
     public void Setup(EntityData data)
     {
-        var entitySO = GameManager.instance.scriptableObjectManager.TryGetEntitySOById(data.type_id);
-        if (entitySO == null) return;
+        var entitySO = GameManager.instance.scriptableObjectManager.TryGetEntitySOById(data.type_id); if (entitySO == null) return;
+        var entityGrowthSO = GameManager.instance.scriptableObjectManager.TryGetEntityGrowthSOByData(data); if (entityGrowthSO == null) return;
 
         _id = data.id;
         _type_id = data.type_id;
         _born_datetime = data.born_datetime;
         _feed_datetime = data.feed_datetime;
         _feed = data.feed;
-        _maxFeed = entitySO.maxFeed;
+        
+        _maxFeed = entityGrowthSO.maxFeed;
+        transform.localScale = Vector3.one * entityGrowthSO.scale;
     }
 
     public EntityData ToData()
