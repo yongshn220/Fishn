@@ -12,17 +12,17 @@ struct Resolution
 
 public enum ScreenType
 {
-    Size1x1 = 1,
-    Size2x1 = 2,
-    Size3x1 = 3,
-    Size3x2 = 4,
-    Size4x2 = 5,
+    Basic2x2 = 1, // 800x800
+    Basic3x2 = 2, // 1200x800
+    Basic4x2 = 3, // 1600x800
+    Basic3x3 = 4, // 1200x1200
+    Basic4x3 = 5, // 1600x1200
 }
 
 public class ScreenResolutionManager : MonoBehaviour
 {
-    private int unitInPixel = 600; // Size1x1 -> 600px X 600px
-    public ScreenType currScreenType = ScreenType.Size1x1;
+    private int unitInPixel = 400; // Size1x1 -> 400px X 400px
+    public ScreenType currScreenType = ScreenType.Basic2x2;
 
     public void Setup()
     {
@@ -45,11 +45,11 @@ public class ScreenResolutionManager : MonoBehaviour
     { 
         switch(type)
         {
-            case ScreenType.Size1x1 : return new Resolution {x = unitInPixel, y = unitInPixel};
-            case ScreenType.Size2x1 : return new Resolution {x = unitInPixel * 2, y = unitInPixel};
-            case ScreenType.Size3x1 : return new Resolution {x = unitInPixel * 3, y = unitInPixel * 1};
-            case ScreenType.Size3x2 : return new Resolution {x = unitInPixel * 3, y = unitInPixel * 2};
-            case ScreenType.Size4x2 : return new Resolution {x = unitInPixel * 4, y = unitInPixel * 2};
+            case ScreenType.Basic2x2 : return new Resolution {x = unitInPixel * 2, y = unitInPixel * 2};
+            case ScreenType.Basic3x2 : return new Resolution {x = unitInPixel * 3, y = unitInPixel * 2};
+            case ScreenType.Basic4x2 : return new Resolution {x = unitInPixel * 4, y = unitInPixel * 2};
+            case ScreenType.Basic3x3 : return new Resolution {x = unitInPixel * 3, y = unitInPixel * 3};
+            case ScreenType.Basic4x3 : return new Resolution {x = unitInPixel * 4, y = unitInPixel * 3};
             default : return new Resolution {x = unitInPixel, y = unitInPixel};
         }
     }
