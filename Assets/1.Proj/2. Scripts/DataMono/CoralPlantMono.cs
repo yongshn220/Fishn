@@ -11,6 +11,9 @@ public class CoralPlantMono : MonoBehaviour
     public Vector3 position;
     public bool instantiated = false;
 
+    private bool _isFeeding = false; // Is any Entity eating this coral?
+    public bool isFeeding { get { return _isFeeding; }}
+
     public void Setup(CoralPlantData data, CoralScriptableObjectStructure coralSO)
     {
         this.id = data.id;
@@ -25,5 +28,15 @@ public class CoralPlantMono : MonoBehaviour
     public CoralPlantData ToData()
     {
         return new CoralPlantData(this.id, this.type_id, this.position, this.instantiated);
+    }
+
+    public void StartFeeding()
+    {
+        _isFeeding = true;
+    }
+
+    public void FinishFeeding()
+    {  
+        _isFeeding = false;
     }
 }

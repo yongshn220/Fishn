@@ -15,7 +15,7 @@ namespace FishOwnedStates
         private float speed;
         private float SmoothTime = 1.0f;
 
-        private float reachDistanceSqr = 3.0f;
+        private float reachDistanceSqr = 0.5f;
         private bool isReachCoral = false;
         
         private float eatTime = 3.0f;
@@ -28,8 +28,12 @@ namespace FishOwnedStates
             this.speed = UnityEngine.Random.Range(fishManager.minSpeed, fishManager.maxSpeed);
             
             var coralPlantMonoList = GameManager.instance.viewSceneManager.GetEnabledCoralPlantMonoList();
-            if (coralPlantMonoList.Count == 0) fishMovement.ChangeState(FishState.Idle);
+            coralPlantMonoList = coralPlantMonoList.FindAll((mono) => !mono.isFeeding); // select only not being eaten coralPlants.
+
+            if (coralPlantMonoList.Count == 0) { fishMovement.ChangeState(FishState.Idle); return; } // If none of them available, go to state<IDLE>
+
             this.targetCoralPlantMono = SelectNearestCoral(coralPlantMonoList);
+            this.targetCoralPlantMono.StartFeeding();
         }
 
         public override void Execute(FishMovement fishMovement)
@@ -73,9 +77,12 @@ namespace FishOwnedStates
                 curEatTime += Time.deltaTime;
                 return;
             }
-
+            // Set coralplant availble for other entity.
+            targetCoralPlantMono.FinishFeeding();
+            // Increase entity feed.
             EntityMono mono = fishMovement.GetComponent<EntityMono>();
             mono.GetFeed(targetCoralPlantMono.unitCoral);
+            // Earn Coral.
             Wallet.Earn((int) (targetCoralPlantMono.unitCoral / 10));
             fishMovement.ChangeState(FishState.Move);
         }
