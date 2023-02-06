@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEditor;
+
+public enum MovePointType { LeftMost, RightMost, TopMost, BottomMost, FrontMost, BackMost, }
 
 public class FishManager : MonoBehaviour
 {
@@ -54,10 +57,7 @@ public class FishManager : MonoBehaviour
     private ViewSceneManager sceneManager;
     
     public List<Transform> movePoints;
-    private Transform leftMostMovePoint;
-    private Vector3 rightMostMovePoint;
-    private Vector3 backMostMovePoint;
-    private Vector3 frontMostMovePoint;
+    private Transform[] endMostTransforms;
 
     public List<GameObject> entityList = new List<GameObject>();
 
@@ -74,7 +74,21 @@ public class FishManager : MonoBehaviour
     void SetupMovePoint()
     {
         movePoints = transform.GetComponentsInChildren<Transform>()?.Where(t => t.tag == "MovePoint").ToList();
-        // leftMostMovePoint = movePoints.Min(new Vector3XComparer());
+        endMostTransforms = new Transform[6] {movePoints[0], movePoints[0], movePoints[0], movePoints[0], movePoints[0], movePoints[0]};
+        endMostTransforms[(int) MovePointType.LeftMost] = movePoints.Aggregate((minXTr, tr) => tr.position.x < minXTr.position.x? tr : minXTr);
+        endMostTransforms[(int) MovePointType.RightMost] = movePoints.Aggregate((maxXTr, tr) => tr.position.x > maxXTr.position.x? tr : maxXTr);
+        endMostTransforms[(int) MovePointType.TopMost] = movePoints.Aggregate((minYTr, tr) => tr.position.y < minYTr.position.y? tr : minYTr);
+        endMostTransforms[(int) MovePointType.BottomMost] = movePoints.Aggregate((maxYTr, tr) => tr.position.y > maxYTr.position.y? tr : maxYTr);
+        endMostTransforms[(int) MovePointType.FrontMost] = movePoints.Aggregate((minZTr, tr) => tr.position.z < minZTr.position.z? tr : minZTr);
+        endMostTransforms[(int) MovePointType.BackMost] = movePoints.Aggregate((maxZTr, tr) => tr.position.z > maxZTr.position.z? tr : maxZTr);
+
+#if UNITY_EDITOR
+        foreach(var tr in endMostTransforms)
+        {
+            var iconContent = EditorGUIUtility.IconContent("sv_icon_dot1_pix16_gizmo");
+            EditorGUIUtility.SetIconForObject(tr.gameObject, (Texture2D) iconContent.image);
+        }
+#endif
     }
 #endregion
 

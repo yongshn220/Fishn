@@ -49,7 +49,7 @@ namespace FishOwnedStates
             fishManager = fishMovement.fishManager;
             if (!testBool)
             {
-                testObject = Transform.Instantiate(fishManager.testObject);
+                testObject = Transform.Instantiate(fishManager.testObject); // yjtest
                 testBool = true;
             }
             Setup();
