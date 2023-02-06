@@ -54,6 +54,11 @@ public class FishManager : MonoBehaviour
     private ViewSceneManager sceneManager;
     
     public List<Transform> movePoints;
+    private Transform leftMostMovePoint;
+    private Vector3 rightMostMovePoint;
+    private Vector3 backMostMovePoint;
+    private Vector3 frontMostMovePoint;
+
     public List<GameObject> entityList = new List<GameObject>();
 
     // Start here. Generate fish depends on the data.
@@ -69,6 +74,7 @@ public class FishManager : MonoBehaviour
     void SetupMovePoint()
     {
         movePoints = transform.GetComponentsInChildren<Transform>()?.Where(t => t.tag == "MovePoint").ToList();
+        // leftMostMovePoint = movePoints.Min(new Vector3XComparer());
     }
 #endregion
 

@@ -35,6 +35,7 @@ namespace FishOwnedStates
         private int speedDir = 1; // -1 or 1
 
         private GameObject testObject;
+        private bool testBool = false;
 
         private bool isTransitToEat;
 
@@ -46,7 +47,11 @@ namespace FishOwnedStates
         {
             currentFishMovement = fishMovement;
             fishManager = fishMovement.fishManager;
-            // testObject = Transform.Instantiate(fishManager.testObject);
+            if (!testBool)
+            {
+                testObject = Transform.Instantiate(fishManager.testObject);
+                testBool = true;
+            }
             Setup();
         }
 
@@ -54,7 +59,7 @@ namespace FishOwnedStates
         {
             UpdateDeltaDynamics();
             MoveFish();
-            // testObject.transform.position = target;
+            testObject.transform.position = target;
         }
 
         public override void Exit(FishMovement fishMovement)

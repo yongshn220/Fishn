@@ -126,3 +126,29 @@ public static class ListExtension
         return dataList;
     }
 }
+
+public class Vector3XComparer : IComparer<Transform>
+{
+    public int Compare(Transform a, Transform b)
+    {
+        return a.position.x.CompareTo(b.position.x);
+    }
+}
+
+public class Vector3YComparer : IComparer<Transform>
+{
+    public int Compare(Transform a, Transform b)
+    {
+        return a.position.y.CompareTo(b.position.y);
+    }
+}
+
+public class Vector3ZComparer : IComparer<Transform>
+{
+    public int Compare(Transform a, Transform b)
+    {
+        return a.position.z.CompareTo(b.position.z);
+    }
+}
+
+
