@@ -51,7 +51,7 @@ public class ScriptableObjectManager : MonoBehaviour
 
     public EntityGrowthScriptableObjectStructure TryGetEntityGrowthSOByData(EntityData data)
     {
-        foreach (var entityGrowth in EntityGrowthSOList.entities)
+        foreach (var entityGrowth in EntityGrowthSOList.entityGrowths)
         {
             if (entityGrowth.type == (EntityType) Enum.ToObject(typeof(EntityType), data.type_id) && entityGrowth.age >= data.born_datetime.GetDayPassedFromNow()) 
             {

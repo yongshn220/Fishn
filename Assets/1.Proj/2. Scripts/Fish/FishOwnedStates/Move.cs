@@ -28,6 +28,7 @@ namespace FishOwnedStates
         private float currentMovePointTime = 0;
 
         private float currentSmoothDampTime; // How smoothly turn the fish.
+        private float quickSmoothDampTime = 0.5f;
         private int smoothDampDir = 1; // -1 or 1
 
         private Vector3 currentVelocity;
@@ -168,10 +169,24 @@ namespace FishOwnedStates
             UpdateTargetPosition();
 
             Vector3 moveVecter = target - currentFishMovement.transform.position;
-            moveVecter = Vector3.SmoothDamp(currentFishMovement.transform.forward, moveVecter, ref currentVelocity, currentSmoothDampTime);
+
+            float selectedSmoothDampTime = (IsOutsideEdgeMostMovePoint())? quickSmoothDampTime : currentSmoothDampTime; // If the fish reaches to the wall, quickly turn back.
+            moveVecter = Vector3.SmoothDamp(currentFishMovement.transform.forward, moveVecter, ref currentVelocity, selectedSmoothDampTime);
+
             currentFishMovement.transform.forward = moveVecter;
             currentFishMovement.transform.position += moveVecter * currentSpeed * Time.deltaTime;
+        }
 
+        private bool IsOutsideEdgeMostMovePoint()
+        {
+            Vector3 curPos = currentFishMovement.transform.position;
+            if (curPos.x < fishManager.endPoints[(int)EndPointType.LeftMost]) return true;
+            if (curPos.x > fishManager.endPoints[(int)EndPointType.RightMost]) return true;
+            if (curPos.y < fishManager.endPoints[(int)EndPointType.TopMost]) return true;
+            if (curPos.y > fishManager.endPoints[(int)EndPointType.BottomMost]) return true;
+            if (curPos.z < fishManager.endPoints[(int)EndPointType.FrontMost]) return true;
+            if (curPos.z > fishManager.endPoints[(int)EndPointType.BackMost]) return true;
+            return false;
         }
 
         private void UpdateTargetPosition()

@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EntityGrowthScriptableObject", menuName = "ScriptableObject/EntityGrowthScriptableObject")]
 public class EntityGrowthScriptableObject : ScriptableObject
 {
-    public EntityGrowthScriptableObjectStructure[] entities;
+    public EntityGrowthScriptableObjectStructure[] entityGrowths;
 }

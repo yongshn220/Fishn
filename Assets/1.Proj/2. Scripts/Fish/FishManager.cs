@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEditor;
 
-public enum MovePointType { LeftMost, RightMost, TopMost, BottomMost, FrontMost, BackMost, }
+public enum EndPointType { LeftMost, RightMost, TopMost, BottomMost, FrontMost, BackMost, }
 
 public class FishManager : MonoBehaviour
 {
@@ -57,7 +57,7 @@ public class FishManager : MonoBehaviour
     private ViewSceneManager sceneManager;
     
     public List<Transform> movePoints;
-    private Transform[] endMostTransforms;
+    public float[] endPoints;
 
     public List<GameObject> entityList = new List<GameObject>();
 
@@ -74,21 +74,18 @@ public class FishManager : MonoBehaviour
     void SetupMovePoint()
     {
         movePoints = transform.GetComponentsInChildren<Transform>()?.Where(t => t.tag == "MovePoint").ToList();
-        endMostTransforms = new Transform[6] {movePoints[0], movePoints[0], movePoints[0], movePoints[0], movePoints[0], movePoints[0]};
-        endMostTransforms[(int) MovePointType.LeftMost] = movePoints.Aggregate((minXTr, tr) => tr.position.x < minXTr.position.x? tr : minXTr);
-        endMostTransforms[(int) MovePointType.RightMost] = movePoints.Aggregate((maxXTr, tr) => tr.position.x > maxXTr.position.x? tr : maxXTr);
-        endMostTransforms[(int) MovePointType.TopMost] = movePoints.Aggregate((minYTr, tr) => tr.position.y < minYTr.position.y? tr : minYTr);
-        endMostTransforms[(int) MovePointType.BottomMost] = movePoints.Aggregate((maxYTr, tr) => tr.position.y > maxYTr.position.y? tr : maxYTr);
-        endMostTransforms[(int) MovePointType.FrontMost] = movePoints.Aggregate((minZTr, tr) => tr.position.z < minZTr.position.z? tr : minZTr);
-        endMostTransforms[(int) MovePointType.BackMost] = movePoints.Aggregate((maxZTr, tr) => tr.position.z > maxZTr.position.z? tr : maxZTr);
+        Vector3 firstVec = movePoints[0].position;
+        endPoints = new float[6]{firstVec.x, firstVec.x, firstVec.y, firstVec.y, firstVec.z, firstVec.z};
 
-#if UNITY_EDITOR
-        foreach(var tr in endMostTransforms)
+        foreach (var tr in movePoints)
         {
-            var iconContent = EditorGUIUtility.IconContent("sv_icon_dot1_pix16_gizmo");
-            EditorGUIUtility.SetIconForObject(tr.gameObject, (Texture2D) iconContent.image);
+            if (tr.position.x < endPoints[(int)EndPointType.LeftMost])  endPoints[(int)EndPointType.LeftMost] = tr.position.x;
+            if (tr.position.x > endPoints[(int)EndPointType.RightMost])  endPoints[(int)EndPointType.RightMost] = tr.position.x;
+            if (tr.position.y < endPoints[(int)EndPointType.TopMost])  endPoints[(int)EndPointType.TopMost] = tr.position.y;
+            if (tr.position.y > endPoints[(int)EndPointType.BottomMost])  endPoints[(int)EndPointType.BottomMost] = tr.position.y;
+            if (tr.position.z < endPoints[(int)EndPointType.FrontMost])  endPoints[(int)EndPointType.FrontMost] = tr.position.z;
+            if (tr.position.z > endPoints[(int)EndPointType.BackMost])  endPoints[(int)EndPointType.BackMost] = tr.position.z;
         }
-#endif
     }
 #endregion
 
