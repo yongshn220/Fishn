@@ -10,7 +10,6 @@ public class FishManager : MonoBehaviour
 {
 #region SETUP FISH 
     [Header("Spawn Setup")]
-    [SerializeField] private Vector3 spawnBounds;
 
     [Range(0.1f, 5)]
     [SerializeField] private float _minSmoothDampTime;
@@ -116,15 +115,13 @@ public class FishManager : MonoBehaviour
 
     private GameObject InstantiateFish(EntityData entityData)
     {
-        Vector3 randomVector = UnityEngine.Random.insideUnitSphere;
-        randomVector = new Vector3(randomVector.x * spawnBounds.x, randomVector.y * spawnBounds.y, randomVector.z * spawnBounds.z);
-        Vector3 spawnPosition = transform.position + randomVector;
+        Vector3 randomMovePointPosition = movePoints[UnityEngine.Random.Range(0, movePoints.Count())].position;;
         Quaternion rotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0);
 
         GameObject entityPrefab = GameManager.instance.scriptableObjectManager.TryGetEntityPrefabById(entityData.type_id);
         if (entityPrefab)
         {
-            return Instantiate(entityPrefab, spawnPosition, rotation);
+            return Instantiate(entityPrefab, randomMovePointPosition, rotation);
         }
         return null;
     }
