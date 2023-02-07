@@ -247,7 +247,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1449226944291465d9ef347ef32c6476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnBounds: {x: 0, y: 1, z: 0}
   _minSmoothDampTime: 1
   _maxSmoothDampTime: 2
   _smoothDampLoopTime: 3
@@ -261,6 +260,7 @@ MonoBehaviour:
   maxMovePointTargetTime: 5
   testObject: {fileID: 5860328492167358339, guid: 71024bb750bda444fa690298cd18d687, type: 3}
   movePoints: []
+  endPoints: []
   entityList: []
 --- !u!114 &1370569128
 MonoBehaviour:
