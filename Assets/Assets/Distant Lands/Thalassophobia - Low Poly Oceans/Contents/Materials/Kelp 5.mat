@@ -2,15 +2,16 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Kelp 5
   m_Shader: {fileID: 4800000, guid: 4751a5fab4f382041adeb77e39cfaa04, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -55,7 +56,9 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
+    - _AlphaCutoff: 0.5
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -68,7 +71,9 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _GradientDepth: 0.04
+    - _GradientOffset: 3.77
     - _GradientOffset1: 3.24
+    - _GradientSmoothness: 0.5
     - _GradientSmoothness1: 0.04
     - _MainWaveAmount: 7
     - _MainWaveScale: 3
@@ -90,7 +95,8 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Emmision: {r: 0, g: 0, b: 0, a: 1}
-    - _MainColor: {r: 0.6603774, g: 0.24463037, b: 0.21493416, a: 1}
+    - _Emmision: {r: 0.1792453, g: 0.114142045, b: 0.11536669, a: 1}
+    - _MainColor: {r: 0.8018868, g: 0.08699717, b: 0.108213894, a: 1}
     - _Position1: {r: 0, g: 3.7, b: 0, a: 0}
-    - _TopColor: {r: 0.94509804, g: 0.27843142, b: 0.550776, a: 1}
+    - _TopColor: {r: 0.9339623, g: 0.39208794, b: 0.46323344, a: 1}
+  m_BuildTextureStacks: []
