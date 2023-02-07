@@ -123,7 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &497241671
+--- !u!1001 &1442310084
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -132,27 +132,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1841025965, guid: d67ff6a9b23c943c0a733b0ca59c67ac, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000002475524
+      value: -0.00000024755158
       objectReference: {fileID: 0}
     - target: {fileID: 1841025965, guid: d67ff6a9b23c943c0a733b0ca59c67ac, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.00000023538772
-      objectReference: {fileID: 0}
-    - target: {fileID: 4993479328474948828, guid: d67ff6a9b23c943c0a733b0ca59c67ac, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.0022796243
-      objectReference: {fileID: 0}
-    - target: {fileID: 4993479328474948828, guid: d67ff6a9b23c943c0a733b0ca59c67ac, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.00037992097
-      objectReference: {fileID: 0}
-    - target: {fileID: 4993479328474948828, guid: d67ff6a9b23c943c0a733b0ca59c67ac, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.00000086607935
-      objectReference: {fileID: 0}
-    - target: {fileID: 6024346657364932907, guid: d67ff6a9b23c943c0a733b0ca59c67ac, type: 3}
-      propertyPath: m_Convex
-      value: 0
+      value: 0.00000023538696
       objectReference: {fileID: 0}
     - target: {fileID: 6050130085375416176, guid: d67ff6a9b23c943c0a733b0ca59c67ac, type: 3}
       propertyPath: m_RootOrder
@@ -198,33 +182,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7896097388177658957, guid: d67ff6a9b23c943c0a733b0ca59c67ac, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.0022796243
-      objectReference: {fileID: 0}
-    - target: {fileID: 7896097388177658957, guid: d67ff6a9b23c943c0a733b0ca59c67ac, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.00037992097
-      objectReference: {fileID: 0}
-    - target: {fileID: 7896097388177658957, guid: d67ff6a9b23c943c0a733b0ca59c67ac, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.00000086607935
-      objectReference: {fileID: 0}
     - target: {fileID: 7966121185193316830, guid: d67ff6a9b23c943c0a733b0ca59c67ac, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -2.8501973e-25
+      value: 6.1545567e-25
       objectReference: {fileID: 0}
     - target: {fileID: 7966121185193316830, guid: d67ff6a9b23c943c0a733b0ca59c67ac, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 3.0293488e-26
+      value: -6.5414066e-26
       objectReference: {fileID: 0}
     - target: {fileID: 9054101435386547658, guid: d67ff6a9b23c943c0a733b0ca59c67ac, type: 3}
       propertyPath: m_Name
       value: FishTank_1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9054101435386547658, guid: d67ff6a9b23c943c0a733b0ca59c67ac, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d67ff6a9b23c943c0a733b0ca59c67ac, type: 3}
