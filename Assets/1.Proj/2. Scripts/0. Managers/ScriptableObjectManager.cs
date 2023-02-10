@@ -22,6 +22,12 @@ public class ScriptableObjectManager : MonoBehaviour
         {
             seaObjectIdAndTypeDict[seaObjectSO.id] = seaObjectSO.type;
         }
+        Setup();
+    }
+    
+    void Setup()
+    {
+        EntityGrowthSOList = new EntityGrowthScriptableObject();
     }
 
 #region Get One

@@ -5,23 +5,23 @@ using UnityEngine;
 
 
 public class EntityMono : MonoBehaviour
-{
-    private int _id; 
+{   
+    public int _id; 
     public int id { get { return _id; }}
 
-    private int _type_id;
+    public int _type_id;
     public int type_id { get { return _type_id; }}
 
-    private DateTime _born_datetime;
+    public DateTime _born_datetime;
     public DateTime born_datetime { get { return _born_datetime; }}
 
-    private DateTime _feed_datetime;
+    public DateTime _feed_datetime;
     public DateTime feed_datetime { get { return _feed_datetime; }}
 
-    private int _feed;
+    public int _feed;
     public int feed { get { return _feed; }}
 
-    private int _maxFeed;
+    public int _maxFeed;
     public int maxFeed { get { return _maxFeed; }}
 
     public void Setup(EntityData data)

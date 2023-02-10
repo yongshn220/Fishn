@@ -22,4 +22,13 @@ public class EntityGrowthScriptableObjectStructure
     public int age;
     public float scale;
     public int maxFeed;
+
+    public EntityGrowthScriptableObjectStructure(EntityType type, int level, int age, float scale, int maxFeed)
+    {
+        this.type = type;
+        this.level = level;
+        this.age = age;
+        this.scale = scale;
+        this.maxFeed = maxFeed;
+    }
 }
