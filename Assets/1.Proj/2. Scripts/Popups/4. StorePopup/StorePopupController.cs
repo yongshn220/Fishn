@@ -55,7 +55,7 @@ public class StorePopupController : MonoBehaviour, IPopup
         SetupItems();
     }
 
-    public void Enable()
+    public void Enable(int option)
     {
 
     }

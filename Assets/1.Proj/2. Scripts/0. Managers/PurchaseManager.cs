@@ -43,5 +43,9 @@ public class PurchaseManager : MonoBehaviour // to do: change class name -> Tran
         return true;
     }
 
-
+    public async UniTask<bool> TrySellEntity(EntityMono mono)
+    {
+        
+        return false;
+    }
 }

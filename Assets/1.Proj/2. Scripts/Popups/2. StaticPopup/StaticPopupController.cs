@@ -19,7 +19,7 @@ public class StaticPopupController : MonoBehaviour, IPopup
         coralText.text = Wallet.coral.ToString();
     }
 
-    public void Enable()
+    public void Enable(int option)
     {
 
     }

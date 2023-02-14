@@ -10,6 +10,7 @@ public class InfoPopupController : MonoBehaviour, IPopup
     private PopupManager popupManager;
     private new Camera camera;
     private Button earnButton;
+    private Button sellButton;
     private TMP_Text nameText;
     private TMP_Text ageText;
     private TMP_Text feedText;
@@ -21,6 +22,7 @@ public class InfoPopupController : MonoBehaviour, IPopup
     void Awake()
     {
         earnButton = transform.GetComponentInChildren<InfoEarnButton>()?.GetComponent<Button>();
+        sellButton = transform.GetComponentInChildren<InfoSellButton>()?.GetComponent<Button>();
         nameText = transform.GetComponentInChildren<InfoNameText>()?.GetComponent<TMP_Text>();
         ageText = transform.GetComponentInChildren<InfoAgeText>()?.GetComponent<TMP_Text>();
         feedText = transform.GetComponentInChildren<InfoFeedText>()?.GetComponent<TMP_Text>();
@@ -30,6 +32,7 @@ public class InfoPopupController : MonoBehaviour, IPopup
     void Start()
     {
         earnButton.onClick.AddListener(OnEarnButtonClick);
+        sellButton.onClick.AddListener(OnSellButtonClick);
     }
 
     void Update()
@@ -49,7 +52,7 @@ public class InfoPopupController : MonoBehaviour, IPopup
 #region IPopup
     public void Disable(){}
 
-    public void Enable(){}
+    public void Enable(int option){}
 
     public void Setup(PopupManager popupManager)
     {
@@ -84,6 +87,12 @@ public class InfoPopupController : MonoBehaviour, IPopup
     private void OnEarnButtonClick()
     {
         print("earn button clicked");
+    }
+
+    private void OnSellButtonClick()
+    {
+        //selectedEntity
+        // GameManager.instance.purchaseManager.TrySell();
     }
 #endregion
 

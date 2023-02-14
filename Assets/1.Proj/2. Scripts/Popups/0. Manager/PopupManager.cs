@@ -70,7 +70,7 @@ public class PopupManager : MonoBehaviour
         DisableUI(type);
     }
 
-    private void EnableUI(PopupType type)
+    private void EnableUI(PopupType type, int option = 0)
     {
         MonoBehaviour target = popups[(int) type] as MonoBehaviour;
         if (target)
@@ -80,7 +80,7 @@ public class PopupManager : MonoBehaviour
             targetUI.alpha = 1f;
             targetUI.interactable = true;
             targetUI.blocksRaycasts = true;
-            popups[(int) type].Enable(); 
+            popups[(int) type].Enable(option); 
         }
     }
 
@@ -155,7 +155,7 @@ public class PopupManager : MonoBehaviour
 #region Store Popup Interaction
     public async UniTaskVoid TryBuyItem(int id, ItemType type, int coral)
     {
-        EnableUI(PopupType.CheckPopup);
+        EnableUI(PopupType.CheckPopup, (int) CheckPopupController.Option.Buy);
 
         CheckPopupController checkPopup = popups[(int) PopupType.CheckPopup] as CheckPopupController;
 
@@ -164,6 +164,23 @@ public class PopupManager : MonoBehaviour
         if (bUserDecision) 
         {
             bool result = await GameManager.instance.purchaseManager.TryPurchase(id, type, coral);
+        }
+        DisableUI(PopupType.CheckPopup);
+    }
+#endregion
+
+#region Info Popup Interaction
+    public async UniTaskVoid TrySellItem()
+    {
+        EnableUI(PopupType.CheckPopup, (int) CheckPopupController.Option.Sell);
+
+        CheckPopupController checkPopup = popups[(int) PopupType.CheckPopup] as CheckPopupController;
+
+        bool bUserDecision = await checkPopup.WaitUserDecision();
+
+        if (bUserDecision) 
+        {
+            // bool result = await GameManager.instance.purchaseManager.TrySellEntity();
         }
         DisableUI(PopupType.CheckPopup);
     }

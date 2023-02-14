@@ -47,7 +47,7 @@ public class BagPopupController : MonoBehaviour, IPopup
         OnPlantButtonClick();
     }
 
-    public void Enable()
+    public void Enable(int option)
     {
         OnPlantButtonClick();
     }

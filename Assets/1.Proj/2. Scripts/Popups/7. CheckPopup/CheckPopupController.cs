@@ -4,21 +4,26 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 
 public class CheckPopupController : MonoBehaviour, IPopup
 {
+    public enum Option {Buy, Sell};
     private Button blockingButton;
     private Button noButton;
     private Button yesButton;
+    private TMP_Text checkText;
 
     private bool isButtonPressed;
     private bool bUserDecision;
 
     void Awake()
     {
-        blockingButton = transform.GetComponentInChildren<BlockingPanel>().GetComponent<Button>();
-        noButton = transform.GetComponentInChildren<NoButton>().GetComponent<Button>();
-        yesButton = transform.GetComponentInChildren<YesButton>().GetComponent<Button>();
+        blockingButton = transform.GetComponentInChildren<BlockingPanel>()?.GetComponent<Button>();
+        noButton = transform.GetComponentInChildren<NoButton>()?.GetComponent<Button>();
+        yesButton = transform.GetComponentInChildren<YesButton>()?.GetComponent<Button>();
+        checkText = transform.GetComponentInChildren<CheckText>()?.GetComponent<TMP_Text>();
     }
 
     void Start()
@@ -31,7 +36,17 @@ public class CheckPopupController : MonoBehaviour, IPopup
 #region IPopup
     public void Setup(PopupManager popupManager){}
 
-    public void Enable(){}
+    public void Enable(int option)
+    {
+        if (option == (int) Option.Buy)
+        {
+            checkText.text = "Do you want to buy item : ?"; return;
+        }
+        if (option == (int) Option.Sell)
+        {
+            checkText.text = "Do you want to sell item : ?"; return;
+        }
+    }
 
     public void Disable(){}
 #endregion
@@ -44,7 +59,13 @@ public class CheckPopupController : MonoBehaviour, IPopup
     }
 
 #region Button event
+
     private void OnBlockingPanelClick(){}
+
+    private void OnCheckButtonClick()
+    {
+        
+    }
 
     private void OnNoButtonClick()
     {   
