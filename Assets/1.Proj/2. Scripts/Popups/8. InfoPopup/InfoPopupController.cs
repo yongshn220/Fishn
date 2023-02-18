@@ -91,8 +91,7 @@ public class InfoPopupController : MonoBehaviour, IPopup
 
     private void OnSellButtonClick()
     {
-        //selectedEntity
-        // GameManager.instance.purchaseManager.TrySell();
+        this.popupManager.TrySellItem(selectedEntity.id, ItemType.Entity, selectedEntity.coral).Forget();
     }
 #endregion
 

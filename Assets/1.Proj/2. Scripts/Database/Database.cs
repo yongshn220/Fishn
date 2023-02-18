@@ -73,6 +73,14 @@ public class Database
     }
 #endregion
 
+#region Remove
+    public async UniTask<string> AsyncRemoveEntityData(string uid, JObject jObject)
+    {
+        JObject json = CreateRequestJObject(uid, jObject);
+        return await AsyncPostWebRequest(json, "remove/entity");
+    }
+#endregion 
+
     private async UniTask<string> AsyncPostWebRequest(JObject json, string contentType)
     {
         UnityWebRequest request = new UnityWebRequest(URL, "POST");

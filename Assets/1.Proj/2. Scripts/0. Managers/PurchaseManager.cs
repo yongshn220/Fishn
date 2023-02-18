@@ -43,9 +43,12 @@ public class PurchaseManager : MonoBehaviour // to do: change class name -> Tran
         return true;
     }
 
-    public async UniTask<bool> TrySellEntity(EntityMono mono)
+    public async UniTask<bool> TrySellEntity(int id, ItemType type, int coral)
     {
-        
+        if (type == ItemType.Entity)
+        {
+            await GameManager.instance.dataManager.RemoveEntity(id);
+        }
         return false;
     }
 }

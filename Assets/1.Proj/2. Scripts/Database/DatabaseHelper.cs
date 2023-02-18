@@ -101,6 +101,17 @@ public static class DatabaseHelper
     }
 #endregion
 
+#region Remove
+    public static async UniTask<int> RemoveEntityData(int id)
+    {
+        JObject jObject = new JObject();
+        jObject[DBstr.ID] = id;
+        jObject[DBstr.ITEM_TYPE] = DBstr.ENTITY_TABLE;
+        string result = await database.AsyncRemoveEntityData(UID, jObject);
+        return int.Parse(result);
+    }
+#endregion
+
 #region Convert Class to JSON
     private static JObject ConvertEntityToJson(EntityData entityData)
     {

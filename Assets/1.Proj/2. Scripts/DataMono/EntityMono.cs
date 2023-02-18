@@ -12,6 +12,9 @@ public class EntityMono : MonoBehaviour
     public int _type_id;
     public int type_id { get { return _type_id; }}
 
+    public int _coral;
+    public int coral { get { return _coral; }}
+
     public DateTime _born_datetime;
     public DateTime born_datetime { get { return _born_datetime; }}
 
@@ -24,6 +27,7 @@ public class EntityMono : MonoBehaviour
     public int _maxFeed;
     public int maxFeed { get { return _maxFeed; }}
 
+
     public void Setup(EntityData data)
     {
         var entitySO = GameManager.instance.scriptableObjectManager.TryGetEntitySOById(data.type_id); if (entitySO == null) return;
@@ -31,6 +35,7 @@ public class EntityMono : MonoBehaviour
 
         _id = data.id;
         _type_id = data.type_id;
+        _coral = entitySO.coral;
         _born_datetime = data.born_datetime;
         _feed_datetime = data.feed_datetime;
         _feed = data.feed;

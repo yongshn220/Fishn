@@ -96,6 +96,13 @@ public class DataManager : MonoBehaviour
 
 #endregion
 
+#region Remove
+    public async UniTaskVoid RemoveEntity(int id)
+    {
+        await DatabaseHelper.RemoveEntityData(id);
+    }
+#endregion
+
     public int GetUserTankId()
     {
         return (gameData != null)? gameData.tank_id : -1;

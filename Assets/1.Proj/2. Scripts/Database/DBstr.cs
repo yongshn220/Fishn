@@ -8,6 +8,7 @@ public static class DBstr
     public const string DATA = "data";
 
     // Table 
+    public const string ITEM_TYPE = "itemType";
     public const string GAMEDATA_TABLE = "gamedata";
     public const string ENTITY_TABLE = "entity";
     public const string SEAOBJECT_TABLE = "seaobject";

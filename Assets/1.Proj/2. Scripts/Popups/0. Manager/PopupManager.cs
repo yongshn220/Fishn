@@ -170,7 +170,7 @@ public class PopupManager : MonoBehaviour
 #endregion
 
 #region Info Popup Interaction
-    public async UniTaskVoid TrySellItem()
+    public async UniTaskVoid TrySellItem(int id, ItemType type, int coral)
     {
         EnableUI(PopupType.CheckPopup, (int) CheckPopupController.Option.Sell);
 
@@ -180,7 +180,7 @@ public class PopupManager : MonoBehaviour
 
         if (bUserDecision) 
         {
-            // bool result = await GameManager.instance.purchaseManager.TrySellEntity();
+            bool result = await GameManager.instance.purchaseManager.TrySellEntity(id, type, coral);
         }
         DisableUI(PopupType.CheckPopup);
     }
