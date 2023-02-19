@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// This is test script
 public class FishAIMovement : MonoBehaviour
 {
     // Speed of the fish
