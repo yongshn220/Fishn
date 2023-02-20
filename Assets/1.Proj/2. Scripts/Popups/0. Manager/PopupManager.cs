@@ -185,7 +185,6 @@ public class PopupManager : MonoBehaviour
     {
         EnableUI(PopupType.CheckPopup, (int) CheckPopupController.Option.Sell); // Overlap CheckPopup on current Popup;
 
-        print("0"+currentType);
         CheckPopupController checkPopup = popups[(int) PopupType.CheckPopup] as CheckPopupController;
 
         bool bUserDecision = await checkPopup.WaitUserDecision();
@@ -197,7 +196,6 @@ public class PopupManager : MonoBehaviour
 
         DisableUI(PopupType.CheckPopup); // Close overlapped checkpoup.
         OpenPopup(PopupType.MainUIPopup); // goto Main.
-        print("1"+currentType);
     }
 #endregion
 

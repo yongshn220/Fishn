@@ -50,10 +50,17 @@ public class InfoPopupController : MonoBehaviour, IPopup
 
 
 #region IPopup
+    // Called every close.
     public void Disable(){}
 
-    public void Enable(int option){}
-
+    // Called every open.
+    public void Enable(int option)
+    {
+        // Disable Sell button, if only one entity exists.
+        sellButton.interactable = GameManager.instance.viewSceneManager.fishManager.GetNumOfCurrentEntityList() > 1; 
+    }
+    
+    // Called Once.
     public void Setup(PopupManager popupManager)
     {
         this.popupManager = popupManager;
@@ -102,6 +109,7 @@ public class InfoPopupController : MonoBehaviour, IPopup
             TryClosePopup();
         }
     }
+
     // Raycast
     private void TrySelectSeaObject()
     {

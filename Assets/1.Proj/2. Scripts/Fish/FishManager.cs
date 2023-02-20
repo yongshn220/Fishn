@@ -91,13 +91,13 @@ public class FishManager : MonoBehaviour
 #region Remove
     public void RemoveEntity(int id)
     {
-        entityList.ForEach((entity) => {
-            EntityMono mono = entity.GetComponent<EntityMono>();
-            if (!mono) return;
-            if (mono.id == id) {
-                Destroy(mono.gameObject); return;
-            }
-        });
+        GameObject entity = entityList.Find((entity) => entity.GetComponent<EntityMono>().id == id);
+
+        if (entity)
+        {
+            entityList.Remove(entity);
+            Destroy(entity);
+        }
     }
 #endregion
 
@@ -165,6 +165,13 @@ public class FishManager : MonoBehaviour
         entity.AddComponent<FishMovement>();
         entity.GetComponent<FishMovement>()?.AssignManager(this);
         entity.GetComponent<FishMovement>()?.InitializeSpeed(UnityEngine.Random.Range(minSpeed, maxSpeed));
+    }
+#endregion
+
+#region Get
+    public int GetNumOfCurrentEntityList()
+    {
+        return entityList.Count();
     }
 #endregion
 }
