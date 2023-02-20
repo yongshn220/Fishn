@@ -88,6 +88,19 @@ public class FishManager : MonoBehaviour
     }
 #endregion
 
+#region Remove
+    public void RemoveEntity(int id)
+    {
+        entityList.ForEach((entity) => {
+            EntityMono mono = entity.GetComponent<EntityMono>();
+            if (!mono) return;
+            if (mono.id == id) {
+                Destroy(mono.gameObject); return;
+            }
+        });
+    }
+#endregion
+
 #region GenerateFish
     // Instantiate All fish into the Fish-tank.
     public void GenerateEntity(EntityData entityData)

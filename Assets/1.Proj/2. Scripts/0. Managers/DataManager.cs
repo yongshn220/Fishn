@@ -97,9 +97,9 @@ public class DataManager : MonoBehaviour
 #endregion
 
 #region Remove
-    public async UniTaskVoid RemoveEntity(int id)
+    public async UniTask<string> RemoveEntity(int id)
     {
-        await DatabaseHelper.RemoveEntityData(id);
+        return await DatabaseHelper.RemoveEntityData(id);
     }
 #endregion
 

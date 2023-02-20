@@ -102,13 +102,12 @@ public static class DatabaseHelper
 #endregion
 
 #region Remove
-    public static async UniTask<int> RemoveEntityData(int id)
+    public static async UniTask<string> RemoveEntityData(int id)
     {
         JObject jObject = new JObject();
         jObject[DBstr.ID] = id;
-        jObject[DBstr.ITEM_TYPE] = DBstr.ENTITY_TABLE;
         string result = await database.AsyncRemoveEntityData(UID, jObject);
-        return int.Parse(result);
+        return result;
     }
 #endregion
 

@@ -48,6 +48,8 @@ public class PurchaseManager : MonoBehaviour // to do: change class name -> Tran
         if (type == ItemType.Entity)
         {
             await GameManager.instance.dataManager.RemoveEntity(id);
+            GameManager.instance.viewSceneManager.fishManager.RemoveEntity(id);
+            return true;
         }
         return false;
     }

@@ -15,6 +15,7 @@ public class EntityGrowthScriptableObject : ScriptableObject
         entityGrowths.Add(new EntityGrowthScriptableObjectStructure(EntityType.Clownfish, level:3, age:5, scale:0.5f, maxFeed:400));
         entityGrowths.Add(new EntityGrowthScriptableObjectStructure(EntityType.Clownfish, level:4, age:10, scale:0.8f, maxFeed:800));
         entityGrowths.Add(new EntityGrowthScriptableObjectStructure(EntityType.Clownfish, level:5, age:15, scale:1.0f, maxFeed:1600));
+        entityGrowths.Add(new EntityGrowthScriptableObjectStructure(EntityType.Clownfish, level:5, age:9999, scale:1.0f, maxFeed:1600));
 
         // Crab
         entityGrowths.Add(new EntityGrowthScriptableObjectStructure(EntityType.Crab, level:1, age:0, scale:0.3f, maxFeed:100));
@@ -22,5 +23,6 @@ public class EntityGrowthScriptableObject : ScriptableObject
         entityGrowths.Add(new EntityGrowthScriptableObjectStructure(EntityType.Crab, level:3, age:5, scale:0.6f, maxFeed:400));
         entityGrowths.Add(new EntityGrowthScriptableObjectStructure(EntityType.Crab, level:4, age:8, scale:0.8f, maxFeed:800));
         entityGrowths.Add(new EntityGrowthScriptableObjectStructure(EntityType.Crab, level:5, age:12, scale:1.0f, maxFeed:1600)); 
+        entityGrowths.Add(new EntityGrowthScriptableObjectStructure(EntityType.Crab, level:5, age:9999, scale:1.0f, maxFeed:1600));
     }
 }
