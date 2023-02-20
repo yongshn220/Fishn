@@ -27,7 +27,7 @@ public class ScriptableObjectManager : MonoBehaviour
     
     void Setup()
     {
-        EntityGrowthSOList = new EntityGrowthScriptableObject();
+        EntityGrowthSOList = ScriptableObject.CreateInstance<EntityGrowthScriptableObject>();
     }
 
 #region Get One
