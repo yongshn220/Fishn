@@ -75,11 +75,9 @@ public class InfoPopupController : MonoBehaviour, IPopup
 #region Delegate Callback
     private void OnEntityMonoUpdate(EntityMono mono)
     {
-
         if (!selectedEntity) return;
         if (selectedEntity != mono) return;
-
-        OpenSelectedEntityInfo();
+        ShowMonoData(mono);
     }
 #endregion
 
@@ -107,6 +105,8 @@ public class InfoPopupController : MonoBehaviour, IPopup
     // Raycast
     private void TrySelectSeaObject()
     {
+        if (popupManager.currentType != PopupType.MainUIPopup && popupManager.currentType != PopupType.InfoPopup) return;
+        print(popupManager.currentType);
         GameObject hitEntity = RaycastHelper.RaycastTagAtMousePosition(camera, "Entity");
 
         // Object selected -> Save selected Object
@@ -119,12 +119,15 @@ public class InfoPopupController : MonoBehaviour, IPopup
 
     private void TryClosePopup()
     {
+        if (popupManager.currentType != PopupType.InfoPopup) return;
+
         GameObject hitEntity = RaycastHelper.RaycastTagAtMousePosition(camera, "Entity");
         List<RaycastResult> results = RaycastHelper.UIRaycastAtMousePoision();
 
         // Outside of UI clicked -> Close Popup
         if (hitEntity == null && results.Count == 0)
         {
+            print("closed");
             CloseSelectedEntityInfo();
         }
     }
@@ -133,18 +136,22 @@ public class InfoPopupController : MonoBehaviour, IPopup
     private void OpenSelectedEntityInfo()
     { 
         if (!selectedEntity) return;
-        
         // Info popup setting.
         EntityMono mono = selectedEntity.GetComponent<EntityMono>();
-        var entitySO = GameManager.instance.scriptableObjectManager.TryGetEntitySOById(mono.type_id); if (entitySO == null) return;
-        nameText.text = entitySO.name;
-        ageText.text = $"{mono.born_datetime.GetDayPassedFromNow()}";
-        feedText.text = $"{ (float)mono.feed / (float)mono.maxFeed * 100 } %";
+        if (!mono) return;
+        ShowMonoData(mono);
 
         // Pointing activate
         selectPointTr.gameObject.SetActive(true);
 
         popupManager.OpenPopup(PopupType.InfoPopup);
+    }
+
+    private void ShowMonoData(EntityMono mono)
+    {
+        nameText.text = mono.name;
+        ageText.text = $"{mono.born_datetime.GetDayPassedFromNow()}";
+        feedText.text = $"{ (float)mono.feed / (float)mono.maxFeed * 100 } %";
     }
 
     private void CloseSelectedEntityInfo()

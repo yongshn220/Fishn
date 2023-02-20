@@ -6,25 +6,28 @@ using UnityEngine;
 
 public class EntityMono : MonoBehaviour
 {   
-    public int _id; 
+    private int _id; 
     public int id { get { return _id; }}
 
-    public int _type_id;
+    private int _type_id;
     public int type_id { get { return _type_id; }}
 
-    public int _coral;
+    private string _name;
+    public new string name { get {return _name; }}
+
+    private int _coral;
     public int coral { get { return _coral; }}
 
-    public DateTime _born_datetime;
+    private DateTime _born_datetime;
     public DateTime born_datetime { get { return _born_datetime; }}
 
-    public DateTime _feed_datetime;
+    private DateTime _feed_datetime;
     public DateTime feed_datetime { get { return _feed_datetime; }}
 
-    public int _feed;
+    private int _feed;
     public int feed { get { return _feed; }}
 
-    public int _maxFeed;
+    private int _maxFeed;
     public int maxFeed { get { return _maxFeed; }}
 
 
@@ -32,9 +35,10 @@ public class EntityMono : MonoBehaviour
     {
         var entitySO = GameManager.instance.scriptableObjectManager.TryGetEntitySOById(data.type_id); if (entitySO == null) return;
         var entityGrowthSO = GameManager.instance.scriptableObjectManager.TryGetEntityGrowthSOByData(data); if (entityGrowthSO == null) return;
-
+        
         _id = data.id;
         _type_id = data.type_id;
+        _name = entitySO.name;
         _coral = entitySO.coral;
         _born_datetime = data.born_datetime;
         _feed_datetime = data.feed_datetime;

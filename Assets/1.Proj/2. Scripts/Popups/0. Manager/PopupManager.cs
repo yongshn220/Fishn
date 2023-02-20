@@ -58,20 +58,21 @@ public class PopupManager : MonoBehaviour
 #region On / Off
     public void OpenPopup(PopupType type)
     {
-        currentType = type;
-        DisableUI(PopupType.MainUIPopup);
+        print("open popup");
+        DisableAll();
         EnableUI(type);
     }
 
     public void ClosePopup(PopupType type)
     {
-        currentType = PopupType.MainUIPopup;
-        EnableUI(PopupType.MainUIPopup);
         DisableUI(type);
+        EnableUI(PopupType.MainUIPopup);
     }
 
     private void EnableUI(PopupType type, int option = 0)
     {
+        currentType = type;
+        print("type changed : " + currentType);
         MonoBehaviour target = popups[(int) type] as MonoBehaviour;
         if (target)
         {
@@ -111,6 +112,14 @@ public class PopupManager : MonoBehaviour
         foreach (var type in types)
         {
             DisableUI(type);
+        }
+    }
+
+    private void DisableAll()
+    {
+        foreach (var type in Enum.GetValues(typeof(PopupType)))
+        {
+            DisableUI((PopupType) type);
         }
     }
 
@@ -172,8 +181,9 @@ public class PopupManager : MonoBehaviour
 #region Info Popup Interaction
     public async UniTaskVoid TrySellItem(int id, ItemType type, int coral)
     {
-        EnableUI(PopupType.CheckPopup, (int) CheckPopupController.Option.Sell);
+        EnableUI(PopupType.CheckPopup, (int) CheckPopupController.Option.Sell); // Overlap CheckPopup on current Popup;
 
+        print("0"+currentType);
         CheckPopupController checkPopup = popups[(int) PopupType.CheckPopup] as CheckPopupController;
 
         bool bUserDecision = await checkPopup.WaitUserDecision();
@@ -182,7 +192,10 @@ public class PopupManager : MonoBehaviour
         {
             bool result = await GameManager.instance.purchaseManager.TrySellEntity(id, type, coral);
         }
-        DisableUI(PopupType.CheckPopup);
+
+        DisableUI(PopupType.CheckPopup); // Close overlapped checkpoup.
+        OpenPopup(PopupType.MainUIPopup); // goto Main.
+        print("1"+currentType);
     }
 #endregion
 

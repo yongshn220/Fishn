@@ -112,7 +112,6 @@ public class ScriptableObjectManager : MonoBehaviour
         }
         return null;
     }
-
 #endregion
 
 #region Get All
