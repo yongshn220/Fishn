@@ -7,6 +7,7 @@ public class FishTankManager : MonoBehaviour
     private ViewSceneManager sceneManager;
     private Transform myTransform;
     private FishTankController fishTankController;
+    private int tank_id;
 
     void Awake()
     {
@@ -16,7 +17,7 @@ public class FishTankManager : MonoBehaviour
     public void Setup(ViewSceneManager sceneManager)
     {
         this.sceneManager = sceneManager;
-        int tank_id = GameManager.instance.dataManager.GetUserTankId();
+        this.tank_id = GameManager.instance.dataManager.GetUserTankId();
 
         if (tank_id < 0)
         {
@@ -38,9 +39,9 @@ public class FishTankManager : MonoBehaviour
         }
     }
 
-    public void ChangeFishTank(int tank_id)
+    public int GetFishTankId()
     {
-        
+        return this.tank_id;
     }
 
     public CameraContainer GetCameraContainer()

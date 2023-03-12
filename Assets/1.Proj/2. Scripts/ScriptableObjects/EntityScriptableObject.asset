@@ -22,63 +22,63 @@ MonoBehaviour:
     sprite: {fileID: 0}
   - id: 1
     name: Clownfish
-    coral: 1
+    coral: 100
     type: 1
     maxFeed: 250
     prefab: {fileID: 7729076498333777764, guid: 90904ca5691a44b94a9bfc433033fc8d, type: 3}
     sprite: {fileID: 21300000, guid: 96d2602231d2246e5b82080009f9e2f1, type: 3}
   - id: 2
     name: Crab
-    coral: 1
+    coral: 200
     type: 1
     maxFeed: 500
     prefab: {fileID: 1639561603390754502, guid: cf859413596314da9ae6724a1ccf338b, type: 3}
     sprite: {fileID: 21300000, guid: e4ca2e823102c4537b49b767970dd98e, type: 3}
   - id: 3
     name: Dolphin
-    coral: 1
+    coral: 500
     type: 1
     maxFeed: 1000
     prefab: {fileID: 6741151867020512394, guid: fd14ed9af9f484faab861a56cf88f6c6, type: 3}
     sprite: {fileID: 21300000, guid: 8d6a16371eddd476fbbf9ffc4ee644c5, type: 3}
   - id: 4
     name: Lobster
-    coral: 1
+    coral: 500
     type: 1
     maxFeed: 1000
     prefab: {fileID: 9065794955866269469, guid: 7246ebeb7499c4e5790582b9bd30e4b0, type: 3}
     sprite: {fileID: 21300000, guid: 9472c6d817acc40a489083c7f192a313, type: 3}
   - id: 5
     name: Orca
-    coral: 1
+    coral: 800
     type: 1
     maxFeed: 1000
     prefab: {fileID: 5585684591844927164, guid: cad7d299a193e41f8804416f0947cd65, type: 3}
     sprite: {fileID: 21300000, guid: 66b4134147fe240a7a6e300556955e49, type: 3}
   - id: 6
     name: Pelican
-    coral: 40
+    coral: 1600
     type: 1
     maxFeed: 1000
     prefab: {fileID: 4032879285224719525, guid: 07b9346c0e2ff4b9caddff18fc226330, type: 3}
     sprite: {fileID: 21300000, guid: 99b88134cc69a40a9a1d6521249feecc, type: 3}
   - id: 7
     name: SeaHorse
-    coral: 30
+    coral: 3200
     type: 1
     maxFeed: 1000
     prefab: {fileID: 2932746134928647397, guid: 74bdd60bc25594e119c823d8683b8a8d, type: 3}
     sprite: {fileID: 21300000, guid: 01e231c25f62f4c99b8deb1a8c880a3a, type: 3}
   - id: 8
     name: SeaOtter
-    coral: 60
+    coral: 6400
     type: 1
     maxFeed: 1000
     prefab: {fileID: 866946083317211932, guid: 1536e2be6a3494ed7b86dc075b97f769, type: 3}
     sprite: {fileID: 21300000, guid: 104c3c89957d241fcb1df073f8678301, type: 3}
   - id: 9
     name: Squid
-    coral: 1000
+    coral: 12800
     type: 1
     maxFeed: 0
     prefab: {fileID: 1618309659037643057, guid: 85271e14c35e641d7be790d0dc5734e7, type: 3}

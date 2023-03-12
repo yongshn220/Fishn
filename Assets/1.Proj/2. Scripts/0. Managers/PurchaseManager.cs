@@ -8,7 +8,11 @@ public class PurchaseManager : MonoBehaviour // to do: change class name -> Tran
 {
     public async UniTask<bool> TryPurchase(int type_id, ItemType type, int coral)
     {
-        if (!Wallet.HasEnough(coral)) return false;
+        if (!Wallet.HasEnough(coral))
+        {
+            GameManager.instance.viewSceneManager.messageLogController.LogMessage("You don't have enough corals.");
+            return false;
+        }
 
         Wallet.Use(coral);
 
@@ -35,11 +39,17 @@ public class PurchaseManager : MonoBehaviour // to do: change class name -> Tran
 
         if (type == ItemType.FishTank)
         {
+            // If the selected tank id is the same as current -> fail to buy.
+            if (GameManager.instance.viewSceneManager.fishTankManager.GetFishTankId() == type_id)
+            {
+                GameManager.instance.viewSceneManager.messageLogController.LogMessage("You already using the same tank size.");
+                return false;
+            }    
             await GameManager.instance.dataManager.AsyncSaveFishTankID(type_id);
             GameManager.instance.AsyncReload(); 
-            // TODO: reloading animation 
         }
 
+        GameManager.instance.viewSceneManager.messageLogController.LogMessage("You successfully purchased an item.");
         return true;
     }
 

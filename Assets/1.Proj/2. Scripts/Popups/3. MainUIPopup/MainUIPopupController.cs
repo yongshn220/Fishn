@@ -30,15 +30,9 @@ public class MainUIPopupController : MonoBehaviour, IPopup
         this.popupManager = popupManager;
     }
 
-    public void Enable(int option)
-    {
-        
-    }
+    public void Enable(int option, string data){}
 
-    public void Disable()
-    {
-        
-    }
+    public void Disable(){}
 #endregion
 
     private void OnStoreButtonClick()

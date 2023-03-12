@@ -8,6 +8,7 @@ public class ViewSceneManager : MonoBehaviour
     public FishTankManager fishTankManager;
     public FishManager fishManager;
     public PopupManager popupManager;
+    public MessageLogController messageLogController;
 
     void Awake()
     {
@@ -15,6 +16,7 @@ public class ViewSceneManager : MonoBehaviour
         fishTankManager = GetComponentInChildren<FishTankManager>();
         fishManager = GetComponentInChildren<FishManager>();
         popupManager = GetComponentInChildren<PopupManager>();
+        messageLogController = GetComponentInChildren<MessageLogController>();
     }
 
     // Start is called before the first frame update

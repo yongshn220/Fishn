@@ -9,7 +9,7 @@ using TMPro;
 
 public class CheckPopupController : MonoBehaviour, IPopup
 {
-    public enum Option {Buy, Sell};
+    public enum Option {Buy, Sell, Kill};
     private Button blockingButton;
     private Button noButton;
     private Button yesButton;
@@ -36,15 +36,15 @@ public class CheckPopupController : MonoBehaviour, IPopup
 #region IPopup
     public void Setup(PopupManager popupManager){}
 
-    public void Enable(int option)
+    public void Enable(int option, string data)
     {
         if (option == (int) Option.Buy)
         {
-            checkText.text = "Do you want to buy item : ?"; return;
+            checkText.text = $"Do you want to buy following Item?\n\"{data}\""; return;
         }
         if (option == (int) Option.Sell)
         {
-            checkText.text = "Do you want to sell item : ?"; return;
+            checkText.text = $"Do you want to sell following item?\n\"{data}\""; return;
         }
     }
 

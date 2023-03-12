@@ -22,245 +22,245 @@ MonoBehaviour:
     sprite: {fileID: 0}
   - id: 1
     name: '[S] Deep Kelp 1'
-    coral: 10
+    coral: 100
     type: 2
     size: 0
     prefab: {fileID: 8034499035807330066, guid: 1300231c1884e4ae98472a1ee96ff328, type: 3}
     sprite: {fileID: 21300000, guid: 8c33aa25c9e3646bb81c45530d80ed92, type: 3}
   - id: 2
     name: '[S] Deep Kelp 2'
-    coral: 10
+    coral: 120
     type: 2
     size: 0
     prefab: {fileID: 1174874494261909603, guid: fdefb2817c2a9408cb79fd037e9c2929, type: 3}
     sprite: {fileID: 21300000, guid: 40564c226b1b94411abee8b972a6340a, type: 3}
   - id: 3
     name: '[S] Deep Kelp 3'
-    coral: 10
+    coral: 130
     type: 2
     size: 0
     prefab: {fileID: 7612304349650563608, guid: fa0772e94976c42608bf477ac000eafb, type: 3}
     sprite: {fileID: 21300000, guid: 5536771a7b60646f8bf6026651a0cace, type: 3}
   - id: 4
     name: '[S] Kelp 1'
-    coral: 10
+    coral: 140
     type: 2
     size: 0
     prefab: {fileID: 3483322066333283760, guid: cc253f42b54e14c2aa325d0531b66dfa, type: 3}
     sprite: {fileID: 21300000, guid: 8f2ae073f60b84d03924f3c7469c2067, type: 3}
   - id: 5
     name: '[S] Short Seagrass'
-    coral: 15
+    coral: 200
     type: 2
     size: 0
     prefab: {fileID: 1570132709768525104, guid: b9d0100d6a00746f9a142be31e1be500, type: 3}
     sprite: {fileID: 21300000, guid: 69b7a901bdf2f4f228e6bf8ceb17d5cc, type: 3}
   - id: 6
     name: '[M] Deep Kelp 1'
-    coral: 15
+    coral: 300
     type: 2
     size: 1
     prefab: {fileID: 4238853121823436299, guid: e98a84aaf3d0a4cc8a2c9875776e9a3a, type: 3}
     sprite: {fileID: 21300000, guid: 8c33aa25c9e3646bb81c45530d80ed92, type: 3}
   - id: 7
     name: '[M] Deep Kelp 2'
-    coral: 15
+    coral: 310
     type: 2
     size: 1
     prefab: {fileID: 6612859418184668677, guid: 671487232269241b3897b2ab02b45971, type: 3}
     sprite: {fileID: 21300000, guid: 40564c226b1b94411abee8b972a6340a, type: 3}
   - id: 8
     name: '[M] Deep Kelp 3'
-    coral: 15
+    coral: 320
     type: 2
     size: 1
     prefab: {fileID: 5097872223389069413, guid: 7b5998161dae44b9ea388fc150861579, type: 3}
     sprite: {fileID: 21300000, guid: 5536771a7b60646f8bf6026651a0cace, type: 3}
   - id: 9
     name: '[M] Kelp 1'
-    coral: 15
+    coral: 330
     type: 2
     size: 1
     prefab: {fileID: 7162350269737482821, guid: ecf9d4453b7c7436fb3fb7570ef7a345, type: 3}
     sprite: {fileID: 21300000, guid: 8f2ae073f60b84d03924f3c7469c2067, type: 3}
   - id: 10
     name: '[M] Short Seagrass'
-    coral: 15
+    coral: 500
     type: 2
     size: 1
     prefab: {fileID: 3422934186621488158, guid: 7b5ce222e636944ada2b9ee3ec747d3b, type: 3}
     sprite: {fileID: 21300000, guid: 69b7a901bdf2f4f228e6bf8ceb17d5cc, type: 3}
   - id: 11
     name: '[L] Deep Kelp 1'
-    coral: 15
+    coral: 700
     type: 2
     size: 2
     prefab: {fileID: 3401152456834166988, guid: 7d91958b3b6614de8895c2f03a12c441, type: 3}
     sprite: {fileID: 21300000, guid: 8c33aa25c9e3646bb81c45530d80ed92, type: 3}
   - id: 12
     name: '[L] Deep Kelp 2'
-    coral: 20
+    coral: 710
     type: 2
     size: 2
     prefab: {fileID: 7537327277596018771, guid: ab52699c06cf145ddbbbc5c50fc3c235, type: 3}
     sprite: {fileID: 21300000, guid: 40564c226b1b94411abee8b972a6340a, type: 3}
   - id: 13
     name: '[L] Deep Kelp 3'
-    coral: 20
+    coral: 730
     type: 2
     size: 2
     prefab: {fileID: 4805570264228657525, guid: a21392ca304a64f998bca4da3fda778a, type: 3}
     sprite: {fileID: 21300000, guid: 5536771a7b60646f8bf6026651a0cace, type: 3}
   - id: 14
     name: '[L] Kelp 1'
-    coral: 20
+    coral: 750
     type: 2
     size: 2
     prefab: {fileID: 3048263651970065713, guid: 348aacc4d1f2b4d0496821e4d3f13fad, type: 3}
     sprite: {fileID: 21300000, guid: 8f2ae073f60b84d03924f3c7469c2067, type: 3}
   - id: 15
     name: '[L] Short Seagrass'
-    coral: 20
+    coral: 800
     type: 2
     size: 2
     prefab: {fileID: 5216434357956515801, guid: e32f2eed9e64e414888f524d8166c83e, type: 3}
     sprite: {fileID: 21300000, guid: 69b7a901bdf2f4f228e6bf8ceb17d5cc, type: 3}
   - id: 16
     name: '[S] Arch 1'
-    coral: 20
+    coral: 200
     type: 3
     size: 0
     prefab: {fileID: 2027381122372448917, guid: 20f7ed203869b4d0f9db3398d84b6ae2, type: 3}
     sprite: {fileID: 21300000, guid: 8f3a4eb942544426b95ec0ffb0ca9a0a, type: 3}
   - id: 17
     name: '[S] Rock 1'
-    coral: 20
+    coral: 100
     type: 3
     size: 0
     prefab: {fileID: 8524343418825754005, guid: b78f42faa7a0143299d89d6e0e34196f, type: 3}
     sprite: {fileID: 21300000, guid: 50e13df79f3b7484bb76c7532c35704d, type: 3}
   - id: 18
     name: '[s] Rock 2'
-    coral: 20
+    coral: 120
     type: 3
     size: 0
     prefab: {fileID: 4218543444490506128, guid: 9a5344df43bff4f6e92e155dd17bbcc3, type: 3}
     sprite: {fileID: 21300000, guid: 9ccb57215f8404eeda26527ec160a5d6, type: 3}
   - id: 19
     name: '[S] Rock 3'
-    coral: 25
+    coral: 200
     type: 3
     size: 0
     prefab: {fileID: 8295942421999574079, guid: 13dfc8db5e93244afa991453f1bda93b, type: 3}
     sprite: {fileID: 21300000, guid: 3446ce0a2d8e34334afcd976a11e3b0d, type: 3}
   - id: 20
     name: '[S] Rock 4'
-    coral: 25
+    coral: 200
     type: 3
     size: 0
     prefab: {fileID: 9053880699180890060, guid: 2e31126031eca4a57ba419c219468d5a, type: 3}
     sprite: {fileID: 21300000, guid: e51edb33ae76d4cb98a3aa0ac9ae0519, type: 3}
   - id: 21
     name: '[S] Rock 5'
-    coral: 25
+    coral: 200
     type: 3
     size: 0
     prefab: {fileID: 7336801465068920814, guid: 1b212255939d247c9a3d62892ad6cde9, type: 3}
     sprite: {fileID: 21300000, guid: f090f615821544e648074b557b83086a, type: 3}
   - id: 22
     name: '[S] Rock 6'
-    coral: 25
+    coral: 200
     type: 3
     size: 0
     prefab: {fileID: 4540262794067239937, guid: 7335f9f3079b54a37ba1f77b11dbac59, type: 3}
     sprite: {fileID: 21300000, guid: b2c8070c449ec482ea7ec8e8afb63473, type: 3}
   - id: 23
     name: '[M] Arch 1'
-    coral: 25
+    coral: 400
     type: 3
     size: 1
     prefab: {fileID: 2890576854049301767, guid: 537952ca4510b4fe5b8a2ef8c2d27014, type: 3}
     sprite: {fileID: 21300000, guid: 8f3a4eb942544426b95ec0ffb0ca9a0a, type: 3}
   - id: 24
     name: '[M] Rock 1'
-    coral: 25
+    coral: 450
     type: 3
     size: 1
     prefab: {fileID: 8407840507023832479, guid: 9ec740e77e9024dacb45daab1dad34a3, type: 3}
     sprite: {fileID: 21300000, guid: 50e13df79f3b7484bb76c7532c35704d, type: 3}
   - id: 25
     name: '[M] Rock 3'
-    coral: 25
+    coral: 400
     type: 3
     size: 1
     prefab: {fileID: 646888122734879557, guid: 02fb04617a844437a9d65e3efd125657, type: 3}
     sprite: {fileID: 21300000, guid: 3446ce0a2d8e34334afcd976a11e3b0d, type: 3}
   - id: 26
     name: '[M] Rock 4'
-    coral: 25
+    coral: 500
     type: 3
     size: 1
     prefab: {fileID: 8566685907241834366, guid: eb315838baae44761a366ae0eb020b6e, type: 3}
     sprite: {fileID: 21300000, guid: e51edb33ae76d4cb98a3aa0ac9ae0519, type: 3}
   - id: 27
     name: '[M] Rock 5'
-    coral: 30
+    coral: 450
     type: 3
     size: 1
     prefab: {fileID: 7774157372608121194, guid: efb1df8ba90024925ab643e27d6e8d7f, type: 3}
     sprite: {fileID: 21300000, guid: f090f615821544e648074b557b83086a, type: 3}
   - id: 28
     name: '[M] Rock 6'
-    coral: 30
+    coral: 550
     type: 3
     size: 1
     prefab: {fileID: 6927570899203890746, guid: c93f10a358b4d47ce927190e71212df6, type: 3}
     sprite: {fileID: 21300000, guid: b2c8070c449ec482ea7ec8e8afb63473, type: 3}
   - id: 29
     name: '[L] Arch 1'
-    coral: 30
+    coral: 1200
     type: 3
     size: 2
     prefab: {fileID: 7417044119894489440, guid: 3a8dc3f10ca6b44ebbab2ce94bbac53e, type: 3}
     sprite: {fileID: 21300000, guid: 8f3a4eb942544426b95ec0ffb0ca9a0a, type: 3}
   - id: 30
     name: '[L] Rock 1'
-    coral: 30
+    coral: 1200
     type: 3
     size: 2
     prefab: {fileID: 1203286196592075440, guid: ddcf5f8043d5b427d850b84afb3d0cad, type: 3}
     sprite: {fileID: 21300000, guid: 50e13df79f3b7484bb76c7532c35704d, type: 3}
   - id: 31
     name: '[L] Rock 2'
-    coral: 30
+    coral: 1100
     type: 3
     size: 2
     prefab: {fileID: 6570294264513213745, guid: f8a0124d7997f45ab8d1ec67ce984029, type: 3}
     sprite: {fileID: 21300000, guid: 9ccb57215f8404eeda26527ec160a5d6, type: 3}
   - id: 32
     name: '[L] Rock 3'
-    coral: 30
+    coral: 1050
     type: 3
     size: 2
     prefab: {fileID: 140838124585459297, guid: e4ee543d7969f47bfb48457dbadb3625, type: 3}
     sprite: {fileID: 21300000, guid: 3446ce0a2d8e34334afcd976a11e3b0d, type: 3}
   - id: 33
     name: '[L] Rock 4'
-    coral: 30
+    coral: 1200
     type: 3
     size: 2
     prefab: {fileID: 853199836014826317, guid: 86013c4495fb84c50a02580f7092004d, type: 3}
     sprite: {fileID: 21300000, guid: e51edb33ae76d4cb98a3aa0ac9ae0519, type: 3}
   - id: 34
     name: '[L] Rock 5'
-    coral: 30
+    coral: 1200
     type: 3
     size: 2
     prefab: {fileID: 553621803011933957, guid: e3402bf1c6f374896a63a36aca12b4a0, type: 3}
     sprite: {fileID: 21300000, guid: f090f615821544e648074b557b83086a, type: 3}
   - id: 35
     name: '[L] Rock 6'
-    coral: 35
+    coral: 1250
     type: 3
     size: 2
     prefab: {fileID: 1866243124956011540, guid: b1911541ff9e4444fbac2f92058bdae1, type: 3}

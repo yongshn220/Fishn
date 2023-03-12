@@ -64,7 +64,7 @@ public class EditPopupController : MonoBehaviour, IPopup
         ResetRemoveButton();
     }
 
-    public void Enable(int option)
+    public void Enable(int option, string data)
     {
         currentMode = EditMode.Front;
         popupManager.SetCoralLightingState(false);

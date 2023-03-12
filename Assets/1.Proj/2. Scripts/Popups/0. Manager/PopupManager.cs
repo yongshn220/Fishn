@@ -69,7 +69,7 @@ public class PopupManager : MonoBehaviour
         EnableUI(PopupType.MainUIPopup);
     }
 
-    private void EnableUI(PopupType type, int option = 0)
+    private void EnableUI(PopupType type, int option = 0, string data = "")
     {
         currentType = type;
         print("type changed : " + currentType);
@@ -81,7 +81,7 @@ public class PopupManager : MonoBehaviour
             targetUI.alpha = 1f;
             targetUI.interactable = true;
             targetUI.blocksRaycasts = true;
-            popups[(int) type].Enable(option); 
+            popups[(int) type].Enable(option, data); 
         }
     }
 
@@ -163,9 +163,9 @@ public class PopupManager : MonoBehaviour
 #endregion
 
 #region Store Popup Interaction
-    public async UniTaskVoid TryBuyItem(int id, ItemType type, int coral)
+    public async UniTaskVoid TryBuyItem(int id, ItemType type, int coral, string name)
     {
-        EnableUI(PopupType.CheckPopup, (int) CheckPopupController.Option.Buy);
+        EnableUI(PopupType.CheckPopup, (int) CheckPopupController.Option.Buy, name);
 
         CheckPopupController checkPopup = popups[(int) PopupType.CheckPopup] as CheckPopupController;
 
@@ -180,9 +180,9 @@ public class PopupManager : MonoBehaviour
 #endregion
 
 #region Info Popup Interaction
-    public async UniTaskVoid TrySellItem(int id, ItemType type, int coral)
+    public async UniTaskVoid TrySellItem(EntityMono entityMono)
     {
-        EnableUI(PopupType.CheckPopup, (int) CheckPopupController.Option.Sell); // Overlap CheckPopup on current Popup;
+        EnableUI(PopupType.CheckPopup, (int) CheckPopupController.Option.Sell, entityMono.name); // Overlap CheckPopup on current Popup;
 
         CheckPopupController checkPopup = popups[(int) PopupType.CheckPopup] as CheckPopupController;
 
@@ -190,7 +190,7 @@ public class PopupManager : MonoBehaviour
 
         if (bUserDecision) 
         {
-            bool result = await GameManager.instance.purchaseManager.TrySellEntity(id, type, coral);
+            bool result = await GameManager.instance.purchaseManager.TrySellEntity(entityMono.id, ItemType.Entity, entityMono.coral);
         }
 
         DisableUI(PopupType.CheckPopup); // Close overlapped checkpoup.

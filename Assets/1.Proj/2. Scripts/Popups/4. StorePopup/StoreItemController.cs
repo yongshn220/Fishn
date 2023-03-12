@@ -9,8 +9,10 @@ public class StoreItemController : MonoBehaviour
     public StorePopupController popupController;
 
     private int id;
+    private string name;
     private ItemType type;
     private int coral;
+
     public Image itemImage;
     public TMP_Text coralValue;
     public TMP_Text itemName;
@@ -27,6 +29,7 @@ public class StoreItemController : MonoBehaviour
     {
         this.popupController = popupController;
         this.id = seaObject.id;
+        this.name = seaObject.name;
         this.type = seaObject.type;
         this.coral = seaObject.coral;
         this.coralValue.text = this.coral.ToString();
@@ -38,6 +41,7 @@ public class StoreItemController : MonoBehaviour
     {
         this.popupController = popupController;
         this.id = entity.id;
+        this.name = entity.name;
         this.type = entity.type;
         this.coral = entity.coral;
         this.coralValue.text = this.coral.ToString();
@@ -49,10 +53,11 @@ public class StoreItemController : MonoBehaviour
     {
         this.popupController = popupController;
         this.id = coralPlant.id;
+        this.name = coralPlant.name;
         this.type = coralPlant.type;
         this.coral = coralPlant.coral;
         this.coralValue.text = this.coral.ToString();
-        this.itemName.text = coralPlant.name + $" [{coralPlant.unitCoral}]";
+        this.itemName.text = coralPlant.name + $"\n+{coralPlant.unitCoral / 10}";
         this.itemImage.sprite = coralPlant.sprite;
     }
 
@@ -60,6 +65,7 @@ public class StoreItemController : MonoBehaviour
     {
         this.popupController = popupController;
         this.id = fishTank.id;
+        this.name = fishTank.name;
         this.type = fishTank.type;
         this.coral = fishTank.coral;
         this.coralValue.text = this.coral.ToString();
@@ -69,7 +75,7 @@ public class StoreItemController : MonoBehaviour
 
     private void OnBuyButtonClick()
     {
-        popupController.OnBuyButtonClick(id, type, coral);
+        popupController.OnBuyButtonClick(id, type, coral, name);
     }
 
     private void OnPreviewButtonClick()

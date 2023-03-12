@@ -6,7 +6,7 @@ public interface IPopup
 {
     void Setup(PopupManager manager);
 
-    void Enable(int option);
+    void Enable(int option, string data);
 
     void Disable();
 }

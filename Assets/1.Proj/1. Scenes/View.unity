@@ -278,6 +278,7 @@ MonoBehaviour:
   fishTankManager: {fileID: 0}
   fishManager: {fileID: 0}
   popupManager: {fileID: 0}
+  messageLogController: {fileID: 0}
 --- !u!4 &1370569129
 Transform:
   m_ObjectHideFlags: 0
@@ -869,6 +870,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2096184660}
     m_Modifications:
+    - target: {fileID: 757875235, guid: 2ba93522fcd16412da615d580fee4ee7, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 757875235, guid: 2ba93522fcd16412da615d580fee4ee7, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1303369510011006019, guid: 2ba93522fcd16412da615d580fee4ee7, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -2.4545898
@@ -983,6 +992,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2096184660}
     m_Modifications:
+    - target: {fileID: 445225511, guid: a9448d4718ff9491d813bb57f612812d, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 445225511, guid: a9448d4718ff9491d813bb57f612812d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 753.9324
+      objectReference: {fileID: 0}
+    - target: {fileID: 445225511, guid: a9448d4718ff9491d813bb57f612812d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 21.7505
+      objectReference: {fileID: 0}
+    - target: {fileID: 445225511, guid: a9448d4718ff9491d813bb57f612812d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.0337
+      objectReference: {fileID: 0}
+    - target: {fileID: 445225511, guid: a9448d4718ff9491d813bb57f612812d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -704.4939
+      objectReference: {fileID: 0}
+    - target: {fileID: 445225512, guid: a9448d4718ff9491d813bb57f612812d, type: 3}
+      propertyPath: m_text
+      value: ' This is a message log.This is a message log.This is a message log.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 445225512, guid: a9448d4718ff9491d813bb57f612812d, type: 3}
+      propertyPath: m_margin.x
+      value: 2.9878845
+      objectReference: {fileID: 0}
     - target: {fileID: 7665272889648569938, guid: a9448d4718ff9491d813bb57f612812d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1185,6 +1222,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2096184660}
     m_Modifications:
+    - target: {fileID: 4411957541175453733, guid: d4c86fdcdcc41443e91e10968c5a17d7, type: 3}
+      propertyPath: m_text
+      value: Sell
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920563464186888704, guid: d4c86fdcdcc41443e91e10968c5a17d7, type: 3}
+      propertyPath: m_text
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8920563465361852242, guid: d4c86fdcdcc41443e91e10968c5a17d7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

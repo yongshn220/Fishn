@@ -54,7 +54,7 @@ public class InfoPopupController : MonoBehaviour, IPopup
     public void Disable(){}
 
     // Called every open.
-    public void Enable(int option)
+    public void Enable(int option, string data)
     {
         // Disable Sell button, if only one entity exists.
         sellButton.interactable = GameManager.instance.viewSceneManager.fishManager.GetNumOfCurrentEntityList() > 1; 
@@ -96,7 +96,7 @@ public class InfoPopupController : MonoBehaviour, IPopup
 
     private void OnSellButtonClick()
     {
-        this.popupManager.TrySellItem(selectedEntity.id, ItemType.Entity, selectedEntity.coral).Forget();
+        this.popupManager.TrySellItem(selectedEntity).Forget();
     }
 #endregion
 
@@ -114,6 +114,7 @@ public class InfoPopupController : MonoBehaviour, IPopup
     private void TrySelectSeaObject()
     {
         if (popupManager.currentType != PopupType.MainUIPopup && popupManager.currentType != PopupType.InfoPopup) return;
+        print(popupManager.currentType);
         GameObject hitEntity = RaycastHelper.RaycastTagAtMousePosition(camera, "Entity");
 
         // Object selected -> Save selected Object

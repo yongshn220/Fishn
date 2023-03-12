@@ -55,10 +55,7 @@ public class StorePopupController : MonoBehaviour, IPopup
         SetupItems();
     }
 
-    public void Enable(int option)
-    {
-
-    }
+    public void Enable(int option, string data){}
 
     public void Disable()
     {
@@ -83,11 +80,11 @@ public class StorePopupController : MonoBehaviour, IPopup
 
 #region Button Event
     // Called from Item Controller.
-    public void OnBuyButtonClick(int id, ItemType type, int coral)
+    public void OnBuyButtonClick(int id, ItemType type, int coral, string name)
     {
         print(id);
         print(type);
-        popupManager.TryBuyItem(id, type, coral).Forget();
+        popupManager.TryBuyItem(id, type, coral, name).Forget();
     }
 
     // Called from item controller.
