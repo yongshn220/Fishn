@@ -9,4 +9,5 @@ public class FishTankScriptableObjectStructure
     public GameObject prefab;
     public ItemType type;
     public int coral;
+    public Sprite sprite;
 }

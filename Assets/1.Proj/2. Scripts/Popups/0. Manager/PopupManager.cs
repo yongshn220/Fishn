@@ -87,7 +87,6 @@ public class PopupManager : MonoBehaviour
 
     private void DisableUI(PopupType type)
     {
-        print(type);
         MonoBehaviour target = popups[(int) type] as MonoBehaviour; 
         if (target)
         {
@@ -120,7 +119,7 @@ public class PopupManager : MonoBehaviour
     {
         foreach (var type in Enum.GetValues(typeof(PopupType)))
         {
-            if ((PopupType)type == PopupType.StaticPopup || (PopupType)type == PopupType.MainUIPopup) continue;
+            if ((PopupType)type == PopupType.StaticPopup) continue;
             DisableUI((PopupType) type);
         }
     }

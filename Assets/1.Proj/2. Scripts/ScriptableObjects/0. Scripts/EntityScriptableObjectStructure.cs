@@ -10,4 +10,5 @@ public class EntityScriptableObjectStructure
     public ItemType type;
     public int maxFeed;
     public GameObject prefab;
+    public Sprite sprite;
 }

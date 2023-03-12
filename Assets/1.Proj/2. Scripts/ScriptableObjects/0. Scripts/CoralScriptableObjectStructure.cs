@@ -12,4 +12,5 @@ public class CoralScriptableObjectStructure
     public ItemType type = ItemType.Coral;
     public SeaObjectSize size;
     public GameObject prefab;
+    public Sprite sprite;
 }

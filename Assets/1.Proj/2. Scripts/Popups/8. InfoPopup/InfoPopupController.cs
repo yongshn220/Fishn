@@ -114,7 +114,6 @@ public class InfoPopupController : MonoBehaviour, IPopup
     private void TrySelectSeaObject()
     {
         if (popupManager.currentType != PopupType.MainUIPopup && popupManager.currentType != PopupType.InfoPopup) return;
-        print(popupManager.currentType);
         GameObject hitEntity = RaycastHelper.RaycastTagAtMousePosition(camera, "Entity");
 
         // Object selected -> Save selected Object

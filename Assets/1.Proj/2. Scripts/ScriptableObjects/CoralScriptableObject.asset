@@ -20,6 +20,7 @@ MonoBehaviour:
     type: 0
     size: 0
     prefab: {fileID: 0}
+    sprite: {fileID: 0}
   - id: 1
     name: '[S] Batched Coral 1'
     coral: 10
@@ -27,6 +28,7 @@ MonoBehaviour:
     type: 4
     size: 0
     prefab: {fileID: 3746585628959446744, guid: a03c61d2973024254bbb2c2add088fde, type: 3}
+    sprite: {fileID: 21300000, guid: 677449130abb8464ba90b182d310e1a5, type: 3}
   - id: 2
     name: '[S] Bulbous Coral 1'
     coral: 10
@@ -34,6 +36,7 @@ MonoBehaviour:
     type: 4
     size: 0
     prefab: {fileID: 1055494117270305969, guid: 3859bc3106563449d8da6c41a43b25fa, type: 3}
+    sprite: {fileID: 21300000, guid: 4d96cfb6354904bd0a61df8774133b92, type: 3}
   - id: 3
     name: '[S] Coral 1'
     coral: 10
@@ -41,6 +44,7 @@ MonoBehaviour:
     type: 4
     size: 0
     prefab: {fileID: 6540812178458024773, guid: 2d903fbae84ad47f993aea09e7f5c758, type: 3}
+    sprite: {fileID: 21300000, guid: bc38a1eda803b4df29778f058bbd448f, type: 3}
   - id: 4
     name: '[S] Shelf Coral 1'
     coral: 10
@@ -48,6 +52,7 @@ MonoBehaviour:
     type: 4
     size: 0
     prefab: {fileID: 1589088671202562030, guid: 24f586c2a038b473bb50a9574e8c94e4, type: 3}
+    sprite: {fileID: 21300000, guid: 0cea09f656f5e408d97372aaffe0f27b, type: 3}
   - id: 5
     name: '[S] Shelf Coral 2'
     coral: 10
@@ -55,6 +60,7 @@ MonoBehaviour:
     type: 4
     size: 0
     prefab: {fileID: 4272443352208298606, guid: 442e692ac7b9c4ccb8757b315c5e3f2e, type: 3}
+    sprite: {fileID: 21300000, guid: 85abfc1eeb7c14bffb74eb1bc25f8159, type: 3}
   - id: 6
     name: '[S] Tube Coral 1'
     coral: 10
@@ -62,6 +68,7 @@ MonoBehaviour:
     type: 4
     size: 0
     prefab: {fileID: 6312200215658113389, guid: 0fc7fa061b7c94c64a4be8e96852779a, type: 3}
+    sprite: {fileID: 21300000, guid: a8f2f02f6ef664cd99f932f8a0a8557f, type: 3}
   - id: 7
     name: '[S] Tube Coral 2'
     coral: 10
@@ -69,6 +76,7 @@ MonoBehaviour:
     type: 4
     size: 0
     prefab: {fileID: 4196453554569300786, guid: eb47fde818b8c43f78e5d3a9c045693e, type: 3}
+    sprite: {fileID: 21300000, guid: 4e06ad7f1bc504ce592a92b419426c70, type: 3}
   - id: 8
     name: '[M] Bulbous Coral 1'
     coral: 10
@@ -76,6 +84,7 @@ MonoBehaviour:
     type: 4
     size: 1
     prefab: {fileID: 955300305718568062, guid: 58a9cfa11d46e4c8b8a5c3d1af34f367, type: 3}
+    sprite: {fileID: 21300000, guid: 4d96cfb6354904bd0a61df8774133b92, type: 3}
   - id: 9
     name: '[M] Coral 2'
     coral: 10
@@ -83,6 +92,7 @@ MonoBehaviour:
     type: 4
     size: 1
     prefab: {fileID: 3053325548276448085, guid: 2f34320812e4446c6946abbc1584e659, type: 3}
+    sprite: {fileID: 21300000, guid: bc38a1eda803b4df29778f058bbd448f, type: 3}
   - id: 10
     name: '[M] Shelf Coral 1'
     coral: 10
@@ -90,6 +100,7 @@ MonoBehaviour:
     type: 4
     size: 1
     prefab: {fileID: 6769862022107442977, guid: 47a15e65d2e91434588afa7fa32a5a47, type: 3}
+    sprite: {fileID: 21300000, guid: 0cea09f656f5e408d97372aaffe0f27b, type: 3}
   - id: 11
     name: '[M] Shelf Coral 2'
     coral: 10
@@ -97,6 +108,7 @@ MonoBehaviour:
     type: 4
     size: 1
     prefab: {fileID: 5176535141021537030, guid: 4c1cd664ef6724de0b06f26b010fc323, type: 3}
+    sprite: {fileID: 21300000, guid: 85abfc1eeb7c14bffb74eb1bc25f8159, type: 3}
   - id: 12
     name: '[M] Tube Coral 1'
     coral: 10
@@ -104,6 +116,7 @@ MonoBehaviour:
     type: 4
     size: 1
     prefab: {fileID: 3139389296106855892, guid: 8c8312c8a33ce4b3189c15a04e3fa3e7, type: 3}
+    sprite: {fileID: 21300000, guid: a8f2f02f6ef664cd99f932f8a0a8557f, type: 3}
   - id: 13
     name: '[M] tube Coral 2'
     coral: 10
@@ -111,6 +124,7 @@ MonoBehaviour:
     type: 4
     size: 1
     prefab: {fileID: 5951981669580464594, guid: 8d1fef2e062234dd09b6e03bbdb002a5, type: 3}
+    sprite: {fileID: 21300000, guid: 4e06ad7f1bc504ce592a92b419426c70, type: 3}
   - id: 14
     name: '[L] Bulbous Coral 1'
     coral: 10
@@ -118,6 +132,7 @@ MonoBehaviour:
     type: 4
     size: 2
     prefab: {fileID: 6295490842918473215, guid: a29dd0af822d242a5a65637561102de8, type: 3}
+    sprite: {fileID: 21300000, guid: 4d96cfb6354904bd0a61df8774133b92, type: 3}
   - id: 15
     name: '[L] Coral 1'
     coral: 10
@@ -125,6 +140,7 @@ MonoBehaviour:
     type: 4
     size: 2
     prefab: {fileID: 8406684884301178878, guid: dc98691c6dfe3464da5dcfb844ae35dd, type: 3}
+    sprite: {fileID: 21300000, guid: bc38a1eda803b4df29778f058bbd448f, type: 3}
   - id: 16
     name: '[L] Shelf Coral 1'
     coral: 10
@@ -132,6 +148,7 @@ MonoBehaviour:
     type: 4
     size: 2
     prefab: {fileID: 3100611749847671410, guid: 69a1b0c4d1f124c7cb52b0c6f1c3f86c, type: 3}
+    sprite: {fileID: 21300000, guid: 0cea09f656f5e408d97372aaffe0f27b, type: 3}
   - id: 17
     name: '[L] shelf Coral 2'
     coral: 10
@@ -139,6 +156,7 @@ MonoBehaviour:
     type: 4
     size: 2
     prefab: {fileID: 6798810154243819974, guid: 0b54d8770593b43ad81b81b128fcc392, type: 3}
+    sprite: {fileID: 21300000, guid: 85abfc1eeb7c14bffb74eb1bc25f8159, type: 3}
   - id: 18
     name: '[L] Tube Coral 1'
     coral: 10
@@ -146,6 +164,7 @@ MonoBehaviour:
     type: 4
     size: 2
     prefab: {fileID: 8135039284602483848, guid: 4f5ec16386849427f8b2c878a1718127, type: 3}
+    sprite: {fileID: 21300000, guid: a8f2f02f6ef664cd99f932f8a0a8557f, type: 3}
   - id: 19
     name: '[L] tube Coral 2'
     coral: 10
@@ -153,3 +172,4 @@ MonoBehaviour:
     type: 4
     size: 2
     prefab: {fileID: 2424363639822441551, guid: fe5a0cdcbf1184001ba19baac560ed39, type: 3}
+    sprite: {fileID: 21300000, guid: 4e06ad7f1bc504ce592a92b419426c70, type: 3}

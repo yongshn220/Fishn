@@ -154,7 +154,7 @@ public class FishTankController : MonoBehaviour
             if (data.type_id == type_id)
             {
                 data.instantiated = true;
-                data.position = Vector3.zero;
+                data.position = Vector3.up * 4;
                 InstantiateSeaObject(data);
                 disabledSeaObjectDataList.Remove(data);
                 break;
@@ -171,7 +171,7 @@ public class FishTankController : MonoBehaviour
             if (data.type_id == type_id)
             {
                 data.instantiated = true;
-                data.position = Vector3.zero;
+                data.position = Vector3.up * 4;
                 InstantiateCoralPlant(data);
                 disabledCoralPlantDataList.Remove(data);
                 break;

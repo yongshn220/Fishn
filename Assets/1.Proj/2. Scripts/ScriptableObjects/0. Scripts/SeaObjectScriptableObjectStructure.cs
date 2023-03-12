@@ -28,4 +28,5 @@ public class SeaObjectScriptableObjectStructure
     public ItemType type;
     public SeaObjectSize size;
     public GameObject prefab;
+    public Sprite sprite;
 }

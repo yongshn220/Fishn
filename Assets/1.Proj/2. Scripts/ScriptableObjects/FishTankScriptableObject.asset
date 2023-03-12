@@ -18,18 +18,22 @@ MonoBehaviour:
     prefab: {fileID: 0}
     type: 0
     coral: 0
+    sprite: {fileID: 0}
   - id: 1
     name: Basic 2x2
     prefab: {fileID: 9054101435386547658, guid: d67ff6a9b23c943c0a733b0ca59c67ac, type: 3}
     type: 5
     coral: 1
+    sprite: {fileID: 21300000, guid: 254e684967e0e499ea603633b918c265, type: 3}
   - id: 2
-    name: Basic 3x2
+    name: Basic 2x3
     prefab: {fileID: 8940830517122218549, guid: 96b7174e43b3943e3a40a5bfe67fd78c, type: 3}
     type: 5
     coral: 2
+    sprite: {fileID: 21300000, guid: 7a2934e781f3e434ca6378aef5660c75, type: 3}
   - id: 3
-    name: Basic 4x2
+    name: Basic 2x4
     prefab: {fileID: 9054101435386547658, guid: e75ed86e0cf2847038960bcb96c79481, type: 3}
     type: 5
     coral: 3
+    sprite: {fileID: 21300000, guid: 18e7576fee4e34631b15289d146458dc, type: 3}

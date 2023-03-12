@@ -31,6 +31,7 @@ public class StoreItemController : MonoBehaviour
         this.coral = seaObject.coral;
         this.coralValue.text = this.coral.ToString();
         this.itemName.text = seaObject.name;
+        this.itemImage.sprite = seaObject.sprite;
     }
 
     public void Setup(StorePopupController popupController, EntityScriptableObjectStructure entity)
@@ -41,6 +42,7 @@ public class StoreItemController : MonoBehaviour
         this.coral = entity.coral;
         this.coralValue.text = this.coral.ToString();
         this.itemName.text = entity.name;
+        this.itemImage.sprite = entity.sprite;
     }
 
     public void Setup(StorePopupController popupController, CoralScriptableObjectStructure coralPlant)
@@ -51,6 +53,7 @@ public class StoreItemController : MonoBehaviour
         this.coral = coralPlant.coral;
         this.coralValue.text = this.coral.ToString();
         this.itemName.text = coralPlant.name + $" [{coralPlant.unitCoral}]";
+        this.itemImage.sprite = coralPlant.sprite;
     }
 
     public void Setup(StorePopupController popupController, FishTankScriptableObjectStructure fishTank)
@@ -61,6 +64,7 @@ public class StoreItemController : MonoBehaviour
         this.coral = fishTank.coral;
         this.coralValue.text = this.coral.ToString();
         this.itemName.text = fishTank.name;
+        this.itemImage.sprite = fishTank.sprite;
     }
 
     private void OnBuyButtonClick()
