@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EntitySOList: {fileID: 11400000, guid: 36435afaddcdc49ac90acbda3b3d6385, type: 2}
-  EntityGrowthSOList: {fileID: 11400000, guid: df0823fa336014be4ae6573a0ad6c579, type: 2}
+  EntityGrowthSOList: {fileID: 0}
   SeaObjectSOList: {fileID: 11400000, guid: 12385c07706074e419cd2a6ee24effde, type: 2}
   FishTankSOList: {fileID: 11400000, guid: 68023b3c635374b7996cf65b1328584d, type: 2}
   CoralPlantSOList: {fileID: 11400000, guid: 3057a32e091e341e6a744e1ce1226c8b, type: 2}
